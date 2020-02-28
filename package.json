@@ -1,0 +1,25 @@
+{
+  "name": "inventorymanagement-node.jsapp",
+  "version": "1.0.0",
+  "description": "IMS_API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbhavsar1994/InventoryManagement-Node.jsApp.git"
+  },
+  "author": "Mehul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbhavsar1994/InventoryManagement-Node.jsApp/issues"
+  },
+  "dependencies": {
+    "express": "3.12.0"
+  },
+  "devDependencies": {
+    "mocha": "1.20.1",
+    "supertest": "0.13.0"
+  }
+}
