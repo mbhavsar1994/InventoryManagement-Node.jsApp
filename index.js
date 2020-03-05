@@ -1,14 +1,15 @@
-const express = require('express')
-const app = express()
+require("dotenv").config();
 
-app.get('/', (req, res) => res.send('Hello World!'))
+const express = require("express");
+const app = express();
+const companyuserRouter = require("./api/company_users/CompanyUser.router");
+const customeruserRouter = require("./api/customer_users/CustomerUser.router");
 
+app.use(express.json());
 
-app.get('/IMS', (req, res) => res.send('Inventory Management APIs!'))
+app.use("/api/companyuser", companyuserRouter);
+app.use("/api/customeruser", customeruserRouter);
 
-var server = app.listen(3000, () => {
-    console.log("Listening on port " + server.address().port + "...");
+var server = app.listen(process.env.APP_PORT, () => {
+  console.log("Listening on port " + server.address().port + "...");
 });
-
-
-
