@@ -1,5 +1,5 @@
 const { getUserByUserEmail } = require("./CompanyUser.service");
-const { hashSync, genSaltSync, compareSync } = require("bcrypt");
+//const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 module.exports = {
   authcompanyuser: (req, res) => {
