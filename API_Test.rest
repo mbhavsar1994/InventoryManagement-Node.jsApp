@@ -14,3 +14,19 @@ content-type: application/json
     "email": "mbh@g.com",
     "password": "123456789"
 }
+
+
+POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
+content-type: application/json
+
+{
+    "Fname": "Ami",
+    "Lname": "Dave",
+    "Email":"amidave80@gmail.com",
+    "Password":"ami123",
+    "PhoneNumber":"4157891458",
+    "CompanyName":"ISI",
+    "Website":"www.abc.com",
+    "Logo":""
+}
+

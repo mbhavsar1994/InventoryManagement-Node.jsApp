@@ -10,5 +10,5 @@ app.use("/api/customeruser", customeruserRouter);
 app.use("/api/companyuser", companyuserRouter);
 
 var server = app.listen(process.env.APP_PORT, () => {
-  console.log("Listening on port " + server.address().port + "...");
+  console.log("Listening on port " + process.env.APP_PORT + "...");
 });
