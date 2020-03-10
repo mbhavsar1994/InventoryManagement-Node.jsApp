@@ -1,4 +1,8 @@
-const { getUserByUserEmail } = require("./CompanyUser.service");
+const {
+  getUserByUserEmail,
+  createCompany_User
+} = require("./CompanyUser.service");
+
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 module.exports = {
@@ -36,6 +40,31 @@ module.exports = {
           data: "Invalid email or password"
         });
       }
+    });
+  },
+
+  // Inserting Company User and Company Details
+  createCompany: (req, res) => {
+    createCompany_User(req, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.json({
+          success: 0,
+          data: err
+        });
+      }
+      if (results[2][0] != null) {
+        return res.json({
+          success: 0,
+          error_msg: results[2][0]
+        });
+      } else {
+        return res.json({
+          success: 1,
+          message: "Company Profile created Successfully"
+        });
+      }
+      console.log(body);
     });
   }
 };
