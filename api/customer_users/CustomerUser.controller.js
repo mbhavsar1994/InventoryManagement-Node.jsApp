@@ -1,6 +1,8 @@
-const { getUserByUserEmail } = require("./CustomerUser.service");
+const { getUserByUserEmail, resetPassword } = require("./CustomerUser.service");
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
+
+const { sendMail } = require("../../Config/sendEmail");
 module.exports = {
   authcustomeruser: (req, res) => {
     const body = req.body;
@@ -28,7 +30,8 @@ module.exports = {
         return res.json({
           success: 1,
           message: "login successfully",
-          token: jsontoken
+          token: jsontoken,
+          data: results
         });
       } else {
         return res.json({
@@ -36,6 +39,39 @@ module.exports = {
           data: "Invalid email or password"
         });
       }
+    });
+  },
+
+  // Forget Password for APP (Customer )------------------------------->
+  forgetPasswordCustomer: (req, res) => {
+    const body = req.body;
+
+    resetPassword(body.email, (err, results) => {
+      if (err) {
+        console.log(err);
+      }
+      if (!results) {
+        return res.json({
+          success: 0,
+          data: err
+        });
+      } else {
+        sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
+          if (err) {
+            return res.json({
+              success: 0,
+              data: err
+            });
+          }
+          if (result) {
+            return res.json({
+              success: 1,
+              data: result
+            });
+          }
+        });
+      }
+      console.log(body.password);
     });
   }
 };

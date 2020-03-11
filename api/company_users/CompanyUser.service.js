@@ -3,7 +3,7 @@ const pool = require("../../Config/database");
 module.exports = {
   getUserByUserEmail: (email, callBack) => {
     pool.query(
-      `select * from IMS.user_master_company where Email = ?`,
+      `select mc.UserId, mc.Fname,mc.Email, mc.Password, mc.PhoneNumber,cu.CompanyId,cu.IsAdmin,cd.Company_name, cd.Logo from IMS.user_master_company  mc  inner join  IMS.Company_users as cu on mc.UserId=cu.UserId inner join company_details cd on cu.CompanyId=cd.CompanyId   where Email =?;`,
       [email],
       (error, results, fields) => {
         if (error) {
