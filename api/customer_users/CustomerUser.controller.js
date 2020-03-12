@@ -1,4 +1,5 @@
-const { getUserByUserEmail } = require("./CustomerUser.service");
+const { getUserByUserEmail,
+  createcustomer_User} = require("./CustomerUser.service");
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 module.exports = {
@@ -37,5 +38,34 @@ module.exports = {
         });
       }
     });
+  },
+
+  createcustomeruser: (req, res) => {
+    createcustomer_User(req, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.json({
+          success: 0,
+          data: err
+        });
+      }
+      
+      //console.log(req);
+      console.log(results);
+      if (results != null) {
+        return res.json({
+          success: 0,
+          error_msg: results
+        });
+      } else {
+        return res.json({
+          success: 1,
+          message: "customer Profile created Successfully"
+        });
+      }
+     // console.log(body);
+    
+    });
   }
+  
 };
