@@ -1,7 +1,13 @@
+
 const { getUserByUserEmail,
   createcustomer_User} = require("./CustomerUser.service");
+
+const { getUserByUserEmail, resetPassword } = require("./CustomerUser.service");
+
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
+
+const { sendMail } = require("../../Config/sendEmail");
 module.exports = {
   authcustomeruser: (req, res) => {
     const body = req.body;
@@ -29,7 +35,8 @@ module.exports = {
         return res.json({
           success: 1,
           message: "login successfully",
-          token: jsontoken
+          token: jsontoken,
+          data: results
         });
       } else {
         return res.json({
@@ -40,31 +47,36 @@ module.exports = {
     });
   },
 
-  createcustomeruser: (req, res) => {
-    createcustomer_User(req, (err, results) => {
+  // Forget Password for APP (Customer )------------------------------->
+  forgetPasswordCustomer: (req, res) => {
+    const body = req.body;
+
+    resetPassword(body.email, (err, results) => {
       if (err) {
         console.log(err);
+      }
+      if (!results) {
         return res.json({
           success: 0,
           data: err
         });
-      }
-      
-      //console.log(req);
-      console.log(results);
-      if (results != null) {
-        return res.json({
-          success: 0,
-          error_msg: results
-        });
       } else {
-        return res.json({
-          success: 1,
-          message: "customer Profile created Successfully"
+        sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
+          if (err) {
+            return res.json({
+              success: 0,
+              data: err
+            });
+          }
+          if (result) {
+            return res.json({
+              success: 1,
+              data: result
+            });
+          }
         });
       }
-     // console.log(body);
-    
+      console.log(body.password);
     });
   }
   
