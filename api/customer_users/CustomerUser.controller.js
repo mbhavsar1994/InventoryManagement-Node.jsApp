@@ -67,6 +67,36 @@ module.exports = {
       }
       console.log(results[13][0].Err_msg);
     });
-  }
+  },
+   // Forget Password for APP (Customer )------------------------------->
+   forgetPasswordCustomer: (req, res) => {
+    const body = req.body;
+    resetPassword(body.email, (err, results) => {
+      if (err) {
+          console.log(err);
+        }
+        if (!results) {
+          return res.json({
+            success: 0,
+            data: err
+          });
+        } else{
+          sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
+            if(err){
+              return res.json({
+                    success: 0,
+                    data: err
+                  });
+            }
+            if(result){
+              return res.json({
+                success: 1,
+                data: result
+              });
+            }
+          });
+        }
+    });
+   }
   
 };

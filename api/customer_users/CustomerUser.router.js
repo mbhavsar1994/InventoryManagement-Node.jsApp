@@ -6,6 +6,6 @@ const { authcustomeruser,createcustomeruser,forgetPasswordCustomer } = require("
 router.get("/authcustomeruser", authcustomeruser);
 router.post ("/createcustomeruser", createcustomeruser);
 
-// router.get("/forgetPasswordCustomer", forgetPasswordCustomer);
+ router.get("/forgetPasswordCustomer", forgetPasswordCustomer);
 
 module.exports = router;
