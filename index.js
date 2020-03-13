@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use("/api/companyuser", companyuserRouter);
 app.use("/api/customeruser", customeruserRouter);
-app.use("/","hello")
+
 var server = app.listen(process.env.APP_PORT, () => {
   console.log("Listening on port " + process.env.APP_PORT + "...");
 });
