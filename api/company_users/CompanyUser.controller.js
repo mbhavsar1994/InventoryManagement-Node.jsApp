@@ -32,7 +32,8 @@ module.exports = {
         return res.json({
           success: 1,
           message: "login successfully",
-          token: jsontoken
+          token: jsontoken,
+          data: results
         });
       } else {
         return res.json({
@@ -43,7 +44,7 @@ module.exports = {
     });
   },
 
-  // Inserting Company User and Company Details
+  // Inserting Company User and Company Details ------------>
   createCompany: (req, res) => {
     createCompany_User(req, (err, results) => {
       if (err) {
@@ -52,11 +53,15 @@ module.exports = {
           success: 0,
           data: err
         });
-      }
-      if (results[2][0] != null) {
+      } else if (results[15][0]["status"] == null) {
         return res.json({
           success: 0,
-          error_msg: results[2][0]
+          message: "Internal server error!"
+        });
+      } else if (results[15][0]["status"] == "0") {
+        return res.json({
+          success: 0,
+          message: results[16][0]["Err_msg"]
         });
       } else {
         return res.json({
@@ -64,7 +69,6 @@ module.exports = {
           message: "Company Profile created Successfully"
         });
       }
-      console.log(body);
     });
   }
 };
