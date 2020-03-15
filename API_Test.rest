@@ -1,4 +1,5 @@
 GET http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
+
 content-type: application/json
 
 {
@@ -22,10 +23,10 @@ content-type: application/json
 {
     "Fname": "Ami",
     "Lname": "Dave",
-    "Email":"amidave80@gmail.com",
+    "Email":"amidave800@gmail.com",
     "Password":"ami123",
     "PhoneNumber":"4157891458",
-    "CompanyName":"ISI",
+    "CompanyName":"ISII",
     "Website":"www.abc.com",
     "Logo":"‪D:\\SuperMarket-Project\\logo.jpeg",
     "Address1":"12,4000",
@@ -38,9 +39,29 @@ content-type: application/json
 }
 
 ###
+
+POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
+content-type: application/json
+
+{
+    "fname": "loveleen",
+        "lname": "minhas",
+        "email":"minhaslovelesenbsjdh@gmail.com",
+        "phonenumber":"1234567898",
+        "countryid":1,
+        "provinceid":2,
+        "city":"jalan",
+        "postal":"asdff",
+        "address":"bvjdnks",
+        "password":"123",
+        "companyid":1  
+    }
+
+
 GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
 content-type: application/json
 
 {
     "email": "amidave80@gmail.com"
 }
+
