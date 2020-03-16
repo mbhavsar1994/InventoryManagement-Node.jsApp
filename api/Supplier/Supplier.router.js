@@ -1,12 +1,8 @@
 const router = require("express").Router();
-<<<<<<< HEAD
-
-const { createSupplier } = require("./Supplier.controller");
-
-router.post("/createSupplier", createSupplier);
-=======
 const passport = require("passport");
-const { getSupplier } = require("./Supplier.controller");
+const { createSupplier,getSupplier } = require("./Supplier.controller");
+
+router.post("/createSupplier", passport.authenticate("jwt", { session: false }), createSupplier);
 
 router.get(
   "/getsuppliers",
@@ -14,5 +10,5 @@ router.get(
   getSupplier
 );
 
->>>>>>> e1c708ae8e597d3acef3c4bb764c9ed17a1b88d4
+
 module.exports = router;
