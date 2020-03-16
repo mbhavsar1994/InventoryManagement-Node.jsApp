@@ -11,7 +11,7 @@
         if(results.length!=0)
         {
           return res.json({
-            success: 0,
+            success: 1,
             data: results
           });
         }
@@ -33,7 +33,7 @@
           if(results.length!=0)
           {
             return res.json({
-              success: 0,
+              success: 1,
               data: results
             });
           }
