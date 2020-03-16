@@ -17,7 +17,7 @@ module.exports = {
       }
     );
   },
-  //geting provinces
+  //fetching provinces
   getProvince: (country_id, callBack) => {
     pool.query("SELECT * FROM IMS.province_master where CountryId=?;"
     ,[country_id],(error, results) => {
@@ -26,7 +26,7 @@ module.exports = {
         
         return callBack(error);
       }
-      //console.log(results);
+      
       return callBack(country_id,results);
     });
   }
