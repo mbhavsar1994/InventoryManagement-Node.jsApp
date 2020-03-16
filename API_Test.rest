@@ -28,7 +28,14 @@ content-type: application/json
     "PhoneNumber":"4157891458",
     "CompanyName":"ISII",
     "Website":"www.abc.com",
-    "Logo":""
+    "Logo":"‪D:\\SuperMarket-Project\\logo.jpeg",
+    "Address1":"12,4000",
+    "Address2":"Rue Barclay",
+    "City":"Montreal",
+    "CountryId":"1",
+    "ProvinceId":"1",
+    "PostalCode":"H3S1K3",
+
 }
 
 ###
@@ -57,4 +64,17 @@ content-type: application/json
 {
     "email": "amidave80@gmail.com"
 }
+
+###
+GET http://localhost:3000/api/countries/g HTTP/1.1
+content-type: application/json
+
+###
+POST http://localhost:3000/api/countries/g HTTP/1.1
+content-type: application/json
+
+
+
+
+
 

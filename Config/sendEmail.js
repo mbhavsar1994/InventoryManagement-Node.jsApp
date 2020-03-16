@@ -17,7 +17,7 @@ module.exports = {
       html:
         " Hey..Please find your  password :" +
         password +
-        "<br> Thank you <br> Team Tread Go."
+        "<br> Thank you <br> Team Trade Go."
     };
 
     transporter.sendMail(mailOptions, function(error, info) {
