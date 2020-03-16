@@ -7,10 +7,10 @@ const {
 
 router.get("/authcustomeruser", authcustomeruser);
 
-//router.get("/signupcustomer", signupcustomeruser);
+
 
 router.post("/createcustomeruser", createcustomeruser);
-router.post("/g", createcustomeruser);
+
 router.get("/forgetPasswordCustomer", forgetPasswordCustomer);
 
 module.exports = router;

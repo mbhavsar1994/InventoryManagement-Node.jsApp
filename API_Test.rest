@@ -38,9 +38,8 @@ content-type: application/json
 {
     "email": "amidave80@gmail.com"
 }
-
+//creating new customer on app
 ###
-
 POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
 content-type: application/json
 
@@ -56,9 +55,20 @@ content-type: application/json
         "address":"bvjdnks",
         "password":"123",
         "companyid":1  
-}
+    }
 
 ###
+GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
+content-type: application/json
+
+{
+    "email": "amidave80@gmail.com"
+
+}
+
+ 
+###
+
 POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
 content-type: application/json
 
@@ -75,3 +85,25 @@ content-type: application/json
     "PostalCode":"H3S1J3",
     "CompanyId" : "1"
 }
+
+//fetching countries
+###
+GET http://localhost:3000/api/countries/country HTTP/1.1
+content-type: application/json
+
+
+//for fetching provinces by passing country id
+###
+GET http://localhost:3000/api/provinces/province HTTP/1.1
+content-type: application/json
+
+{
+    "country_id": 1
+}
+
+
+
+
+
+
+
