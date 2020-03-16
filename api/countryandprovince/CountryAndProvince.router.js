@@ -1,10 +1,7 @@
 const router = require("express").Router();
 
-const {
-  country,
-} = require("./CountryAndProvince.controller");
+const { country } = require("./CountryAndProvince.controller");
 
-router.post("/g", country);
-
+router.get("/countries", country);
 
 module.exports = router;
