@@ -66,13 +66,13 @@ content-type: application/json
 
 //fetching countries 
 ###
-GET http://localhost:3000/api/countries/g HTTP/1.1
+GET http://localhost:3000/api/countries/country HTTP/1.1
 content-type: application/json
 
 
 //for fetching provinces by passing country id
 ###
-GET http://localhost:3000/api/provinces/provinces HTTP/1.1
+GET http://localhost:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {

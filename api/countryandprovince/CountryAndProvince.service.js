@@ -13,7 +13,7 @@ module.exports = {
           return callBack(error);
         }
         //console.log(results);
-        return callBack(req,results);
+        return callBack(null,results);
       }
     );
   },
@@ -27,7 +27,7 @@ module.exports = {
         return callBack(error);
       }
       
-      return callBack(country_id,results);
+      return callBack(null,results);
     });
   }
 };

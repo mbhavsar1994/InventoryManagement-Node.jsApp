@@ -4,7 +4,7 @@ const {
   country,province
 } = require("./CountryAndProvince.controller");
 
-router.get("/g", country);
-router.get("/provinces", province);
+router.get("/country", country);
+router.get("/province", province);
 
 module.exports = router;
