@@ -20,20 +20,90 @@ POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
   
 {
-    "Fname": "Ami",
+    "Fname": "Ami 2",
     "Lname": "Dave",
-    "Email":"amidave80@gmail.com",
+    "Email":"amid@gmail.com",
     "Password":"ami123",
     "PhoneNumber":"4157891458",
-    "CompanyName":"ISI",
+    "CompanyName":"L'ISI",
     "Website":"www.abc.com",
     "Logo":""
 }
 ###
 
-GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
+GET http://localhost:3000/api/companyuser/forgetPasswordCompany HTTP/1.1
+
 content-type: application/json
 
 {
     "email": "amidave80@gmail.com"
 }
+//creating new customer on app
+###
+POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
+content-type: application/json
+
+{
+    "fname": "loveleen",
+        "lname": "minhas",
+        "email":"minhaslovelesenbsjdh@gmail.com",
+        "phonenumber":"1234567898",
+        "countryid":1,
+        "provinceid":2,
+        "city":"jalan",
+        "postal":"asdff",
+        "address":"bvjdnks",
+        "password":"123",
+        "companyid":1  
+    }
+
+###
+GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
+content-type: application/json
+
+{
+    "email": "amidave80@gmail.com"
+
+}
+
+ 
+###
+
+POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
+content-type: application/json
+
+{
+    "SupplierName": "supplier4",
+    "SupplierEmail": "supplier9823@gmail.com",
+    "SupplierPhone":"4157891458",
+    "DiscountRate":"10",
+    "CountryId":"1",
+    "ProvinceId":"1",
+    "Address1":"3,3225",
+    "Address2":"Rue Saint Denis",
+    "City":"Montreal",
+    "PostalCode":"H3S1J3",
+    "CompanyId" : "1"
+}
+
+//fetching countries
+###
+GET http://localhost:3000/api/countries/country HTTP/1.1
+content-type: application/json
+
+
+//for fetching provinces by passing country id
+###
+GET http://localhost:3000/api/provinces/province HTTP/1.1
+content-type: application/json
+
+{
+    "country_id": 1
+}
+
+
+
+
+
+
+
