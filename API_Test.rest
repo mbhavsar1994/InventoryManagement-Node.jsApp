@@ -1,5 +1,4 @@
-GET http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
-
+GET http://localhost:3001/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
@@ -8,18 +7,18 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
+GET http://localhost:3001/api/customeruser/authcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "mbh@g.com",
-    "password": "123456789"
+    "email": "amidave80@gmail.com",
+    "password": "123456"
 }
 
-###
+
 POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
-
+  
 {
     "Fname": "Ami 2",
     "Lname": "Dave",
@@ -28,19 +27,12 @@ content-type: application/json
     "PhoneNumber":"4157891458",
     "CompanyName":"L'ISI",
     "Website":"www.abc.com",
-    "Logo":"‪D:\\SuperMarket-Project\\logo.jpeg",
-    "Address1":"12,4000",
-    "Address2":"Rue Barclay",
-    "City":"Montreal",
-    "CountryId":"1",
-    "ProvinceId":"1",
-    "PostalCode":"H3S1K3",
-
+    "Logo":""
 }
-
 ###
 
-GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
+GET http://localhost:3000/api/companyuser/forgetPasswordCompany HTTP/1.1
+
 content-type: application/json
 
 {
@@ -83,4 +75,3 @@ content-type: application/json
     "PostalCode":"H3S1J3",
     "CompanyId" : "1"
 }
-

@@ -17,17 +17,20 @@
     "url": "https://github.com/mbhavsar1994/InventoryManagement-Node.jsApp/issues"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "morgan": "^1.9.1",
     "mysql": "^2.18.1",
-    "nodemailer": "^6.4.5"
+    "node-inspect": "^1.11.6",
+    "nodemailer": "^6.4.5",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "jasmine-node": "^1.14.5",
-    "mocha": "1.20.1",
-    "nodemon": "^2.0.2",
-    "supertest": "0.13.0"
+    "nodemon": "^2.0.2"
   }
 }

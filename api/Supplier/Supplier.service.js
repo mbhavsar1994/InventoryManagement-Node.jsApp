@@ -1,6 +1,7 @@
 const pool = require("../../Config/database");
 
 module.exports = {
+<<<<<<< HEAD
   // Insert Supplier Details ------------------------------->
   CreateNewSupplier: (req, callBack) => {
     let supplier = req.body;
@@ -21,11 +22,21 @@ module.exports = {
         supplier.PostalCode,
         supplier.CompanyId
       ],
+=======
+  getAllSupplier: (CompanyId, callBack) => {
+    pool.query(
+      "SELECT `Suppliers`.`SupplierId`, `Suppliers`.`SupplierName`,`Suppliers`.`SupplierEmail`,`Suppliers`.`City`, `Suppliers`.`CountryId`, cm.name as CountryName FROM `IMS`.`Suppliers`  inner join country_master as cm on `IMS`.`Suppliers`.CountryId = cm.CountryId  where CompanyId= ?",
+      [CompanyId],
+>>>>>>> e1c708ae8e597d3acef3c4bb764c9ed17a1b88d4
       (error, results, fields) => {
         if (error) {
           return callBack(error);
         }
+<<<<<<< HEAD
         console.log(results);
+=======
+        console.log(results[0]);
+>>>>>>> e1c708ae8e597d3acef3c4bb764c9ed17a1b88d4
         return callBack(null, results);
       }
     );
