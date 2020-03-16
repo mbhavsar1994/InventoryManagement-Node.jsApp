@@ -13,8 +13,7 @@ module.exports = {
         return callBack(null, results[0]);
       }
     );
-<<<<<<< HEAD
-=======
+
   },
   //create customer
   createCustomer: (req, callBack) => {
@@ -57,6 +56,6 @@ module.exports = {
         return callBack(null, results);
       }
     );
->>>>>>> 01011e1d66f73ff5638b04d1ef2ed63389334542
+
   }
 };
