@@ -47,6 +47,7 @@ module.exports = {
       }
     });
   },
+  //create signup for app signup
   createcustomeruser: (req, res) => {
     createCustomer(req, (err, results) => {
       if (err) {
@@ -68,6 +69,7 @@ module.exports = {
       }
       console.log(results[13][0].Err_msg);
     });
+    
   },
 
   // Forget Password for APP (Customer )------------------------------->
