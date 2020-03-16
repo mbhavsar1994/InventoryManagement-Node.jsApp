@@ -1,11 +1,11 @@
 
   
-  const { getcountry } = require("./CountryAndProvince.service");
+  const { getcountry, getProvince } = require("./CountryAndProvince.service");
   
 
   module.exports = {
     
-    //create signup for app signup
+    //fetching countries
     country: (req, res) => {
       getcountry(req, (err, results) => {
         if(results.length!=0)
@@ -25,6 +25,28 @@
 
       });
       
+    },
+    //fetching provinces by passing country id
+    province:(req,res) =>{
+      getProvince(
+        req.body.country_id, (err, results) => {
+          if(results.length!=0)
+          {
+            return res.json({
+              success: 0,
+              data: results
+            });
+          }
+          else{
+            return res.json({
+              success: 0,
+              data: "No record found"
+            });
+          }
+          console.log(results[0]);
+  
+        }
+      );
     }
   };
   

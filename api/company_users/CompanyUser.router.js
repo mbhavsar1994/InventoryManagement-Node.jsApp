@@ -3,7 +3,7 @@ const { checkToken } = require("../../auth/token_validation");
 const {
   authcompanyuser,
   createCompany,
-  forgetPasswordCustomer
+  forgetPasswordCompany
 } = require("./CompanyUser.controller");
 
 router.get("/authcompanyuser", authcompanyuser);
