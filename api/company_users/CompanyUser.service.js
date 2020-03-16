@@ -45,5 +45,19 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+  // Forget Password for Company ----------------->
+  resetPassword: (email, callBack) => {
+    pool.query(
+      `SELECT Email,Password FROM IMS.user_master_customer where Email=?`,
+      [email],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        console.log(results);
+        return callBack(null, results);
+      }
+    );
   }
 };

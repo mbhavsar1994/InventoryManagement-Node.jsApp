@@ -1,6 +1,7 @@
 const {
   getUserByUserEmail,
-  createCompany_User
+  createCompany_User,
+  resetPassword
 } = require("./CompanyUser.service");
 
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
@@ -69,6 +70,39 @@ module.exports = {
           message: "Company Profile created Successfully"
         });
       }
+    });
+  },
+
+  // Forget Password for APP (Company )------------------------------->
+  forgetPasswordCompany: (req, res) => {
+    const body = req.body;
+
+    resetPassword(body.email, (err, results) => {
+      if (err) {
+        console.log(err);
+      }
+      if (!results) {
+        return res.json({
+          success: 0,
+          data: err
+        });
+      } else {
+        sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
+          if (err) {
+            return res.json({
+              success: 0,
+              data: err
+            });
+          }
+          if (result) {
+            return res.json({
+              success: 1,
+              data: result
+            });
+          }
+        });
+      }
+      console.log(body.password);
     });
   }
 };

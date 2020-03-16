@@ -9,7 +9,9 @@ const { resetPassword } = require("./CustomerUser.service");
 const { sign } = require("jsonwebtoken");
 
 const { sendMail } = require("../../Config/sendEmail");
+
 module.exports = {
+  //API to Authenticate Customer
   authcustomeruser: (req, res) => {
     const body = req.body;
     getUserByUserEmail(body.email, (err, results) => {
