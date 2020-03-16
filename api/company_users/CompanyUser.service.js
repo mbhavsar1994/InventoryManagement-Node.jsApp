@@ -3,7 +3,7 @@ const pool = require("../../Config/database");
 module.exports = {
   getUserByUserEmail: (email, callBack) => {
     pool.query(
-      `select mc.UserId, mc.Fname,mc.Email, mc.Password, mc.PhoneNumber,cu.CompanyId,cu.IsAdmin,cd.Company_name, cd.Logo from IMS.user_master_company  mc  inner join  IMS.Company_users as cu on mc.UserId=cu.UserId inner join company_details cd on cu.CompanyId=cd.CompanyId   where Email =?;`,
+      `select mc.UserId, mc.Fname,mc.Email, mc.Password, mc.PhoneNumber,cu.CompanyId,cu.IsAdmin,cd.Company_name, cd.Logo from IMS.user_master_company  mc  inner join  IMS.Company_users as cu on mc.UserId=cu.UserId inner join company_details cd on cu.CompanyId=cd.CompanyId   where mc.Email =?;`,
       [email],
       (error, results, fields) => {
         if (error) {
@@ -51,6 +51,20 @@ module.exports = {
     pool.query(
       `SELECT Email,Password FROM IMS.user_master_customer where Email=?`,
       [email],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        console.log(results);
+        return callBack(null, results);
+      }
+    );
+  },
+
+  getUserByid: (id, callBack) => {
+    pool.query(
+      `SELECT * FROM IMS.user_master_company where UserId=?`,
+      [id],
       (error, results, fields) => {
         if (error) {
           return callBack(error);

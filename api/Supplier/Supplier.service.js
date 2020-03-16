@@ -1,17 +1,16 @@
 const pool = require("../../Config/database");
 
 module.exports = {
-  searchSupplier: (req, callBack) => {
-    let data = req.body;
+  getAllSupplier: (CompanyId, callBack) => {
     pool.query(
-      `select mc.CustomerId, mc.Fname,mc.Email,mc.Password,cd.CompanyId,cd.Company_name,cd.Logo from IMS.user_master_customer  mc  inner join company_details cd on mc.CompanyId=cd.CompanyId   where mc.Email = ?`,
-      [email],
+      "SELECT `Suppliers`.`SupplierId`, `Suppliers`.`SupplierName`,`Suppliers`.`SupplierEmail`,`Suppliers`.`City`, `Suppliers`.`CountryId`, cm.name as CountryName FROM `IMS`.`Suppliers`  inner join country_master as cm on `IMS`.`Suppliers`.CountryId = cm.CountryId  where CompanyId= ?",
+      [CompanyId],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
         }
         console.log(results[0]);
-        return callBack(null, results[0]);
+        return callBack(null, results);
       }
     );
   }

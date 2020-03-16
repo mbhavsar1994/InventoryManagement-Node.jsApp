@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const passport = require("passport");
-const { getSupplier } = require("./Supplier.controller");
+const { getCategories } = require("./Category.contoller");
 
 router.get(
-  "/getsuppliers",
+  "/getcategories",
   passport.authenticate("jwt", { session: false }),
-  getSupplier
+  getCategories
 );
 
 module.exports = router;

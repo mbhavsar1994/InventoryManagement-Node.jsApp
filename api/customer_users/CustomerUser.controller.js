@@ -1,9 +1,8 @@
 const {
   getUserByUserEmail,
-  createCustomer
+  createCustomer,
+  resetPassword
 } = require("./CustomerUser.service");
-
-const { resetPassword } = require("./CustomerUser.service");
 
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
@@ -19,37 +18,31 @@ module.exports = {
         console.log(err);
       }
       if (!results) {
-        return res.json({
-          success: 0,
-          data: "Invalid email or password"
+        return res.status(401).json({
+          message: "Invalid email address"
         });
       }
       console.log(body.password);
-      // const result = compareSync(body.password, results.Password);
 
-      const result = true;
       debugger;
-      if (result) {
+      if (body.password === results.Password) {
         debugger;
         results.Password = undefined;
-        const jsontoken = sign({ result: results }, process.env.JWT_KEY, {
-          expiresIn: "1d"
-        });
-        return res.json({
-          success: 1,
+        let payload = { id: results.UserId };
+        let token = sign(payload, process.env.JWT_KEY);
+
+        return res.status(200).json({
           message: "login successfully",
-          token: jsontoken,
+          token: token,
           data: results
         });
       } else {
-        return res.json({
-          success: 0,
-          data: "Invalid email or password"
+        return res.status(401).json({
+          message: "Invalid password..!"
         });
       }
     });
   },
-  //create signup for app signup
   createcustomeruser: (req, res) => {
     createCustomer(req, (err, results) => {
       if (err) {
@@ -71,7 +64,6 @@ module.exports = {
       }
       console.log(results[13][0].Err_msg);
     });
-    
   },
 
   // Forget Password for APP (Customer )------------------------------->

@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { checkToken } = require("../../auth/token_validation");
 const {
   authcustomeruser,
   createcustomeruser,
@@ -13,6 +12,5 @@ router.get("/authcustomeruser", authcustomeruser);
 router.post("/createcustomeruser", createcustomeruser);
 router.post("/g", createcustomeruser);
 router.get("/forgetPasswordCustomer", forgetPasswordCustomer);
-
 
 module.exports = router;
