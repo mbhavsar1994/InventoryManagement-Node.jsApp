@@ -21,12 +21,12 @@ POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
 
 {
-    "Fname": "Ami",
+    "Fname": "Ami 2",
     "Lname": "Dave",
-    "Email":"amidave800@gmail.com",
+    "Email":"amid@gmail.com",
     "Password":"ami123",
     "PhoneNumber":"4157891458",
-    "CompanyName":"ISII",
+    "CompanyName":"L'ISI",
     "Website":"www.abc.com",
     "Logo":"‪D:\\SuperMarket-Project\\logo.jpeg",
     "Address1":"12,4000",
@@ -36,6 +36,15 @@ content-type: application/json
     "ProvinceId":"1",
     "PostalCode":"H3S1K3",
 
+}
+
+###
+
+GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
+content-type: application/json
+
+{
+    "email": "amidave80@gmail.com"
 }
 
 ###
@@ -55,13 +64,23 @@ content-type: application/json
         "address":"bvjdnks",
         "password":"123",
         "companyid":1  
-    }
+}
 
-
-GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
+###
+POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
 content-type: application/json
 
 {
-    "email": "amidave80@gmail.com"
+    "SupplierName": "supplier4",
+    "SupplierEmail": "supplier9823@gmail.com",
+    "SupplierPhone":"4157891458",
+    "DiscountRate":"10",
+    "CountryId":"1",
+    "ProvinceId":"1",
+    "Address1":"3,3225",
+    "Address2":"Rue Saint Denis",
+    "City":"Montreal",
+    "PostalCode":"H3S1J3",
+    "CompanyId" : "1"
 }
 
