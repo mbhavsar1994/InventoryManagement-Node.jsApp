@@ -44,12 +44,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const companyuserRouter = require("./api/company_users/CompanyUser.router");
 const customeruserRouter = require("./api/customer_users/CustomerUser.router");
 
-
-
-
 const countriesRouter = require("./api/countryandprovince/CountryAndProvince.router");
 const supplier = require("./api/Supplier/Supplier.router");
 const category = require("./api/Category/Category.router");
+const product = require("./api/Product/Product.router");
 
 app.use("/api/companyuser", companyuserRouter);
 app.use("/api/customeruser", customeruserRouter);
@@ -58,12 +56,11 @@ app.use("/api/countries", countriesRouter);
 app.use("/api/provinces", countriesRouter);
 app.use("/api/supplier", supplier);
 app.use("/api/category", category);
-
+app.use("/api/product", product);
 // Main Root
 app.get("/", function(req, res) {
   res.json({ message: "Inventory Management API is up!" });
 });
-
 
 var server = app.listen(process.env.APP_PORT, () => {
   console.log("Listening on port " + process.env.APP_PORT + "...");
