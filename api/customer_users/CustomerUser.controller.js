@@ -17,7 +17,7 @@ module.exports = {
       if (err) {
         console.log(err);
       }
-      if (!results) {
+      if (!results.length) {
         return res.status(401).json({
           message: "Invalid email address"
         });

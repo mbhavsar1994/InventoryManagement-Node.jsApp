@@ -14,7 +14,7 @@ module.exports = {
           error: err
         });
       }
-      if (!results) {
+      if (!results.length) {
         return res
           .status(404)
           .json({ success: false, message: " Resource does not exist." });

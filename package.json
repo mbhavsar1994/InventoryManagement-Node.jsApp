@@ -23,7 +23,6 @@
     "express": "^4.16.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "morgan": "^1.9.1",
     "mysql": "^2.18.1",
     "node-inspect": "^1.11.6",
     "nodemailer": "^6.4.5",
