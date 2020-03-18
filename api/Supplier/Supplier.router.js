@@ -8,7 +8,7 @@ router.post(
   createSupplier
 );
 
-router.POST(
+router.post(
   "/getsuppliers",
   passport.authenticate("jwt", { session: false }),
   getSupplier
