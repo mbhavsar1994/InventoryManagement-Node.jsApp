@@ -19,7 +19,7 @@ router.post(
   getSupplier
 );
 
-router.post(
+router.put(
   "/editsupplier",
   passport.authenticate("jwt", { session: false }),
   editSupplier

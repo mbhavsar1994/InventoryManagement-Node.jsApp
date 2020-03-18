@@ -92,7 +92,7 @@ content-type: application/json
 
 ###
 //Edit Supplier deatils 
-POST  http://localhost:3000/api/supplier/editsupplier HTTP/1.1
+PUT  http://localhost:3000/api/supplier/editsupplier HTTP/1.1
 content-type: application/json
 
 {
@@ -111,7 +111,8 @@ content-type: application/json
 }
 ###
 
-GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10&CompanyId=1 HTTP/1.1
+GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
 
@@ -125,7 +126,7 @@ GET http://localhost:3000/api/countries/country HTTP/1.1
 content-type: application/json
 
 
-//for fetching provinces by passing country id ---->
+//for fetching provinces by passing country id
 ###
 GET http://localhost:3000/api/provinces/province HTTP/1.1
 content-type: application/json
@@ -133,7 +134,6 @@ content-type: application/json
 {
     "country_id": 1
 }
-
 
 // Add new Product -------------------------------->
 ###
@@ -156,51 +156,25 @@ content-type: application/json
     "Qty_minimum_required":50,
     "CompanyId":1
 }
-//creating new  category
+
+
 ###
-POST http://localhost:3000/api/category/createCategory HTTP/1.1
+
+
+PUT  http://localhost:3001/api/category/editcategory HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
 {
-    "categoryname": "minehas111",
-    "SKU": "xyz-234-13",
-    "tags": "winter",
-    "companyid":1
-} 
-
+   "categoryId": "1004",
+    "categoryname":"Pants",
+    "SKU": "xyz-234-27",
+    "tags"  : "Mens Women Pants"
+}
 
 ###
 
-POST  http://18.218.124.225:3000/api/companyuser/createCompany HTTP/1.1
-content-type: application/json
- 
-{
-    "Fname": "Ami",
-    "Lname": "Dave",
-    "Email":"amidav11e80@gmail.com",
-    "Password":"ami123",
-    "PhoneNumber":"4157891458",
-    "CompanyName":"IS11I",
-    "Website":"www.abc.com",
-    "Logo":"‪D:\\SuperMarket-Project\\logo.jpeg",
-    "Address1":"12,4000",
-    "Address2":"Rue Barclay",
-    "City":"Montreal",
-    "CountryId":"1",
-    "ProvinceId":"1",
-    "PostalCode":"H3S1K3"
-}
-
-<<<<<<< HEAD
-=======
-// Delete Product ------------------------------------------------------->
-PUT  http://localhost:3000/api/product/deleteproduct HTTP/1.1
+GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
-{
-    "ProductId":"4"
-    
-}
-
->>>>>>> e44744c37fef32a56e45b0e805571037a11d80fa
