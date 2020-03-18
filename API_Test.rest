@@ -111,7 +111,7 @@ content-type: application/json
 }
 ###
 
-GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10 HTTP/1.1
+GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=9&CompanyId=1 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
@@ -161,7 +161,7 @@ content-type: application/json
 ###
 
 
-PUT  http://localhost:3001/api/category/editcategory HTTP/1.1
+PUT  http://localhost:3000/api/category/editcategory HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
@@ -174,7 +174,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10 HTTP/1.1
+GET http://localhost:3000/api/category/getcategorybyId?CategoryId=1001&CompanyId=1 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
