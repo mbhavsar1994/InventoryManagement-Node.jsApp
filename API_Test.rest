@@ -125,7 +125,7 @@ GET http://localhost:3000/api/countries/country HTTP/1.1
 content-type: application/json
 
 
-//for fetching provinces by passing country id
+//for fetching provinces by passing country id ---->
 ###
 GET http://localhost:3000/api/provinces/province HTTP/1.1
 content-type: application/json
@@ -133,6 +133,7 @@ content-type: application/json
 {
     "country_id": 1
 }
+
 
 // Add new Product -------------------------------->
 ###
@@ -155,6 +156,18 @@ content-type: application/json
     "Qty_minimum_required":50,
     "CompanyId":1
 }
+//creating new  category
+###
+POST http://localhost:3000/api/category/createCategory HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+content-type: application/json
+
+{
+    "categoryname": "minehas111",
+    "SKU": "xyz-234-13",
+    "tags": "winter",
+    "companyid":1
+} 
 
 
 ###
@@ -179,3 +192,15 @@ content-type: application/json
     "PostalCode":"H3S1K3"
 }
 
+<<<<<<< HEAD
+=======
+// Delete Product ------------------------------------------------------->
+PUT  http://localhost:3000/api/product/deleteproduct HTTP/1.1
+content-type: application/json
+
+{
+    "ProductId":"4"
+    
+}
+
+>>>>>>> e44744c37fef32a56e45b0e805571037a11d80fa

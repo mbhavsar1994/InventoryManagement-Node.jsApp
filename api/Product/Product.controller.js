@@ -1,4 +1,8 @@
-const { getAllProduct, AddProduct } = require("./Product.service");
+const {
+  getAllProduct,
+  AddProduct,
+  RemoveProduct
+} = require("./Product.service");
 const _ = require("lodash");
 
 module.exports = {
@@ -90,6 +94,28 @@ module.exports = {
         return res.status(200).json({
           success: "200",
           data: response
+        });
+      }
+    });
+  },
+
+  DeleteProduct: (req, res) => {
+    RemoveProduct(req, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: false,
+          data: err
+        });
+      } else if (!results) {
+        return res.status(400).json({
+          success: false,
+          message: "Bad request"
+        });
+      } else {
+        return res.status(200).json({
+          success: true,
+          message: "Product deleted Successfully"
         });
       }
     });

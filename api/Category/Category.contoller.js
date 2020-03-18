@@ -1,6 +1,36 @@
 const _ = require("lodash");
-const { getAllCategory } = require("./Category.service");
+const { getAllCategory, create_Category } = require("./Category.service");
 module.exports = {
+  //create new category
+  createCategory: (req,res)=>{
+    
+    create_Category(req,(err,results)=>{
+      if (err) {
+        console.log(err);
+        return res.json({
+          success: 0,
+          data: err
+        });
+      } else if (results[5][0]["status"] == null) {
+        return res.json({
+          success: 0,
+          message: "Internal server error!"
+        });
+      } else if (results[5][0]["status"] == "0") {
+        return res.json({
+          success: 0,
+          message: results[6][0]["Err_msg"]
+        });
+      } else {
+        return res.json({
+          success: 1,
+          message: "Category created Successfully"
+        });
+      }
+      
+      
+    });
+  },
   getCategories: (req, res) => {
     var response = [];
     console.log(req.query);

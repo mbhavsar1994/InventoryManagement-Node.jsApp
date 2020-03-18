@@ -48,5 +48,21 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+
+  RemoveProduct: (req, callBack) => {
+    pool.query(
+      "UPDATE product SET IsActive=0 WHERE ProductId=?;",
+      [req.body.ProductId],
+
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        console.log(results);
+        return callBack(null, results.changedRows);
+      }
+    );
   }
 };
