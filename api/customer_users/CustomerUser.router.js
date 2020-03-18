@@ -5,9 +5,7 @@ const {
   forgetPasswordCustomer
 } = require("./CustomerUser.controller");
 
-router.get("/authcustomeruser", authcustomeruser);
-
-
+router.post("/authcustomeruser", authcustomeruser);
 
 router.post("/createcustomeruser", createcustomeruser);
 

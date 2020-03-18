@@ -6,7 +6,7 @@ const {
   forgetPasswordCompany
 } = require("./CompanyUser.controller");
 
-router.get("/authcompanyuser", authcompanyuser);
+router.post("/authcompanyuser", authcompanyuser);
 router.post("/createCompany", createCompany);
 router.get("/forgetPasswordCompany", forgetPasswordCompany);
 

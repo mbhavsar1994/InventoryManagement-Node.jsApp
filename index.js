@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 bodyParser = require("body-parser");
-
+var cors = require("cors");
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 
@@ -32,6 +32,7 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
 passport.use(strategy);
 
 const app = express();
+app.use(cors());
 
 // initialize passport with express
 app.use(passport.initialize());
@@ -51,7 +52,6 @@ const product = require("./api/Product/Product.router");
 app.use("/api/companyuser", companyuserRouter);
 app.use("/api/customeruser", customeruserRouter);
 app.use("/api/countries", countriesRouter);
-
 app.use("/api/provinces", countriesRouter);
 app.use("/api/supplier", supplier);
 app.use("/api/category", category);

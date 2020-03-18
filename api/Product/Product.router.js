@@ -7,7 +7,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   CreateProduct
 );
-router.get(
+router.post(
   "/getproducts",
   passport.authenticate("jwt", { session: false }),
   getProducts
