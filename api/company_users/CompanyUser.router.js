@@ -8,6 +8,6 @@ const {
 
 router.post("/authcompanyuser", authcompanyuser);
 router.post("/createCompany", createCompany);
-router.get("/forgetPasswordCompany", forgetPasswordCompany);
+router.post("/forgetPasswordCompany", forgetPasswordCompany);
 
 module.exports = router;
