@@ -7,5 +7,5 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   getCategories
 );
-router.post("/createCategory",createCategory);
+router.post("/createCategory",passport.authenticate("jwt", { session: false }),createCategory);
 module.exports = router;

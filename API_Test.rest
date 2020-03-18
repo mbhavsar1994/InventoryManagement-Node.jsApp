@@ -129,8 +129,9 @@ content-type: application/json
 }
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
-Authorization: bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NDkzOTI0fQ.km_YqETbvNT7LOfrUVKpkGiJuJRBudgN9byM03b8ohc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
+
 {
     "categoryname": "minehas111",
     "SKU": "xyz-234-13",
