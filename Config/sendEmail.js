@@ -5,13 +5,13 @@ module.exports = {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "m.bhavsar1994@gmail.com",
-        pass: "9428754289"
+        user: "minhasloveleen@gmail.com",
+        pass: "Waheguru@111"
       }
     });
 
     var mailOptions = {
-      from: "m.bhavsar1994@gmail.com",
+      from: "minhasloveleen@gmail.com",
       to: mail,
       subject: "Sending forgot password ...",
       html:

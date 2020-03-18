@@ -44,7 +44,9 @@ module.exports = {
     );
   },
   // Forget Password for Customer ----------------->
-  resetPassword: (email, callBack) => {
+  resetPassword: (req, callBack) => {
+    let email=req.body.email;
+    
     pool.query(
       `SELECT Email,Password FROM IMS.user_master_customer where Email=?`,
       [email],
@@ -56,6 +58,5 @@ module.exports = {
         return callBack(null, results);
       }
     );
-
   }
 };

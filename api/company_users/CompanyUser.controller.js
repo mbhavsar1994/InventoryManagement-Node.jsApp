@@ -12,6 +12,8 @@ module.exports = {
     const body = req.body;
     getUserByUserEmail(body.email, (err, results) => {
       if (err) {
+        console.log(err);
+        
         return res.status(500).json({
           success: "0",
           message: "Internal server error"
@@ -90,6 +92,7 @@ module.exports = {
         });
       } else {
         sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
+          console.log(body.email);
           if (err) {
             return res.json({
               success: 0,

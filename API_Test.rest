@@ -72,8 +72,7 @@ GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
 content-type: application/json
 
 {
-    "email": "amidave80@gmail.com"
-
+    "email": "minhasloveleen@gmail.com"
 }
 
 // creating New Supplier ----------------------------------> 
@@ -162,13 +161,22 @@ content-type: application/json
     "Qty_minimum_required":50,
     "CompanyId":1
 }
+//creating new  category
+###
+POST http://localhost:3000/api/category/createCategory HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
+content-type: application/json
 
+{
+    "categoryname": "minehas111",
+    "SKU": "xyz-234-13",
+    "tags": "winter",
+    "companyid":1
+}
 
 ###
-
-
 PUT  http://localhost:3000/api/category/editcategory HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
 content-type: application/json
 
 {
@@ -177,11 +185,18 @@ content-type: application/json
     "SKU": "xyz-234-27",
     "tags"  : "Mens Women Pants"
 }
+###
+POST  http://localhost:3000/api/category/getcategories HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
+content-type: application/json
 
+{
+    "CompanyId": 1
+}
 ###
 
 GET http://localhost:3000/api/category/getcategorybyId?CategoryId=1001&CompanyId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
 content-type: application/json
 
 
