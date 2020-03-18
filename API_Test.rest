@@ -20,16 +20,22 @@ content-type: application/json
 ###
 POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
-  
-{
-    "Fname": "Amis",
+
+{   
+     "Fname": "Ami",
     "Lname": "Dave",
-    "Email":"amid123@gmail.com",
+    "Email":"amidav11e80@gmail.com",
     "Password":"ami123",
     "PhoneNumber":"4157891458",
-    "CompanyName":"L'ISI123",
+    "CompanyName":"IS11I",
     "Website":"www.abc.com",
-    "Logo":""
+    "Logo":"‪D:\SuperMarket-Project\logo.jpeg",
+    "Address1":"12,4000",
+    "Address2":"Rue Barclay",
+    "City":"Montreal",
+    "CountryId":"1",
+    "ProvinceId":"1",
+    "PostalCode":"H3S1K3"
 }
 // Forget Password for Company User -------------------------->
 ###
@@ -193,3 +199,13 @@ GET http://localhost:3000/api/category/getcategorybyId?CategoryId=1001&CompanyId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
 content-type: application/json
 
+
+### 
+
+PUT http://localhost:3000/api/product/deleteproduct HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+content-type: application/json
+
+{
+    "ProductId":"4"
+}
