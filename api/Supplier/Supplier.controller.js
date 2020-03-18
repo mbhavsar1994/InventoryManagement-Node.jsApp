@@ -1,4 +1,9 @@
-const { CreateNewSupplier, getAllSupplier } = require("./Supplier.service");
+const {
+  CreateNewSupplier,
+  getAllSupplier,
+  EditSupplier,
+  GetSupplierById
+} = require("./Supplier.service");
 
 const _ = require("lodash");
 module.exports = {
@@ -90,6 +95,73 @@ module.exports = {
         return res.status(200).json({
           success: "200",
           data: response
+        });
+      }
+    });
+  },
+  editSupplier: (req, res) => {
+    EditSupplier(req, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.json({
+          success: false,
+          data: err
+        });
+      } else if (results[14][0]["status"] == null) {
+        return res.json({
+          success: false,
+          message: "Internal server error!"
+        });
+      } else if (results[14][0]["status"] == "0") {
+        return res.json({
+          success: false,
+          message: results[15][0]["Err_msg"]
+        });
+      } else {
+        return res.json({
+          success: true,
+          message: "Supplier details updated Successfully"
+        });
+      }
+    });
+  },
+
+  getSupplierById: (req, res) => {
+    let SupplierId = "";
+    let CompanyId = "";
+    if (typeof req.query.SupplierId != "undefined") {
+      SupplierId = req.query.SupplierId;
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request..supplier id is missing!"
+      });
+    }
+    if (typeof req.query.CompanyId != "undefined") {
+      CompanyId = req.query.CompanyId;
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request..CompanyId  is missing!"
+      });
+    }
+    GetSupplierById(CompanyId, SupplierId, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: false,
+          message: "Internal Server Error",
+          error: err
+        });
+      }
+      if (!results.length) {
+        return res
+          .status(404)
+          .json({ success: false, message: " Resource does not exist." });
+      } else {
+        return res.status(200).json({
+          success: "200",
+          data: results
         });
       }
     });

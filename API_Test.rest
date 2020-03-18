@@ -90,6 +90,35 @@ content-type: application/json
     "CompanyId" : "1"
 }
 
+###
+//Edit Supplier deatils 
+POST  http://localhost:3000/api/supplier/editsupplier HTTP/1.1
+content-type: application/json
+
+{
+    "SupplierId"  : "9",
+    "SupplierName": "supplier14",
+    "SupplierEmail": "supplier1423@gmail.com",
+    "SupplierPhone":"4157891458",
+    "DiscountRate":"10",
+    "CountryId":"1",
+    "ProvinceId":"1",
+    "Address1":"3,3225",
+    "Address2":"Rue Saint Denis",
+    "City":"Montreal",
+    "PostalCode":"H3S1J3",
+    "CompanyId" : "1"
+}
+###
+
+GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10&CompanyId=1 HTTP/1.1
+content-type: application/json
+
+
+
+
+
+
 //fetching countries
 ###
 GET http://localhost:3000/api/countries/country HTTP/1.1
@@ -128,15 +157,25 @@ content-type: application/json
 }
 
 
-
 ###
-GET http://18.218.124.225:3000/api/companyuser/authcompanyuser HTTP/1.1
+
+POST  http://18.218.124.225:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
  
 {
-    "email": "m.bh@gmail.com",
-    "password": "123456"
+    "Fname": "Ami",
+    "Lname": "Dave",
+    "Email":"amidav11e80@gmail.com",
+    "Password":"ami123",
+    "PhoneNumber":"4157891458",
+    "CompanyName":"IS11I",
+    "Website":"www.abc.com",
+    "Logo":"‪D:\\SuperMarket-Project\\logo.jpeg",
+    "Address1":"12,4000",
+    "Address2":"Rue Barclay",
+    "City":"Montreal",
+    "CountryId":"1",
+    "ProvinceId":"1",
+    "PostalCode":"H3S1K3"
 }
-
-
 
