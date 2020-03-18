@@ -96,7 +96,7 @@ GET http://localhost:3000/api/countries/country HTTP/1.1
 content-type: application/json
 
 
-//for fetching provinces by passing country id
+//for fetching provinces by passing country id ---->
 ###
 GET http://localhost:3000/api/provinces/province HTTP/1.1
 content-type: application/json
@@ -124,6 +124,16 @@ content-type: application/json
     "Barcode":"45785 14232",
     "Qty_minimum_required":50,
     "CompanyId":1
+}
+
+###
+
+PUT  http://localhost:3000/api/product/deleteproduct HTTP/1.1
+content-type: application/json
+
+{
+    "ProductId":"6"
+    
 }
 
 

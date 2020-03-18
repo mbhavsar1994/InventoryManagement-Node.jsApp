@@ -5,6 +5,7 @@ bodyParser = require("body-parser");
 
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
+const cors = require("cors");
 
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
