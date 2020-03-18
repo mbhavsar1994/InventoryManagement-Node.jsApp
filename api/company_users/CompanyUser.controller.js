@@ -13,6 +13,7 @@ module.exports = {
     getUserByUserEmail(body.email, (err, results) => {
       if (err) {
         console.log(err);
+        
       }
       if (!results) {
         return res.status(401).json({
@@ -84,6 +85,7 @@ module.exports = {
         });
       } else {
         sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
+          console.log(body.email);
           if (err) {
             return res.json({
               success: 0,
