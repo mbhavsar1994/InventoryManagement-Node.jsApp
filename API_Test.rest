@@ -72,7 +72,7 @@ GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
 content-type: application/json
 
 {
-    "email": "m.bhavsar6@gmail.com"
+    "email": "minhasloveleen@gmail.com"
 }
 
 // creating New Supplier ----------------------------------> 
