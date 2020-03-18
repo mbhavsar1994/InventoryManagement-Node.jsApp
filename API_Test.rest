@@ -1,4 +1,4 @@
-GET http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
+POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
@@ -7,7 +7,7 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
+POST http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
 content-type: application/json
 
 {
@@ -24,10 +24,10 @@ content-type: application/json
 {
     "Fname": "Amis",
     "Lname": "Dave",
-    "Email":"amid@gmail.com",
+    "Email":"amid123@gmail.com",
     "Password":"ami123",
     "PhoneNumber":"4157891458",
-    "CompanyName":"L'ISI",
+    "CompanyName":"L'ISI123",
     "Website":"www.abc.com",
     "Logo":""
 }
@@ -47,7 +47,7 @@ POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-    "fname": "loveleen",
+        "fname": "loveleen",
         "lname": "minhas",
         "email":"minhaslovelesenbsjdh@gmail.com",
         "phonenumber":"1234567898",
@@ -105,10 +105,12 @@ content-type: application/json
     "country_id": 1
 }
 
+
 // Add new Product -------------------------------->
 ###
 
 POST  http://localhost:3000/api/product/createproduct HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
 {
@@ -125,20 +127,36 @@ content-type: application/json
     "Qty_minimum_required":50,
     "CompanyId":1
 }
+//creating new  category
+###
+POST http://localhost:3000/api/category/createCategory HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+content-type: application/json
+
+{
+    "categoryname": "minehas111",
+    "SKU": "xyz-234-13",
+    "tags": "winter",
+    "companyid":1
+} 
+
+
 
 ###
+GET http://18.218.124.225:3000/api/companyuser/authcompanyuser HTTP/1.1
+content-type: application/json
+ 
+{
+    "email": "m.bh@gmail.com",
+    "password": "123456"
+}
 
+// Delete Product ------------------------------------------------------->
 PUT  http://localhost:3000/api/product/deleteproduct HTTP/1.1
 content-type: application/json
 
 {
-    "ProductId":"6"
+    "ProductId":"4"
     
 }
-
-
-
-
-
-
 
