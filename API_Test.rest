@@ -1,8 +1,8 @@
-GET http://localhost:3001/api/companyuser/authcompanyuser HTTP/1.1
+GET http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "m.bhavsar6@gmail.com",
+    "email": "m.bh@gmail.com",
     "password": "123456"
 }
 
@@ -101,7 +101,17 @@ content-type: application/json
     "country_id": 1
 }
 
+###
+POST http://localhost:3000/api/category/createCategory HTTP/1.1
+Authorization: bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NDkzOTI0fQ.km_YqETbvNT7LOfrUVKpkGiJuJRBudgN9byM03b8ohc
+content-type: application/json
 
+{
+    "categoryname": "minehas111",
+    "SKU": "xyz-234-13",
+    "tags": "winter",
+    "companyid":1
+} 
 
 
 

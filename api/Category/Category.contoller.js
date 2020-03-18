@@ -1,6 +1,14 @@
 const _ = require("lodash");
-const { getAllCategory } = require("./Category.service");
+const { getAllCategory, create_Category } = require("./Category.service");
 module.exports = {
+  //create new category
+  createCategory: (req,res)=>{
+    create_Category(req,(err,results)=>{
+      console.log(results);
+      
+      
+    });
+  },
   getCategories: (req, res) => {
     var response = [];
     console.log(req.query);
