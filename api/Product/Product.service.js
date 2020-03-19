@@ -34,9 +34,10 @@ module.exports = {
     );
   },
 
+  // Service to get all product information
   getAllProduct: (CompanyId, callBack) => {
     pool.query(
-      "SELECT `product`.`ProductId`,`product`.`Product_name` ,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.CompanyId= ?;",
+      "SELECT `product`.`ProductId`,`product`.`Product_name` ,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? ;",
       [CompanyId],
 
       (error, results, fields) => {
@@ -50,7 +51,7 @@ module.exports = {
     );
   },
 
-  // Delete Product -------------------------------->
+  // Service to Delete Product by product id -------------------------------->
   RemoveProduct: (req, callBack) => {
     pool.query(
       "UPDATE product SET IsActive=0 WHERE ProductId=?;",
@@ -67,7 +68,7 @@ module.exports = {
     );
   },
 
-  // Get Product By Id ------------------------------->
+  // Service to Get Product By Id ------------------------------->
 
   GetProductById: (CompanyId, ProductId, _callBack) => {
     pool.query(
@@ -85,7 +86,7 @@ module.exports = {
     );
   },
 
-  // Edit Product ------------------------------------->
+  //Service to  Edit Product ------------------------------------->
   EditProduct: (req, callBack) => {
     let product = req.body;
     let sql = `SET @ProductId=1;SET @ProductName="Adidas updated";SET @Description="Mens sports shoes";SET @PurchasePrice="150";SET @RetailPrice="200";SET @CategoryId="1";SET @Country_Origin_id=1;SET @Image="bjbjkb";SET @SupplierId=2; SET @QtyMinRequired=60;SET @CompanyId =1;SET @AvailableQty=70;CALL EditProduct(@ProductId,@ProductName,@Description,@PurchasePrice,@RetailPrice,@CategoryId,@Country_Origin_id,@Image,@SupplierId,@QtyMinRequired,@AvailableQty,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;

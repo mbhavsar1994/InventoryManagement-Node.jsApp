@@ -8,33 +8,37 @@ const {
 const _ = require("lodash");
 
 module.exports = {
+  // Function to create product  for company
   CreateProduct: (req, res) => {
     AddProduct(req, (err, results) => {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
+          message: "Internal server error!",
           data: err
         });
       } else if (results[13][0]["status"] == null) {
         return res.status(500).json({
-          success: false,
+          success: "0",
           message: "Internal server error!"
         });
       } else if (results[13][0]["status"] == "0") {
         return res.status(400).json({
-          success: false,
+          success: "0",
           message: results[14][0]["Err_msg"]
         });
       } else {
         return res.status(200).json({
-          success: true,
+          success: "1",
           message: "Product created Successfully"
         });
       }
     });
   },
+  //------------------------------------------------------------------------------------------------------
 
+  // Function to Get All product by company id , search by Param -ProductName,SKU,category,SupplierName
   getProducts: (req, res) => {
     var response = [];
     console.log(req.query);
@@ -43,7 +47,7 @@ module.exports = {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
           message: "Internal Server Error",
           error: err
         });
@@ -51,7 +55,7 @@ module.exports = {
       if (!results.length) {
         return res
           .status(404)
-          .json({ success: false, message: " Resource does not exist." });
+          .json({ success: "0", message: " Resource does not exist." });
       } else {
         if (typeof req.query.ProductName != "undefined") {
           results.filter(function(result) {
@@ -85,7 +89,7 @@ module.exports = {
           });
         }
 
-        // de-duplication:
+        // de-duplication: by product id
         response = _.uniqBy(response, "ProductId");
 
         // in case no filtering has been applied, respond with all stores
@@ -94,37 +98,40 @@ module.exports = {
         }
 
         return res.status(200).json({
-          success: "200",
+          success: "1",
           data: response
         });
       }
     });
   },
+  //---------------------------------------------------------------------------------------------------
 
-  // Delete Product ------------------------------------------------>
+  //Function to  Delete Product by  by product id  ------------------------------------------------>
   DeleteProduct: (req, res) => {
     RemoveProduct(req, (err, results) => {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
+          message: "Internal Server error!",
           data: err
         });
       } else if (!results) {
         return res.status(400).json({
-          success: false,
+          success: "0",
           message: "Bad request"
         });
       } else {
         return res.status(200).json({
-          success: true,
+          success: "1",
           message: "Product deleted Successfully"
         });
       }
     });
   },
+  //------------------------------------------------------------------------------------------------------------
 
-  // Get Product By Id ----------------------------------------->
+  // Function to Get Product By Id ----------------------------------------->
 
   getProductById: (req, res) => {
     let ProductId = "";
@@ -133,23 +140,23 @@ module.exports = {
       ProductId = req.query.ProductId;
     } else {
       return res.status(400).json({
-        success: false,
-        message: "Invalid request[Product Id is missing]"
+        success: "0",
+        message: "Invalid request..Product Id is missing "
       });
     }
     if (typeof req.query.CompanyId != "undefined") {
       CompanyId = req.query.CompanyId;
     } else {
       return res.status(400).json({
-        success: false,
-        message: "Invalid request[CompanyId  is missing]"
+        success: "0",
+        message: "Invalid request..CompanyId  is missing "
       });
     }
     GetProductById(CompanyId, ProductId, (err, results) => {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
           message: "Internal Server Error",
           error: err
         });
@@ -157,38 +164,40 @@ module.exports = {
       if (!results.length) {
         return res
           .status(404)
-          .json({ success: false, message: " Resource does not exist." });
+          .json({ success: "0", message: " Resource does not exist." });
       } else {
         return res.status(200).json({
-          success: "200",
+          success: "1",
           data: results
         });
       }
     });
   },
+  //-------------------------------------------------------------------------------------------------
 
-  // Edit Product ---------------------------------------->
+  //Function to  Edit Product details ---------------------------------------->
   editProduct: (req, res) => {
     EditProduct(req, (err, results) => {
       if (err) {
         console.log(err);
-        return res.json({
-          success: false,
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error! Please try again",
           data: err
         });
       } else if (results[13][0]["status"] == null) {
-        return res.json({
-          success: false,
+        return res.status(500).json({
+          success: "0",
           message: "Internal server error!"
         });
       } else if (results[13][0]["status"] == "0") {
-        return res.json({
-          success: false,
+        return res.status(400).json({
+          success: "0",
           message: results[14][0]["Err_msg"]
         });
       } else {
-        return res.json({
-          success: true,
+        return res.status(200).json({
+          success: "1",
           message: "Product details updated Successfully"
         });
       }

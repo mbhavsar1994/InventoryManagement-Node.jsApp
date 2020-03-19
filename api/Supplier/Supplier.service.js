@@ -78,6 +78,8 @@ module.exports = {
       }
     );
   },
+
+  //Service to get supplier details by id
   GetSupplierById: (CompanyId, SupplierId, callBack) => {
     pool.query(
       "SELECT `Suppliers`.`SupplierId`,`Suppliers`.`SupplierName`,`Suppliers`.`SupplierEmail`,`Suppliers`.`SupplierPhone`,`Suppliers`.`DiscountRate`,`Suppliers`.`CountryId`,`Suppliers`.`ProvinceId`,`Suppliers`.`City`,`Suppliers`.`Address1`,`Suppliers`.`Address2`,`Suppliers`.`PostalCode` FROM `IMS`.`Suppliers` where  `Suppliers`.`CompanyId`= ? and `Suppliers`.`SupplierId`= ? ;",

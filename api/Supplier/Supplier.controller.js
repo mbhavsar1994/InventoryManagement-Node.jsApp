@@ -7,33 +7,39 @@ const {
 
 const _ = require("lodash");
 module.exports = {
-  // Create suppliers ------------------->
+  //Function to  Create suppliers  ------------------->
+
   createSupplier: (req, res) => {
     CreateNewSupplier(req, (err, results) => {
       if (err) {
         console.log(err);
-        return res.json({
-          success: 0,
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error! please try again later",
           data: err
         });
       } else if (results[12][0]["status"] == null) {
-        return res.json({
-          success: 0,
+        return res.status(500).json({
+          success: "0",
           message: "Internal server error!"
         });
       } else if (results[12][0]["status"] == "0") {
-        return res.json({
-          success: 0,
+        return res.status(400).json({
+          success: "0",
           message: results[13][0]["Err_msg"]
         });
       } else {
-        return res.json({
-          success: 1,
+        return res.status(200).json({
+          success: "1",
           message: "Supplier created Successfully"
         });
       }
     });
   },
+  //-------------------------------------------------------------------------------------------------------
+
+  // Function to Get all supplier by company Id, Search by Param -SupplierName,SupplierId,City,CountryName
+
   getSupplier: (req, res) => {
     var response = [];
     console.log(req.query);
@@ -42,7 +48,7 @@ module.exports = {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
           message: "Internal Server Error",
           error: err
         });
@@ -50,7 +56,7 @@ module.exports = {
       if (!results.length) {
         return res
           .status(404)
-          .json({ success: false, message: " Resource does not exist." });
+          .json({ success: "0", message: " Resource does not exist." });
       } else {
         if (typeof req.query.SupplierName != "undefined") {
           results.filter(function(result) {
@@ -84,7 +90,7 @@ module.exports = {
           });
         }
 
-        // de-duplication:
+        // de-duplication: by supplier id
         response = _.uniqBy(response, "SupplierId");
 
         // in case no filtering has been applied, respond with all stores
@@ -93,39 +99,47 @@ module.exports = {
         }
 
         return res.status(200).json({
-          success: "200",
+          success: "1",
           data: response
         });
       }
     });
   },
+
+  //----------------------------------------------------------------------------------------------
+
+  // Function to Edit Supplier details
+
   editSupplier: (req, res) => {
     EditSupplier(req, (err, results) => {
       if (err) {
         console.log(err);
-        return res.json({
-          success: false,
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error",
           data: err
         });
       } else if (results[14][0]["status"] == null) {
-        return res.json({
-          success: false,
+        return res.status(500).json({
+          success: "0",
           message: "Internal server error!"
         });
       } else if (results[14][0]["status"] == "0") {
-        return res.json({
-          success: false,
+        return res.status(400).json({
+          success: "0",
           message: results[15][0]["Err_msg"]
         });
       } else {
-        return res.json({
-          success: true,
+        return res.status(200).json({
+          success: "1",
           message: "Supplier details updated Successfully"
         });
       }
     });
   },
+  //--------------------------------------------------------------------------------------------
 
+  // Function to get Supplier details by supplier id and company id
   getSupplierById: (req, res) => {
     let SupplierId = "";
     let CompanyId = "";
@@ -133,7 +147,7 @@ module.exports = {
       SupplierId = req.query.SupplierId;
     } else {
       return res.status(400).json({
-        success: false,
+        success: "0",
         message: "Invalid request..supplier id is missing!"
       });
     }
@@ -141,7 +155,7 @@ module.exports = {
       CompanyId = req.query.CompanyId;
     } else {
       return res.status(400).json({
-        success: false,
+        success: "0",
         message: "Invalid request..CompanyId  is missing!"
       });
     }
@@ -149,18 +163,18 @@ module.exports = {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
-          message: "Internal Server Error",
+          success: "0",
+          message: "Internal Server Error! Please try agian",
           error: err
         });
       }
       if (!results.length) {
         return res
           .status(404)
-          .json({ success: false, message: " Resource does not exist." });
+          .json({ success: "0", message: " Resource does not exist." });
       } else {
         return res.status(200).json({
-          success: "200",
+          success: "1",
           data: results
         });
       }

@@ -5,34 +5,40 @@ const {
   EditCategory,
   GetCategoryById
 } = require("./Category.service");
+
 module.exports = {
-  //create new category
+  //Function to create new category----------------------------------------------------
   createCategory: (req, res) => {
     create_Category(req, (err, results) => {
       if (err) {
         console.log(err);
         return res.json({
-          success: 0,
+          success: "0",
+          message: "Internal server error! please try again.",
           data: err
         });
       } else if (results[5][0]["status"] == null) {
         return res.json({
-          success: 0,
+          success: "0",
           message: "Internal server error!"
         });
       } else if (results[5][0]["status"] == "0") {
         return res.json({
-          success: 0,
+          success: "0",
           message: results[6][0]["Err_msg"]
         });
       } else {
         return res.json({
-          success: 1,
+          success: "1",
           message: "Category created Successfully"
         });
       }
     });
   },
+
+  //---------------------------------------------------------------------------------------------
+
+  //Function to Get All category by company id, category name--------------
   getCategories: (req, res) => {
     var response = [];
     console.log(req.query);
@@ -41,7 +47,7 @@ module.exports = {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
           message: "Internal Server Error",
           error: err
         });
@@ -49,7 +55,7 @@ module.exports = {
       if (!results.length) {
         return res
           .status(404)
-          .json({ success: false, message: " Resource does not exist." });
+          .json({ success: "0", message: " Resource does not exist." });
       } else {
         if (typeof req.query.CategoryName != "undefined") {
           results.filter(function(result) {
@@ -58,7 +64,7 @@ module.exports = {
             }
           });
         }
-        // de-duplication:
+        // de-duplication: by category id
         response = _.uniqBy(response, "CategoryId");
 
         // in case no filtering has been applied, respond with all stores
@@ -67,40 +73,46 @@ module.exports = {
         }
 
         return res.status(200).json({
-          success: "200",
+          success: "1",
           data: response
         });
       }
     });
   },
+  //------------------------------------------------------------------------------------------------------
 
+  // Fuction to edit category details by--------------------------------------------------------------
   EditCategory: (req, res) => {
     EditCategory(req, (err, results) => {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
+          message: "Internal Server error! Please try again",
           data: err
         });
       } else if (results[6][0]["status"] == null) {
         return res.status(500).json({
-          success: false,
+          success: "0",
           message: "Internal server error!"
         });
       } else if (results[6][0]["status"] == "0") {
         return res.status(400).json({
-          success: false,
+          success: "0",
           message: results[7][0]["Err_msg"]
         });
       } else {
         return res.status(200).json({
-          success: "ok",
+          success: "1",
           message: "Category updated Successfully"
         });
       }
     });
   },
 
+  //-----------------------------------------------------------------------------------------------
+
+  // Function to get category details by company  id  and category id -------------------------------------------------
   GetCategorydetailsById: (req, res) => {
     let CategoryId = "";
     let CompanyId = "";
@@ -108,7 +120,7 @@ module.exports = {
       CategoryId = req.query.CategoryId;
     } else {
       return res.status(400).json({
-        success: false,
+        success: "0",
         message: "Invalid request..Category id is missing!"
       });
     }
@@ -116,7 +128,7 @@ module.exports = {
       CompanyId = req.query.CompanyId;
     } else {
       return res.status(400).json({
-        success: false,
+        success: "0",
         message: "Invalid request..CompanyId  is missing!"
       });
     }
@@ -124,7 +136,7 @@ module.exports = {
       if (err) {
         console.log(err);
         return res.status(500).json({
-          success: false,
+          success: "0",
           message: "Internal Server Error",
           error: err
         });
@@ -132,13 +144,14 @@ module.exports = {
       if (!results.length) {
         return res
           .status(404)
-          .json({ success: false, message: " Resource does not exist." });
+          .json({ success: "0", message: " Resource does not exist." });
       } else {
         return res.status(200).json({
-          success: "200",
+          success: "1",
           data: results
         });
       }
     });
   }
+  //------------------------------------------------------------------------------------------------------------
 };

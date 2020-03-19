@@ -1,6 +1,7 @@
 const pool = require("../../Config/database");
 
 module.exports = {
+  // service to create category ----
   create_Category: (req, callBack) => {
     let category = req.body;
 
@@ -17,6 +18,8 @@ module.exports = {
       }
     );
   },
+
+  // service to get all category by company id
   getAllCategory: (CompanyId, callBack) => {
     pool.query(
       "SELECT `category`.`CategoryId`,`category`.`Category_name`,`category`.`SKU`,`category`.`tags`FROM `IMS`.`category` where  `category`.`CompanyId`=?;",
@@ -31,6 +34,7 @@ module.exports = {
     );
   },
 
+  // service to edit company infromation
   EditCategory: (req, callBack) => {
     let category = req.body;
 
@@ -48,6 +52,7 @@ module.exports = {
     );
   },
 
+  // service to get category details by company id and category id
   GetCategoryById: (CompanyId, CategoryId, callBack) => {
     pool.query(
       "SELECT `category`.`CategoryId`,`category`.`Category_name`,`category`.`SKU`,`category`.`tags`FROM `IMS`.`category` where  `category`.`CompanyId`=? and `category`.`CategoryId`=? ;",
