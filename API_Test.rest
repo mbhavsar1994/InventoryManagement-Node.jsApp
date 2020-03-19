@@ -192,15 +192,47 @@ content-type: application/json
     "PostalCode":"H3S1K3"
 }
 
-<<<<<<< HEAD
-=======
-// Delete Product ------------------------------------------------------->
+
+// Delete product ----------------------------------->
+###
 PUT  http://localhost:3000/api/product/deleteproduct HTTP/1.1
 content-type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 {
     "ProductId":"4"
     
 }
 
->>>>>>> e44744c37fef32a56e45b0e805571037a11d80fa
+
+###
+// Edit Product --------------------------------------->
+PUT  http://localhost:3000/api/product/editproduct HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+
+{
+    "Product_name":"Golden Goose2",
+    "Description":"Comfertable stylish shoes",
+    "PurchasePrice":"1100",
+    "RetailPrice":"1200",
+    "CategoryId":2,
+    "Country_Origin_id":1,
+    "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
+    "SupplierId":2,
+    "Qty_minimum_required":20,
+    "AvailableQty":30,
+    "CompanyId":1
+}
+
+// Get Product By Id ---------------------------->
+###
+
+GET http://localhost:3000/api/product/getproductbyId?ProductId=5&CompanyId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+content-type: application/json
+
+###
+
+GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10&CompanyId=1 HTTP/1.1
+content-type: application/json
+

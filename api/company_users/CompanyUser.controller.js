@@ -16,6 +16,7 @@ module.exports = {
       }
       if (!results) {
         return res.status(401).json({
+          success: "0",
           message: "Invalid email or password"
         });
       }
@@ -29,12 +30,14 @@ module.exports = {
         let token = sign(payload, process.env.JWT_KEY);
 
         return res.status(200).json({
+          success: "1",
           message: "login successfully",
           token: token,
           data: results
         });
       } else {
         return res.status(401).json({
+          success: "0",
           message: "Invalid email or password"
         });
       }

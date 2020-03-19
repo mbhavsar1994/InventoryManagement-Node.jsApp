@@ -50,6 +50,7 @@ module.exports = {
     );
   },
 
+  // Delete Product -------------------------------->
   RemoveProduct: (req, callBack) => {
     pool.query(
       "UPDATE product SET IsActive=0 WHERE ProductId=?;",
@@ -62,6 +63,54 @@ module.exports = {
 
         console.log(results);
         return callBack(null, results.changedRows);
+      }
+    );
+  },
+
+  // Get Product By Id ------------------------------->
+
+  GetProductById: (CompanyId, ProductId, _callBack) => {
+    pool.query(
+      "SELECT `product`.`ProductId`,`product`.`Product_name` ,`product`.`SKU`,`product`.`Description`,`product`.`PurchasePrice`,`product`.`RetailPrice`,`product`.`CategoryId`,`product`.`Country_Origin_id`,`product`.`Image`,`product`.`SupplierId`,`product`.`Barcode`,`product`.`Qty_minimum_required`,`product`.`CompanyId`,`product`.`AvailableQty`,`product`.`IsActive` FROM `IMS`.`product` where  `product`.`CompanyId`= ? and `product`.`ProductId`= ? ;",
+      [CompanyId, ProductId],
+
+      (error, results, fields) => {
+        if (error) {
+          return _callBack(error);
+        }
+
+        console.log(results);
+        return _callBack(null, results);
+      }
+    );
+  },
+
+  // Edit Product ------------------------------------->
+  EditProduct: (req, callBack) => {
+    let product = req.body;
+    let sql = `SET @ProductId=1;SET @ProductName="Adidas updated";SET @Description="Mens sports shoes";SET @PurchasePrice="150";SET @RetailPrice="200";SET @CategoryId="1";SET @Country_Origin_id=1;SET @Image="bjbjkb";SET @SupplierId=2; SET @QtyMinRequired=60;SET @CompanyId =1;SET @AvailableQty=70;CALL EditProduct(@ProductId,@ProductName,@Description,@PurchasePrice,@RetailPrice,@CategoryId,@Country_Origin_id,@Image,@SupplierId,@QtyMinRequired,@AvailableQty,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
+
+    pool.query(
+      sql,
+      [
+        product.ProductName,
+        product.Description,
+        product.PurchasePrice,
+        product.RetailPrice,
+        product.CategoryId,
+        product.Country_Origin_id,
+        product.Image,
+        product.SupplierId,
+        product.QtyMinRequired,
+        product.CompanyId,
+        product.AvailableQty
+      ],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        console.log(results);
+        return callBack(null, results);
       }
     );
   }

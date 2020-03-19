@@ -1,7 +1,9 @@
 const {
   getAllProduct,
   AddProduct,
-  RemoveProduct
+  RemoveProduct,
+  GetProductById,
+  EditProduct
 } = require("./Product.service");
 const _ = require("lodash");
 
@@ -99,6 +101,7 @@ module.exports = {
     });
   },
 
+  // Delete Product ------------------------------------------------>
   DeleteProduct: (req, res) => {
     RemoveProduct(req, (err, results) => {
       if (err) {
@@ -116,6 +119,77 @@ module.exports = {
         return res.status(200).json({
           success: true,
           message: "Product deleted Successfully"
+        });
+      }
+    });
+  },
+
+  // Get Product By Id ----------------------------------------->
+
+  getProductById: (req, res) => {
+    let ProductId = "";
+    let CompanyId = "";
+    if (typeof req.query.ProductId != "undefined") {
+      ProductId = req.query.ProductId;
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request[Product Id is missing]"
+      });
+    }
+    if (typeof req.query.CompanyId != "undefined") {
+      CompanyId = req.query.CompanyId;
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request[CompanyId  is missing]"
+      });
+    }
+    GetProductById(CompanyId, ProductId, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: false,
+          message: "Internal Server Error",
+          error: err
+        });
+      }
+      if (!results.length) {
+        return res
+          .status(404)
+          .json({ success: false, message: " Resource does not exist." });
+      } else {
+        return res.status(200).json({
+          success: "200",
+          data: results
+        });
+      }
+    });
+  },
+
+  // Edit Product ---------------------------------------->
+  editProduct: (req, res) => {
+    EditProduct(req, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.json({
+          success: false,
+          data: err
+        });
+      } else if (results[13][0]["status"] == null) {
+        return res.json({
+          success: false,
+          message: "Internal server error!"
+        });
+      } else if (results[13][0]["status"] == "0") {
+        return res.json({
+          success: false,
+          message: results[14][0]["Err_msg"]
+        });
+      } else {
+        return res.json({
+          success: true,
+          message: "Product details updated Successfully"
         });
       }
     });
