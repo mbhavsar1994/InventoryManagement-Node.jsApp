@@ -6,6 +6,7 @@ const {
   forgetPasswordCompany
 } = require("./CompanyUser.controller");
 
+<<<<<<< HEAD
 router.post(
   "/authcompanyuser",
   passport.authenticate("jwt", { session: false }),
@@ -21,5 +22,10 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   forgetPasswordCompany
 );
+=======
+router.post("/authcompanyuser", authcompanyuser);
+router.post("/createCompany", createCompany);
+router.post("/forgetPasswordCompany", forgetPasswordCompany);
+>>>>>>> 503e8959c963212537ae7c7f2ada03d7f5991e7e
 
 module.exports = router;

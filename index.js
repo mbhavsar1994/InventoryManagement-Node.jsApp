@@ -2,6 +2,10 @@ require("dotenv").config();
 
 const express = require("express");
 bodyParser = require("body-parser");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 503e8959c963212537ae7c7f2ada03d7f5991e7e
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const cors = require("cors");

@@ -17,7 +17,7 @@ module.exports = {
       if (err) {
         console.log(err);
       }
-      if (!results.length) {
+      if (!results) {
         return res.status(401).json({
           message: "Invalid email address"
         });
@@ -69,18 +69,20 @@ module.exports = {
   // Forget Password for APP (Customer )------------------------------->
   forgetPasswordCustomer: (req, res) => {
     const body = req.body;
-
-    resetPassword(body.email, (err, results) => {
+    console.log(body)
+    resetPassword(req, (err, results) => {
+      //console.log(results);
       if (err) {
         console.log(err);
       }
-      if (!results) {
+      if (!results.length) {
         return res.json({
           success: 0,
           data: err
         });
       } else {
         sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
+          console.log("jvhd");
           if (err) {
             return res.json({
               success: 0,
