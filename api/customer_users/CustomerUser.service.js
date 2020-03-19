@@ -13,7 +13,6 @@ module.exports = {
         return callBack(null, results[0]);
       }
     );
-
   },
   //create customer
   createCustomer: (req, callBack) => {
@@ -44,9 +43,7 @@ module.exports = {
     );
   },
   // Forget Password for Customer ----------------->
-  resetPassword: (req, callBack) => {
-    let email=req.body.email;
-    
+  resetPassword: (email, callBack) => {
     pool.query(
       `SELECT Email,Password FROM IMS.user_master_customer where Email=?`,
       [email],
