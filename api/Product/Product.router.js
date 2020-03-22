@@ -14,8 +14,59 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   CreateProduct
 );
+
+/**
+ * @swagger
+ * /api/product/getproducts:
+ *   post:
+ *     tags:
+ *       - Product
+ *     name: GetProducts
+ *     summary: Returns all product for provided company Id
+ *     security:
+ *       - api_key: []
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         schema:
+ *           type: object
+ *           properties:
+ *             CompanyId:
+ *                  type: integer
+ *             required:
+ *                  - CompanyId
+ *       - name: ProductName
+ *         in: query
+ *         schema:
+ *           type: string
+ *       - name: SKU
+ *         in: query
+ *         schema:
+ *           type: string
+ *       - name: category
+ *         in: query
+ *         schema:
+ *           type: string
+ *       - name: SupplierName
+ *         in: query
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successfully return list of Product
+ *       404:
+ *         description: Invalid CompanyId, not found in db
+ *       401:
+ *         description: No auth token
+ *       500:
+ *         description: Internal server error! SQL error
+ */
 // route to get all product information
-router.get(
+router.post(
   "/getproducts",
   passport.authenticate("jwt", { session: false }),
   getProducts

@@ -22,7 +22,7 @@ module.exports = {
   // service to get all category by company id
   getAllCategory: (CompanyId, callBack) => {
     pool.query(
-      "SELECT `category`.`CategoryId`,`category`.`Category_name`,`category`.`SKU`,`category`.`tags`FROM `IMS`.`category` where  `category`.`CompanyId`=?;",
+      "SELECT `category`.`CategoryId`,`category`.`Category_name` as categoryname ,`category`.`SKU`,`category`.`tags`FROM `IMS`.`category` where  `category`.`CompanyId`=?;",
       [CompanyId],
       (error, results, fields) => {
         if (error) {
@@ -55,7 +55,7 @@ module.exports = {
   // service to get category details by company id and category id
   GetCategoryById: (CompanyId, CategoryId, callBack) => {
     pool.query(
-      "SELECT `category`.`CategoryId`,`category`.`Category_name`,`category`.`SKU`,`category`.`tags`FROM `IMS`.`category` where  `category`.`CompanyId`=? and `category`.`CategoryId`=? ;",
+      "SELECT `category`.`CategoryId`,`category`.`Category_name` as categoryname,`category`.`SKU`,`category`.`tags`FROM `IMS`.`category` where  `category`.`CompanyId`=? and `category`.`CategoryId`=? ;",
       [CompanyId, CategoryId],
 
       (error, results, fields) => {

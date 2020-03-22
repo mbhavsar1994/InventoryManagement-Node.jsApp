@@ -22,7 +22,7 @@ module.exports = {
         });
       }
       if (!results) {
-        return res.status(401).json({
+        return res.status(404).json({
           success: "0",
           message: "Invalid email address"
         });

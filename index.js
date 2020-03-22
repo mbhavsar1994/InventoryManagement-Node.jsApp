@@ -1,8 +1,8 @@
 require("dotenv").config();
-
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 const express = require("express");
-bodyParser = require("body-parser");
-
+const bodyParser = require("body-parser");
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const cors = require("cors");
@@ -33,6 +33,60 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
 passport.use(strategy);
 
 const app = express();
+
+// Swagger set up
+const options = {
+  swaggerDefinition: {
+    openapi: "3.0.1",
+    info: {
+      title: "Inventory Management API Swagger Documentation",
+      version: "1.0.0",
+      description: "End Points to test Inventory management routes",
+      contact: {
+        name: "API Support",
+        email: "m.bhavsar6@gmail.com"
+      }
+    },
+    servers: [
+      {
+        url: "http://18.218.124.225:3000"
+      },
+      {
+        url: "http://localhost:3000"
+      }
+    ],
+    components: {
+      securitySchemes: {
+        api_key: {
+          type: "apiKey",
+          name: "api_key",
+          in: "header"
+        }
+      }
+    }
+  },
+  apis: [
+    "./api/company_users/CompanyUser.router.js",
+    "./api/Category/Category.router.js",
+    "./api/product/Product.router.js"
+  ]
+};
+const specs = swaggerJsdoc(options);
+app.use("/api-docs", swaggerUi.serve);
+
+app.get(
+  "/api-docs",
+  swaggerUi.setup(specs, {
+    explorer: true
+  })
+);
+
+//full swagger.json schema that gets created by the swaggerSpec.
+app.get("/swagger.json", function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+  res.send(specs);
+});
+//enable cors policy
 app.use(cors());
 
 // initialize passport with express
@@ -41,8 +95,9 @@ app.use(passport.initialize());
 // parse application/json
 app.use(bodyParser.json());
 //parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
+// API Routers
 const companyuserRouter = require("./api/company_users/CompanyUser.router");
 const customeruserRouter = require("./api/customer_users/CustomerUser.router");
 const countriesRouter = require("./api/countryandprovince/CountryAndProvince.router");

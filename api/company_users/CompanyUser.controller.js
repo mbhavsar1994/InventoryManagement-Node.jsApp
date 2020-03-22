@@ -22,15 +22,13 @@ module.exports = {
         });
       }
       if (!results) {
-        return res.status(401).json({
+        return res.status(404).json({
           success: "0",
-          message: "Invalid email or password"
+          message: "Invalid email address"
         });
       }
 
-      debugger;
       if (body.password === results.Password) {
-        debugger;
         results.Password = undefined;
         let payload = { id: results.UserId };
         let token = sign(payload, process.env.JWT_KEY);
@@ -55,22 +53,23 @@ module.exports = {
     createCompany_User(req, (err, results) => {
       if (err) {
         console.log(err);
-        return res.json({
+        return res.status(500).json({
           success: "0",
+          message: "Internal server error !",
           data: err
         });
       } else if (results[15][0]["status"] == null) {
-        return res.json({
+        return res.status(500).json({
           success: "0",
           message: "Internal server error!"
         });
       } else if (results[15][0]["status"] == "0") {
-        return res.json({
+        return res.status(400).json({
           success: "0",
           message: results[16][0]["Err_msg"]
         });
       } else {
-        return res.json({
+        return res.status(200).json({
           success: "1",
           message: "Company Profile created Successfully"
         });
@@ -95,8 +94,7 @@ module.exports = {
       if (!results.length) {
         return res.status(404).json({
           success: "0",
-          message: "Email Addess isn't exist",
-          data: err
+          message: "Email Addess isn't exist"
         });
       } else {
         sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
@@ -104,9 +102,7 @@ module.exports = {
           if (err) {
             return res.status(500).json({
               success: "0",
-              message:
-                "Unable to send e-mail. Please Contact the administrator",
-              data: err
+              message: "Unable to send e-mail. Please Contact the administrator"
             });
           }
           if (result) {
