@@ -272,6 +272,7 @@ router.put(
  *       400:
  *         description: Bad request
  */
+
 // route to edit product
 router.put(
   "/editproduct",
