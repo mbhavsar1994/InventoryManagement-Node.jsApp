@@ -13,24 +13,20 @@ const {
  *   post:
  *     tags:
  *       - Category
- *     name: getcategories
  *     summary: Returns all Categories for provided company Id
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         in: body
+ *     requestBody:
+ *      description: all Categories for provided company
+ *      required: true
+ *      content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
  *             CompanyId:
  *                  type: integer
- *             required:
- *                  - CompanyId
- *       - name: CategoryName
- *         in: query
+ *     parameters:
+ *       - in: query
+ *         name: CategoryName
  *         schema:
  *           type: string
  *     responses:
@@ -38,8 +34,6 @@ const {
  *         description: Successfully return list of category
  *       404:
  *         description: Invalid CompanyId, not found in db
- *       401:
- *         description: No auth token
  *       500:
  *         description: Internal server error! SQL error
  */
@@ -48,45 +42,37 @@ router.post("/getcategories", getCategories);
 /**
  * @swagger
  * /api/category/createCategory:
- *   post:
+ *  post:
  *     tags:
- *       - Category
- *     name: createCategory
+ *      - Category
  *     summary: Creates a new category
  *     security:
- *       - api_key: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         description: category object
- *         in: body
- *         required: true
+ *       - BearerAuth: []
+ *     requestBody:
+ *      description: properties to create new category
+ *      required: true
+ *      content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
  *             categoryname:
- *                  type: string
+ *               type: string
  *             SKU:
- *                  type: string
+ *               type: string
  *             tags:
- *                  type: string
+ *               type: string
  *             CompanyId:
- *                  type: integer
- *             required:
- *                  - categoryname
- *                  - SKU
- *                  - tags
- *                  - CompanyId
+ *               type: integer
  *     responses:
- *       201:
+ *       '201':
  *         description: Successfully created
- *       500:
- *         description: Internal server error
- *       400:
+ *       '400':
  *         description: Bad request
+ *       '401':
+ *         description: No auth token
+ *       '500':
+ *         description: Internal server error
  *
  */
 
@@ -102,21 +88,16 @@ router.post(
  *   get:
  *     tags:
  *        - Category
- *     name: GetcategorybyId
  *     summary: Get a  category details
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
  *     parameters:
- *       - name: CategoryId
- *         in: query
+ *       - in: query
+ *         name: CategoryId
  *         schema:
- *           type: string
- *       - name: CompanyId
- *         in: query
+ *           type: integer
+ *       - in: query
+ *         name: CompanyId
  *         schema:
- *           type: string
+ *           type: integer
  *     responses:
  *       200:
  *         description: Successfully return a category details
@@ -136,17 +117,14 @@ router.get("/getcategorybyId", GetCategorydetailsById);
  *   put:
  *     tags:
  *        - Category
- *     name: Editcategory
  *     summary: Updates a  category details
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         description: category object
- *         in: body
- *         required: true
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *      description: properties to edit category
+ *      required: true
+ *      content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
@@ -158,11 +136,6 @@ router.get("/getcategorybyId", GetCategorydetailsById);
  *                  type: string
  *             tags:
  *                  type: string
- *             required:
- *                  - categoryId
- *                  - categoryname
- *                  - SKU
- *                  - tags
  *     responses:
  *       201:
  *         description: Successfully updated
@@ -170,6 +143,8 @@ router.get("/getcategorybyId", GetCategorydetailsById);
  *         description: Internal server error
  *       400:
  *         description: Bad request
+ *       401:
+ *         description: No auth token
  */
 
 router.put(

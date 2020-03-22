@@ -14,16 +14,27 @@ let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = process.env.JWT_KEY;
 
-const { getUserByid } = require("./api/company_users/CompanyUser.service");
+const {
+  getUserByUserEmail,
+  getUserByid
+} = require("./api/company_users/CompanyUser.service");
 
 // lets create our strategy for web token
 let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   console.log("payload received", jwt_payload);
 
-  getUserByid(jwt_payload.id, (err, results) => {
+  getUserByUserEmail(jwt_payload.email, (err, results) => {
     if (results) {
       next(null, results);
     } else {
+      let { getUserByUserEmail } = "./api/customer_users/CustomerUser.service";
+      getUserByUserEmail(jwt_payload.email, (err, results) => {
+        if (results) {
+          next(null, results);
+        } else {
+        }
+      });
+
       next(null, false);
     }
   });
@@ -43,8 +54,7 @@ const options = {
       version: "1.0.0",
       description: "End Points to test Inventory management routes",
       contact: {
-        name: "API Support",
-        email: "m.bhavsar6@gmail.com"
+        name: "API Support"
       }
     },
     servers: [
@@ -57,10 +67,9 @@ const options = {
     ],
     components: {
       securitySchemes: {
-        api_key: {
-          type: "apiKey",
-          name: "api_key",
-          in: "header"
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer"
         }
       }
     }

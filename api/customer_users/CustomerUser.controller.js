@@ -30,7 +30,7 @@ module.exports = {
 
       if (body.password === results.Password) {
         results.Password = undefined;
-        let payload = { id: results.UserId };
+        let payload = { email: results.Email };
         let token = sign(payload, process.env.JWT_KEY);
 
         return res.status(200).json({

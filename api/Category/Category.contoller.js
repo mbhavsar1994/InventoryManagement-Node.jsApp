@@ -59,7 +59,7 @@ module.exports = {
       } else {
         if (typeof req.query.CategoryName != "undefined") {
           results.filter(function(result) {
-            if (result.Category_name.toString() == req.query.CategoryName) {
+            if (result.categoryname.toString() == req.query.CategoryName) {
               response.push(result);
             }
           });

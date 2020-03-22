@@ -14,19 +14,14 @@ const {
  *   post:
  *     tags:
  *       - Product
- *     name: CreateProduct
  *     summary: Creates a new Product
  *     security:
- *       - api_key: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         description: Product Object
- *         in: body
- *         required: true
+ *       - BearerAuth: []
+ *     requestBody:
+ *       description: properties to create new product
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
@@ -37,9 +32,9 @@ const {
  *             Description:
  *                  type: string
  *             PurchasePrice:
- *                  type: double
+ *                  type: integer
  *             RetailPrice:
- *                  type: double
+ *                  type: integer
  *             CategoryId:
  *                  type: integer
  *             Country_Origin_id:
@@ -54,18 +49,6 @@ const {
  *                  type: integer
  *             CompanyId:
  *                  type: integer
- *             required:
- *                  - Product_name
- *                  - SKU
- *                  - Description
- *                  - PurchasePrice
- *                  - RetailPrice
- *                  - CategoryId
- *                  - Country_Origin_id
- *                  - Image
- *                  - SupplierId
- *                  - Barcode
- *                  - CompanyId
  *     responses:
  *       201:
  *         description: Successfully created
@@ -73,7 +56,8 @@ const {
  *         description: Internal server error
  *       400:
  *         description: Bad request
- *
+ *       401:
+ *         description: Unathorized request
  */
 //route to create product
 router.post(
@@ -85,49 +69,43 @@ router.post(
 /**
  * @swagger
  * /api/product/getproducts:
- *   post:
+ *  post:
  *     tags:
  *       - Product
- *     name: GetProducts
  *     summary: Returns all product for provided company Id
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         in: body
+ *     requestBody:
+ *       description: properties to get products for provided company
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
  *             CompanyId:
- *                  type: integer
- *             required:
- *                  - CompanyId
- *       - name: ProductName
- *         in: query
+ *               type: integer
+ *     parameters:
+ *       - in: query
+ *         name: ProductName
  *         schema:
  *           type: string
- *       - name: SKU
- *         in: query
+ *       - in: query
+ *         name: SKU
  *         schema:
  *           type: string
- *       - name: category
- *         in: query
+ *       - in: query
+ *         name: category
  *         schema:
  *           type: string
- *       - name: SupplierName
- *         in: query
+ *       - in: query
+ *         name: SupplierName
  *         schema:
  *           type: string
  *     responses:
- *       200:
+ *       '200':
  *         description: Successfully return list of Product
- *       404:
- *         description: Invalid CompanyId, not found in db
- *       401:
- *         description: No auth token
- *       500:
+ *       '404':
+ *         description: 'Invalid CompanyId, not found in db'
+ *       '500':
  *         description: Internal server error! SQL error
  */
 // route to get all product information
@@ -138,13 +116,8 @@ router.post("/getproducts", getProducts);
  * /api/product/getproductbyId:
  *   get:
  *     tags:
- *        - Product
- *     name: GetProductById
+ *       - Product
  *     summary: Get a Product details by Id
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
  *     parameters:
  *       - name: ProductId
  *         in: query
@@ -155,14 +128,14 @@ router.post("/getproducts", getProducts);
  *         schema:
  *           type: string
  *     responses:
- *       200:
+ *       '200':
  *         description: Successfully return a Product details
- *       400:
+ *       '400':
  *         description: Bad Request..Missing ProductId or CompanyId
- *       500:
- *         description: Internal server error
- *       404:
+ *       '404':
  *         description: Resource doesn't exist.
+ *       '500':
+ *         description: Internal server error
  *
  */
 
@@ -175,17 +148,14 @@ router.get("/getproductbyId", getProductById);
  *   put:
  *     tags:
  *       - Product
- *     name: DeleteProduct
  *     summary: Inactive Product
  *     security:
- *       - api_key: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         in: body
+ *       - BearerAuth: []
+ *     requestBody:
+ *       description: properties to inactive product for provided product id
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
@@ -214,19 +184,14 @@ router.put(
  *   put:
  *     tags:
  *        - Product
- *     name: EditProduct
  *     summary: Updates a Product details
  *     security:
- *       - api_key: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         description: Product Object
- *         in: body
- *         required: true
+ *       - BearerAuth: []
+ *     requestBody:
+ *       description: properties to edit product
+ *       required: true
+ *       content:
+ *        application/json:
  *         schema:
  *           type: object
  *           properties:
@@ -237,9 +202,9 @@ router.put(
  *             Description:
  *                  type: string
  *             PurchasePrice:
- *                  type: double
+ *                  type: integer
  *             RetailPrice:
- *                  type: double
+ *                  type: integer
  *             CategoryId:
  *                  type: integer
  *             Country_Origin_id:
@@ -252,17 +217,6 @@ router.put(
  *                  type: integer
  *             CompanyId:
  *                  type: integer
- *             required:
- *                  - ProductName
- *                  - SKU
- *                  - Description
- *                  - PurchasePrice
- *                  - RetailPrice
- *                  - CategoryId
- *                  - Country_Origin_id
- *                  - Image
- *                  - SupplierId
- *                  - QtyMinRequired
  *
  *     responses:
  *       201:
