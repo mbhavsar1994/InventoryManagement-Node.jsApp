@@ -49,6 +49,7 @@ const countriesRouter = require("./api/countryandprovince/CountryAndProvince.rou
 const supplier = require("./api/Supplier/Supplier.router");
 const category = require("./api/Category/Category.router");
 const product = require("./api/Product/Product.router");
+const sales=require("./api/sales/Sales.router");
 
 app.use("/api/companyuser", companyuserRouter);
 app.use("/api/customeruser", customeruserRouter);
@@ -57,6 +58,7 @@ app.use("/api/provinces", countriesRouter);
 app.use("/api/supplier", supplier);
 app.use("/api/category", category);
 app.use("/api/product", product);
+app.use("/api/sales",sales);
 
 // Main Root
 app.get("/", function(req, res) {

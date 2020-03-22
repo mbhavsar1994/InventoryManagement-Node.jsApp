@@ -66,6 +66,18 @@ content-type: application/json
         "companyid":1  
     }
 
+###
+POST http://localhost:3000/api/sales/createSales HTTP/1.1
+content-type: application/json
+
+{
+    "product": [{"productid": "1",
+                  "product_name" : "kjdkl",
+                  "price": "12.33"},
+                  {"productid": "2",
+                  "product_name" : "jagdkl",
+                  "price": "166.33"}]
+}
 // Forget Password for Customer User ----------------------->
 ###
 GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
