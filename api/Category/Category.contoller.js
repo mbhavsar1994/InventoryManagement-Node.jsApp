@@ -12,23 +12,23 @@ module.exports = {
     create_Category(req, (err, results) => {
       if (err) {
         console.log(err);
-        return res.json({
+        return res.status(500).json({
           success: "0",
           message: "Internal server error! please try again.",
           data: err
         });
       } else if (results[5][0]["status"] == null) {
-        return res.json({
+        return res.status(500).json({
           success: "0",
           message: "Internal server error!"
         });
       } else if (results[5][0]["status"] == "0") {
-        return res.json({
+        return res.status(400).json({
           success: "0",
           message: results[6][0]["Err_msg"]
         });
       } else {
-        return res.json({
+        return res.status(201).json({
           success: "1",
           message: "Category created Successfully"
         });
@@ -59,7 +59,7 @@ module.exports = {
       } else {
         if (typeof req.query.CategoryName != "undefined") {
           results.filter(function(result) {
-            if (result.Category_name.toString() == req.query.CategoryName) {
+            if (result.categoryname.toString() == req.query.CategoryName) {
               response.push(result);
             }
           });

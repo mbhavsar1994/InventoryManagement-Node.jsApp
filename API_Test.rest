@@ -205,7 +205,6 @@ content-type: application/json
 // Get all Categories ------------------------------->
 ###
 POST  http://localhost:3000/api/category/getcategories HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
 content-type: application/json
 
 {

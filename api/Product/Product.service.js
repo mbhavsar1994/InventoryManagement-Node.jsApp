@@ -89,7 +89,7 @@ module.exports = {
   //Service to  Edit Product ------------------------------------->
   EditProduct: (req, callBack) => {
     let product = req.body;
-    let sql = `SET @ProductId=1;SET @ProductName="Adidas updated";SET @Description="Mens sports shoes";SET @PurchasePrice="150";SET @RetailPrice="200";SET @CategoryId="1";SET @Country_Origin_id=1;SET @Image="bjbjkb";SET @SupplierId=2; SET @QtyMinRequired=60;SET @CompanyId =1;SET @AvailableQty=70;CALL EditProduct(@ProductId,@ProductName,@Description,@PurchasePrice,@RetailPrice,@CategoryId,@Country_Origin_id,@Image,@SupplierId,@QtyMinRequired,@AvailableQty,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
+    let sql = `SET @ProductId=?;SET @ProductName=?;SET @Description=?;SET @PurchasePrice=?;SET @RetailPrice=?;SET @CategoryId=?;SET @Country_Origin_id=?;SET @Image=?;SET @SupplierId=?; SET @QtyMinRequired=?;SET @CompanyId =?;SET @AvailableQty=?;CALL EditProduct(@ProductId,@ProductName,@Description,@PurchasePrice,@RetailPrice,@CategoryId,@Country_Origin_id,@Image,@SupplierId,@QtyMinRequired,@AvailableQty,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
 
     pool.query(
       sql,
