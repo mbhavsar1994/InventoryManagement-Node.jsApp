@@ -15,8 +15,6 @@ const {
  *       - Category
  *     name: getcategories
  *     summary: Returns all Categories for provided company Id
- *     security:
- *       - api_key: []
  *     consumes:
  *       - application/json
  *     produces:
@@ -45,11 +43,7 @@ const {
  *       500:
  *         description: Internal server error! SQL error
  */
-router.post(
-  "/getcategories",
-  passport.authenticate("jwt", { session: false }),
-  getCategories
-);
+router.post("/getcategories", getCategories);
 
 /**
  * @swagger
@@ -110,8 +104,6 @@ router.post(
  *        - Category
  *     name: GetcategorybyId
  *     summary: Get a  category details
- *     security:
- *       - api_key: []
  *     consumes:
  *       - application/json
  *     produces:
@@ -136,11 +128,7 @@ router.post(
  *         description: Resource doesn't exist.
  *
  */
-router.get(
-  "/getcategorybyId",
-  passport.authenticate("jwt", { session: false }),
-  GetCategorydetailsById
-);
+router.get("/getcategorybyId", GetCategorydetailsById);
 
 /**
  * @swagger

@@ -23,8 +23,6 @@ router.post(
  *       - Product
  *     name: GetProducts
  *     summary: Returns all product for provided company Id
- *     security:
- *       - api_key: []
  *     consumes:
  *       - application/json
  *     produces:
@@ -66,11 +64,8 @@ router.post(
  *         description: Internal server error! SQL error
  */
 // route to get all product information
-router.post(
-  "/getproducts",
-  passport.authenticate("jwt", { session: false }),
-  getProducts
-);
+router.post("/getproducts", getProducts);
+
 // route to inactive product information
 router.put(
   "/deleteproduct",
@@ -79,11 +74,7 @@ router.put(
 );
 
 //route to get product information by id
-router.get(
-  "/getproductbyId",
-  passport.authenticate("jwt", { session: false }),
-  getProductById
-);
+router.get("/getproductbyId", getProductById);
 
 // route to edit product
 router.put(
