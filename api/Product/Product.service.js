@@ -37,7 +37,7 @@ module.exports = {
   // Service to get all product information
   getAllProduct: (CompanyId, callBack) => {
     pool.query(
-      "SELECT `product`.`ProductId`,`product`.`Product_name` ,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? ;",
+      "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName` ,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? ;",
       [CompanyId],
 
       (error, results, fields) => {
@@ -72,7 +72,7 @@ module.exports = {
 
   GetProductById: (CompanyId, ProductId, _callBack) => {
     pool.query(
-      "SELECT `product`.`ProductId`,`product`.`Product_name` ,`product`.`SKU`,`product`.`Description`,`product`.`PurchasePrice`,`product`.`RetailPrice`,`product`.`CategoryId`,`product`.`Country_Origin_id`,`product`.`Image`,`product`.`SupplierId`,`product`.`Barcode`,`product`.`Qty_minimum_required`,`product`.`CompanyId`,`product`.`AvailableQty`,`product`.`IsActive` FROM `IMS`.`product` where  `product`.`CompanyId`= ? and `product`.`ProductId`= ? ;",
+      "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName` ,`product`.`SKU`,`product`.`Description`,`product`.`PurchasePrice`,`product`.`RetailPrice`,`product`.`CategoryId`,`product`.`Country_Origin_id`,`product`.`Image`,`product`.`SupplierId`,`product`.`Barcode`,`product`.`Qty_minimum_required`,`product`.`CompanyId`,`product`.`AvailableQty`,`product`.`IsActive` FROM `IMS`.`product` where  `product`.`CompanyId`= ? and `product`.`ProductId`= ? ;",
       [CompanyId, ProductId],
 
       (error, results, fields) => {
@@ -89,11 +89,12 @@ module.exports = {
   //Service to  Edit Product ------------------------------------->
   EditProduct: (req, callBack) => {
     let product = req.body;
-    let sql = `SET @ProductId=?;SET @ProductName=?;SET @Description=?;SET @PurchasePrice=?;SET @RetailPrice=?;SET @CategoryId=?;SET @Country_Origin_id=?;SET @Image=?;SET @SupplierId=?; SET @QtyMinRequired=?;SET @CompanyId =?;SET @AvailableQty=?;CALL EditProduct(@ProductId,@ProductName,@Description,@PurchasePrice,@RetailPrice,@CategoryId,@Country_Origin_id,@Image,@SupplierId,@QtyMinRequired,@AvailableQty,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
+    let sql = `SET @ProductId=?;SET @ProductName=?;SET @Description=?;SET @PurchasePrice=?;SET @RetailPrice=?;SET @CategoryId=?;SET @Country_Origin_id=?;SET @Image=?;SET @SupplierId=?; SET @QtyMinRequired=?;SET @CompanyId =?;CALL EditProduct(@ProductId,@ProductName,@Description,@PurchasePrice,@RetailPrice,@CategoryId,@Country_Origin_id,@Image,@SupplierId,@QtyMinRequired,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
 
     pool.query(
       sql,
       [
+        product.ProductId,
         product.ProductName,
         product.Description,
         product.PurchasePrice,
@@ -103,8 +104,7 @@ module.exports = {
         product.Image,
         product.SupplierId,
         product.QtyMinRequired,
-        product.CompanyId,
-        product.AvailableQty
+        product.CompanyId
       ],
       (error, results, fields) => {
         if (error) {

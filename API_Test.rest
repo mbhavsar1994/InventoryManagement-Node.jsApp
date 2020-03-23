@@ -80,10 +80,10 @@ content-type: application/json
 
 POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
-    "SupplierName": "supplier4",
-    "SupplierEmail": "supplier9823@gmail.com",
+    "SupplierEmail": "supplier19@gmail.com",
     "SupplierPhone":"4157891458",
     "DiscountRate":"10",
     "CountryId":"1",
@@ -146,13 +146,12 @@ content-type: application/json
 ###
 
 POST  http://localhost:3000/api/product/createproduct HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 {
-    "Product_name":"Golden Goose",
-    "SKU":"cnv-1452-15",
-    "Description":"Comfertable stylish shoes",
+    "Product_name":"test7",
+    "SKU":"cnv-1452-13",
     "PurchasePrice":"1000",
     "RetailPrice":"1500",
     "CategoryId":2,
@@ -224,19 +223,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxN
 // Edit Product --------------------------------------->
 PUT  http://localhost:3000/api/product/editproduct HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
-    "Product_name":"Golden Goose2",
+    "ProductId":8,
+    "ProductName":"zara shoes",
     "Description":"Comfertable stylish shoes",
-    "PurchasePrice":"1100",
-    "RetailPrice":"1200",
+    "PurchasePrice":"100",
+    "RetailPrice":"600",
     "CategoryId":2,
     "Country_Origin_id":1,
     "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
     "SupplierId":2,
-    "Qty_minimum_required":20,
-    "AvailableQty":30,
+    "QtyMinRequired":20,
     "CompanyId":1
 }
 
