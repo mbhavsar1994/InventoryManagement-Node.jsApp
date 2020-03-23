@@ -108,6 +108,16 @@ module.exports = {
 
   //Function to  Delete Product by  by product id  ------------------------------------------------>
   DeleteProduct: (req, res) => {
+    let ProductId = "";
+    if (typeof req.query.ProductId != "undefined") {
+      ProductId = req.query.ProductId;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Product Id is missing!"
+      });
+    }
+
     RemoveProduct(req, (err, results) => {
       if (err) {
         console.log(err);
@@ -185,15 +195,15 @@ module.exports = {
           message: "Internal server error! Please try again",
           data: err
         });
-      } else if (results[13][0]["status"] == null) {
+      } else if (results[12][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
           message: "Internal server error!"
         });
-      } else if (results[13][0]["status"] == "0") {
+      } else if (results[12][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[14][0]["Err_msg"]
+          message: results[13][0]["Err_msg"]
         });
       } else {
         return res.status(200).json({
