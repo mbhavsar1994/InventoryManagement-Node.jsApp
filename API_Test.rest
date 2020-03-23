@@ -53,9 +53,9 @@ POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-        "fname": "loveleen",
-        "lname": "minhas",
-        "email":"minhaslovelesenbsjdh@gmail.com",
+        "Fname": "loveleen",
+        "Lname": "minhas",
+        "email":"minhas@gmail.com",
         "phonenumber":"1234567898",
         "countryid":1,
         "provinceid":2,
