@@ -1,4 +1,4 @@
-const pool = require("../../Config/database");
+const { Execute_Update, pool } = require("../../Config/database");
 
 module.exports = {
   AddPurchaseOrder: (req, callBack) => {
@@ -51,5 +51,55 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+
+  // Edit Purchase Order --------------------->
+  EditPurchaseOrder: (req, callBack) => {
+    let Purchase_order = req.body;
+    let sql = `SET @purchase_ord_id=?;SET @SupplierId=?;SET @PurchaseOrderTotal=? ; CALL EditPurchaseOrder(@purchase_ord_id,@SupplierId,@PurchaseOrderTotal,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
+
+    pool.query(
+      sql,
+      [
+        Purchase_order.purchase_ord_id,
+        Purchase_order.SupplierId,
+        Purchase_order.PurchaseOrderTotal
+      ],
+
+      (error, results, _fields) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        return callBack(null, results);
+      }
+    );
+  },
+
+  EditPurchaseOrder_Products: (req, callBack) => {
+    let product_jason = req.body.products;
+    var count = 0;
+
+    for (var i = 0; i < product_jason.length; i++) {
+      count++;
+
+      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId=? `;
+
+      var product = [
+        product_jason[i].Quantity,
+        product_jason[i].Total,
+        product_jason[i].PurchaseOrder_ProductId
+      ];
+
+      Execute_Update(sql, product, (err, results) => {
+        if (err) {
+          return callBack(err);
+        } else {
+          if (count == product_jason.length) {
+            return callBack(null, results);
+          }
+        }
+      });
+    }
   }
 };

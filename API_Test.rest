@@ -276,3 +276,27 @@ content-type: application/json
         }
     ]
 }
+
+// Edit Purchase Order -------------------------------->
+
+###
+PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
+content-type: application/json
+
+{
+    "purchase_ord_id":1,
+    "SupplierId":1,
+    "PurchaseOrderTotal":12000,
+    "products":[
+         {
+           "PurchaseOrder_ProductId":1,
+           "Quantity":10,
+           "Total":2000
+        },
+        {
+           "PurchaseOrder_ProductId":2,
+           "Quantity":15,
+           "Total":10000 
+        }
+    ]
+}
