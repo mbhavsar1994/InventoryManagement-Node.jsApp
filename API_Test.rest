@@ -252,4 +252,27 @@ content-type: application/json
 GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10&CompanyId=1 HTTP/1.1
 content-type: application/json
 
+###
+POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
+content-type: application/json
 
+{
+    "SupplierId":1,
+    "CurrencyId":1,
+    "DiscountRate":10,
+    "PurchaseOrderTotal":23000,
+    "products":[
+         {
+           "ProductId":1,
+           "Price": 120,
+           "Quantity":50,
+           "Total":6000
+        },
+        {
+           "ProductId":2,
+           "Price": 170,
+           "Quantity":100,
+           "Total":17000 
+        }
+    ]
+}
