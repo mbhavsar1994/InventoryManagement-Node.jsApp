@@ -1,4 +1,4 @@
-const { pool } = require("../../Config/database");
+const pool = require("../../Config/database");
 
 module.exports = {
   // Service to get customer user information by email id

@@ -22,7 +22,7 @@ POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
 
 {   
-     "Fname": "Ami",
+    "Fname": "Ami",
     "Lname": "Dave",
     "Email":"amidav11e80@gmail.com",
     "Password":"ami123",
@@ -40,8 +40,7 @@ content-type: application/json
 // Forget Password for Company User -------------------------->
 ###
 
-GET http://localhost:3000/api/companyuser/forgetPasswordCompany HTTP/1.1
-
+POST http://localhost:3000/api/companyuser/forgetPasswordCompany HTTP/1.1
 content-type: application/json
 
 {
@@ -99,6 +98,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 //Edit Supplier deatils --------------------->
 PUT  http://localhost:3000/api/supplier/editsupplier HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
     "SupplierId"  : "9",
@@ -119,7 +119,7 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=9&CompanyId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 
@@ -135,7 +135,7 @@ content-type: application/json
 
 //for fetching provinces by passing country id
 ###
-GET http://localhost:3000/api/provinces/province HTTP/1.1
+POST http://localhost:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {
@@ -165,7 +165,7 @@ content-type: application/json
 //creating new  category
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 {
@@ -179,7 +179,7 @@ content-type: application/json
 
 ###
 PUT  http://localhost:3000/api/category/editcategory HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 {
@@ -202,7 +202,6 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/api/category/getcategorybyId?CategoryId=1001&CompanyId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0NTY0MTE0fQ.fnrSpwXBQjjG7tyYtq1Q9Y8qwnvVx25McPTZYi5jMu0
 content-type: application/json
 
 
@@ -212,11 +211,11 @@ content-type: application/json
 ### 
 
 PUT http://localhost:3000/api/product/deleteproduct HTTP/1.1
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
+
 {
-    "ProductId":"4"
+    "ProductId":"8"
 }
 
 ###
@@ -249,28 +248,30 @@ content-type: application/json
 // Get Suppiler By Id ---------------------------->
 ###
 
-GET http://localhost:3001/api/supplier/getsupplierbyId?SupplierId=10&CompanyId=1 HTTP/1.1
+GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=10&CompanyId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 ###
 POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 {
     "SupplierId":1,
     "CurrencyId":1,
     "DiscountRate":10,
-    "PurchaseOrderTotal":23000,
+    "PurchaseOrderTotal":1000,
     "products":[
          {
-           "ProductId":1,
-           "Price": 120,
+           "ProductId":5,
+           "Price": 180,
            "Quantity":50,
            "Total":6000
         },
         {
-           "ProductId":2,
-           "Price": 170,
+           "ProductId":6,
+           "Price": 190,
            "Quantity":100,
            "Total":17000 
         }
@@ -284,17 +285,17 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":1,
+    "purchase_ord_id":3,
     "SupplierId":1,
     "PurchaseOrderTotal":12000,
     "products":[
          {
-           "PurchaseOrder_ProductId":1,
+           "PurchaseOrder_ProductId":5,
            "Quantity":10,
            "Total":2000
         },
         {
-           "PurchaseOrder_ProductId":2,
+           "PurchaseOrder_ProductId":5,
            "Quantity":15,
            "Total":10000 
         }

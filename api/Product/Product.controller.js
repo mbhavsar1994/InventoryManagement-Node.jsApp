@@ -109,7 +109,7 @@ module.exports = {
   //Function to  Delete Product by  by product id  ------------------------------------------------>
   DeleteProduct: (req, res) => {
     let ProductId = "";
-    if (typeof req.query.ProductId != "undefined") {
+    if (typeof req.body.ProductId != "undefined") {
       ProductId = req.query.ProductId;
     } else {
       return res.status(400).json({

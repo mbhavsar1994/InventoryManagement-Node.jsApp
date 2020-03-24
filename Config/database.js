@@ -9,21 +9,4 @@ const pool = createPool({
   multipleStatements: true
 });
 
-module.exports = {
-  pool,
-
-  Execute_Update: (sql, arrData, callBack) => {
-    pool.query(
-      sql,
-      arrData,
-
-      (error, results, _fields) => {
-        if (error) {
-          return callBack(error);
-        }
-
-        return callBack(null, results);
-      }
-    );
-  }
-};
+module.exports = pool;

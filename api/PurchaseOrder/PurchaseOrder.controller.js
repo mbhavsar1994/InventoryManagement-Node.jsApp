@@ -30,6 +30,7 @@ module.exports = {
         AddPurchaseOrder_Products(
           req,
           results[7][0]["purchase_ord_id"],
+          results[8][0]["delivery_id"],
           (err, results) => {
             if (err) {
               console.log(err);
