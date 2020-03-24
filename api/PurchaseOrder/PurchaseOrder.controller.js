@@ -6,6 +6,7 @@ const {
 } = require("./PurchaseOrder.service");
 
 module.exports = {
+  // Method to create Purchase order api
   createPurchaseOrder: (req, res) => {
     AddPurchaseOrder(req, (err, results) => {
       if (err) {
@@ -49,6 +50,7 @@ module.exports = {
     });
   },
 
+  //Method to edit purchase order api
   editPurchaseOrder: (req, res) => {
     EditPurchaseOrder(req, (err, results) => {
       if (err) {
