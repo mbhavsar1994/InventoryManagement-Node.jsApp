@@ -1,6 +1,7 @@
 const { Execute_Update, pool } = require("../../Config/database");
 
 module.exports = {
+  // Service to  Add new Purchase Order
   AddPurchaseOrder: (req, callBack) => {
     let Purchase_order = req.body;
     let sql = `SET @SupplierId=?;SET @CurrencyId=?;SET @DiscountRate=?; set @PurchaseOrderTotal=? ; CALL CreatePurchaseOrder(@SupplierId,@CurrencyId,@DiscountRate,@PurchaseOrderTotal,@status,@Err_msg,@purchase_ord_id);select @status as status; select @Err_msg as Err_msg;select @purchase_ord_id as purchase_ord_id`;
@@ -23,7 +24,7 @@ module.exports = {
       }
     );
   },
-
+  // Service to Add new Purchase Order Products
   AddPurchaseOrder_Products: (req, _Purchase_OrderId, callBack) => {
     let product_jason = req.body.products;
     var products = [];

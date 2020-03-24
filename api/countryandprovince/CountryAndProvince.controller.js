@@ -12,7 +12,7 @@ module.exports = {
       } else {
         return res.status(404).json({
           success: "0",
-          data: "No record found"
+          message: "No record found"
         });
       }
     });
@@ -28,7 +28,7 @@ module.exports = {
       } else {
         return res.status(404).json({
           success: 0,
-          data: "No record found"
+          message: "No record found"
         });
       }
     });
