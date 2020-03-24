@@ -318,3 +318,7 @@ content-type: application/json
         }
     ]
 }
+//fetch the most popular product
+###
+GET http://localhost:3000/api/product/featureproduct HTTP/1.1
+content-type: application/json
