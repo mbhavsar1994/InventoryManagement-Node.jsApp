@@ -10,6 +10,7 @@ const {
 
 const _ = require("lodash");
 module.exports = {
+  // Method to create Purchase order api
   createPurchaseOrder: (req, res) => {
     AddPurchaseOrder(req, (err, results) => {
       if (err) {
@@ -33,6 +34,7 @@ module.exports = {
         AddPurchaseOrder_Products(
           req,
           results[7][0]["purchase_ord_id"],
+          results[8][0]["delivery_id"],
           (err, results) => {
             if (err) {
               console.log(err);
@@ -53,7 +55,11 @@ module.exports = {
     });
   },
 
+<<<<<<< HEAD
   // Edit Purchase Order ----------------------------------------------->
+=======
+  //Method to edit purchase order api
+>>>>>>> 4163915d8c22ec0c8fbd2cd5e92fd2c4f6a3c474
   editPurchaseOrder: (req, res) => {
     EditPurchaseOrder(req, (err, results) => {
       if (err) {
