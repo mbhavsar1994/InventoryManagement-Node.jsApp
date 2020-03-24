@@ -322,3 +322,23 @@ content-type: application/json
 ###
 GET http://localhost:3000/api/product/featureproduct HTTP/1.1
 content-type: application/json
+
+//edit user customer 
+###
+POST   http://localhost:3000/api/customeruser/editcustomeruser HTTP/1.1
+content-type: application/json
+
+{
+    "id":"1",
+    "Fname": "loveleen11",
+    "Lname": "minhas",
+    "email":"minhas@gmail.com",
+    "phonenumber":"1234567898",
+    "countryid":1,
+    "provinceid":2,
+    "city":"jalan",
+    "postal":"asdff",
+    "address":"bvjdnks",
+    "password":"123",
+    "companyid":1  
+}
