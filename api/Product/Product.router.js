@@ -10,7 +10,7 @@ const {
 
 /**
  * @swagger
- * /api/category/createproduct:
+ * /api/product/createproduct:
  *   post:
  *     tags:
  *       - Product

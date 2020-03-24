@@ -53,16 +53,16 @@ POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-        "Fname": "loveleen",
-        "Lname": "minhas",
-        "email":"minhas@gmail.com",
+        "Fname": "ami testing",
+        "Lname": "dave",
+        "email":"amidave@gmail.com",
         "phonenumber":"1234567898",
         "countryid":1,
         "provinceid":2,
-        "city":"jalan",
+        "city":"montreal",
         "postal":"asdff",
         "address":"bvjdnks",
-        "password":"123",
+        "password":"ami123",
         "companyid":1  
     }
 
@@ -80,7 +80,7 @@ content-type: application/json
 
 POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+
 
 {
     "SupplierEmail": "supplier19@gmail.com",
@@ -257,7 +257,7 @@ POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
 content-type: application/json
 
 {
-    "SupplierId":1,
+    "SupplierId":20,
     "CurrencyId":1,
     "DiscountRate":10,
     "PurchaseOrderTotal":23000,
@@ -284,19 +284,38 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":1,
+    "purchase_ord_id":3,
     "SupplierId":1,
-    "PurchaseOrderTotal":12000,
+    "PurchaseOrderTotal":10000,
     "products":[
          {
            "PurchaseOrder_ProductId":1,
-           "Quantity":10,
-           "Total":2000
+           "Quantity":20,
+           "Total":7000
         },
         {
            "PurchaseOrder_ProductId":2,
-           "Quantity":15,
-           "Total":10000 
+           "Quantity":40,
+           "Total":3000 
         }
     ]
+}
+
+// Cancel Purchase Order ------------------------------>
+### 
+
+PUT http://localhost:3000/api/purchaseorder/cancel HTTP/1.1
+content-type: application/json
+
+{
+    "Purchase_OrderId":2
+}
+
+// Get all Purchase orders  ------------------------------->
+###
+POST  http://localhost:3000/api/purchaseorder/getpurchaseorders?SupplierId=1&PurchaseOrderId=1 HTTP/1.1
+content-type: application/json
+
+{
+    "CompanyId":1
 }

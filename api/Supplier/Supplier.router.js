@@ -7,11 +7,7 @@ const {
   getSupplierById
 } = require("./Supplier.controller");
 
-router.post(
-  "/createSupplier",
-  passport.authenticate("jwt", { session: false }),
-  createSupplier
-);
+router.post("/createSupplier", createSupplier);
 
 router.post(
   "/getsuppliers",
