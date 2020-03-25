@@ -83,15 +83,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
+    "SupplierName": "Shreeji co.",
+    "SupplierEmail": "shreejico@gmail.com",
+    "SupplierPhone":"5147854512",
+    "DiscountRate":"5",
     "SupplierName" :"Meh33kkul1 B1havsar",
     "SupplierEmail": "suppliuu321er119@gom",
     "SupplierPhone":"4157891458",
     "DiscountRate":"10",
     "CountryId":"1",
     "ProvinceId":"1",
-    "Address1":"3,3225",
-    "Address2":"Rue Saint Denis",
+    "Address1":"4120",
+    "Address2":"Rue Saint-laurent",
     "City":"Montreal",
+    "PostalCode":"H5R9J3",
     "PostalCode":"H3S1J3",
     "CompanyId" : "1"
 }
@@ -110,10 +115,10 @@ content-type: application/json
     "DiscountRate":"15",
     "CountryId":"1",
     "ProvinceId":"1",
-    "Address1":"500",
-    "Address2":"Rue Sherbrook",
+    "Address1":"4120",
+    "Address2":"Rue Saint-laurent",
     "City":"Montreal",
-    "PostalCode":"H4R8H3",
+    "PostalCode":"H5R9J3",
     "CompanyId" : "1"
 }
 
@@ -134,15 +139,6 @@ content-type: application/json
 {
    "CompanyId":50
 }
-
-####
-Query Param
-//SupplierName
-//SupplierId
-//City
-//CountryName
-//
-
 
 
 //fetching countries
@@ -168,18 +164,26 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-    "Product_name":"shirt",
-    "SKU":"clh-1001-01",
-    "PurchasePrice":"50",
-    "RetailPrice":"55",
-    "CategoryId":2,
-    "Description":"dress",
+    "Product_name":"Converse",
+    "SKU":"dh-1000-02",
+    "Description":"Comfertable stylish converse",
+    "PurchasePrice":"320",
+    "RetailPrice":"350",
+    "CategoryId":1,
     "Country_Origin_id":1,
-    "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
+    "Image":"‪D:\\SuperMarket-Project\\products\\hoodie.jpg",
     "SupplierId":2,
+<<<<<<< HEAD
     "Barcode":"45000 10000",
     "Qty_minimum_required":50
+=======
+    "Barcode":"45000 10003",
+    "Qty_minimum_required":50,
+    "CompanyId":"1"
+>>>>>>> a9bdd148987b25c626be427e0723956cfb9e36b1
 }
+
+
 //creating new  category
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
@@ -187,10 +191,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
+<<<<<<< HEAD
     "categoryname": "Cosmatics",
     "SKU": "shi-1000-01",
     "tags": "Cosmatics",
     "companyid":1
+=======
+
+    "categoryname": "Bags",
+    "SKU": "bgs-1000-01",
+    "tags": "sports",
+    "companyid":"1"
+>>>>>>> a9bdd148987b25c626be427e0723956cfb9e36b1
 }
 
 // Edit category ------------------------------------->
@@ -201,10 +213,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-    "categoryId": "1",
-    "categoryname":"Jackets",
+    "categoryId": "4",
+    "categoryname":"Jeans",
     "SKU": "jns-1000-01",
-    "tags"  : "Winter"
+    "tags"  : "Jeans"
 }
 
 // Get all Categories ------------------------------->
@@ -233,7 +245,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-    "ProductId":"8"
+    "ProductId":"6"
 }
 
 // Edit Product --------------------------------------->
@@ -244,14 +256,14 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTcwOX0.4MlmwvbDsZbIpYS-TZl0jItElcM41UhYvnJIAVZ9S1c
 
 {
-    "ProductId":"1",
-    "ProductName":"Mesh Sneakers",
-    "Description":"Sneakers in mesh, faux leather",
-    "PurchasePrice":"120",
-    "RetailPrice":"150",
+    "ProductId":4,
+    "ProductName":"Hoodie",
+    "Description":"Men's winter hoodie",
+    "PurchasePrice":"30",
+    "RetailPrice":"40",
     "CategoryId":1,
     "Country_Origin_id":1,
-    "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
+    "Image":"‪D:\\SuperMarket-Project\\products\\hoodie.jpg",
     "SupplierId":1,
     "QtyMinRequired":20,
     "CompanyId":1
