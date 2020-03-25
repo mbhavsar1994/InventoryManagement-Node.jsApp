@@ -85,17 +85,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-    "SupplierName" :"Mehul Bhavsar",
-    "SupplierEmail": "mpsupp@gmail.com",
-    "SupplierPhone":"4157891458",
-    "DiscountRate":"10",
+    "SupplierName": "Shreeji co.",
+    "SupplierEmail": "shreejico@gmail.com",
+    "SupplierPhone":"5147854512",
+    "DiscountRate":"5",
     "CountryId":"1",
     "ProvinceId":"1",
-    "Address1":"3,3225",
-    "Address2":"Rue Saint Denis",
+    "Address1":"4120",
+    "Address2":"Rue Saint-laurent",
     "City":"Montreal",
-    "PostalCode":"H3S1J3",
-    "CompanyId":1
+    "PostalCode":"H5R9J3",
+    "CompanyId" : "1"
 }
 
 ###
@@ -105,17 +105,17 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
-    "SupplierId"  : "4",
-    "SupplierName": "Ahm corp",
-    "SupplierEmail": "amhcorp@gmail.com",
-    "SupplierPhone":"4157891458",
-    "DiscountRate":"15",
+    "SupplierId"  : "3",
+    "SupplierName": "Shreeji co.",
+    "SupplierEmail": "shreejico@gmail.com",
+    "SupplierPhone":"5147854512",
+    "DiscountRate":"5",
     "CountryId":"1",
     "ProvinceId":"1",
-    "Address1":"500",
-    "Address2":"Rue Sherbrook",
+    "Address1":"4120",
+    "Address2":"Rue Saint-laurent",
     "City":"Montreal",
-    "PostalCode":"H4R8H3",
+    "PostalCode":"H5R9J3",
     "CompanyId" : "1"
 }
 
@@ -136,15 +136,6 @@ content-type: application/json
 {
    "CompanyId":50
 }
-
-####
-Query Param
-//SupplierName
-//SupplierId
-//City
-//CountryName
-//
-
 
 
 //fetching countries
@@ -170,16 +161,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-    "Product_name":"V-neck Dress",
-    "SKU":"clh-1000-01",
-    "Description":"woman dress",
-    "PurchasePrice":"50",
-    "RetailPrice":"55",
-    "CategoryId":2,
+    "Product_name":"Converse",
+    "SKU":"dh-1000-02",
+    "Description":"Comfertable stylish converse",
+    "PurchasePrice":"320",
+    "RetailPrice":"350",
+    "CategoryId":1,
     "Country_Origin_id":1,
-    "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
+    "Image":"‪D:\\SuperMarket-Project\\products\\hoodie.jpg",
     "SupplierId":2,
-    "Barcode":"45000 10000",
+    "Barcode":"45000 10003",
     "Qty_minimum_required":50,
     "CompanyId":1
 }
@@ -191,7 +182,7 @@ content-type: application/json
 
 {
     "categoryname": "Bags",
-    "SKU": "bgs-1000-01",
+    "SKU": "bgs-1000-03",
     "tags": "sports",
     "companyid":1
 }
@@ -204,10 +195,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-    "categoryId": "5",
-    "categoryname":"Jackets",
+    "categoryId": "4",
+    "categoryname":"Jeans",
     "SKU": "jns-1000-01",
-    "tags"  : "Winter"
+    "tags"  : "Jeans"
 }
 
 // Get all Categories ------------------------------->
@@ -222,7 +213,7 @@ content-type: application/json
 // Get category By Id ----------------------->
 ###
 
-GET http://localhost:3000/api/category/getcategorybyId?CategoryId=1001&CompanyId=1 HTTP/1.1
+GET http://localhost:3000/api/category/getcategorybyId?CategoryId=1&CompanyId=1 HTTP/1.1
 content-type: application/json
 
 
@@ -236,7 +227,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-    "ProductId":"8"
+    "ProductId":"6"
 }
 
 // Edit Product --------------------------------------->
@@ -247,14 +238,14 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
-    "ProductId":8,
-    "ProductName":"Mesh Sneakers",
-    "Description":"Sneakers in mesh, faux leather",
-    "PurchasePrice":"120",
-    "RetailPrice":"150",
+    "ProductId":4,
+    "ProductName":"Hoodie",
+    "Description":"Men's winter hoodie",
+    "PurchasePrice":"30",
+    "RetailPrice":"40",
     "CategoryId":1,
     "Country_Origin_id":1,
-    "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
+    "Image":"‪D:\\SuperMarket-Project\\products\\hoodie.jpg",
     "SupplierId":1,
     "QtyMinRequired":20,
     "CompanyId":1

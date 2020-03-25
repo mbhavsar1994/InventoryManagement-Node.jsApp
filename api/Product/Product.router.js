@@ -173,11 +173,7 @@ router.get("/getproductbyId", getProductById);
  *         description: Internal server error! SQL error
  */
 // route to inactive product information
-router.put(
-  "/deleteproduct",
-  passport.authenticate("jwt", { session: false }),
-  DeleteProduct
-);
+router.put("/deleteproduct", DeleteProduct);
 
 /**
  * @swagger
@@ -234,9 +230,6 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   editProduct
 );
-featureProduct
-router.get(
-  "/featureproduct",
-  featureProduct
-);
+featureProduct;
+router.get("/featureproduct", featureProduct);
 module.exports = router;
