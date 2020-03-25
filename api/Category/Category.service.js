@@ -4,7 +4,7 @@ module.exports = {
   // service to create category ----
   create_Category: (req, callBack) => {
     let category = req.body;
-
+    console.log(category.companyid);
     let sql = `SET @categoryname=?;SET @SKU=?;SET @tags=?;SET @comapnyid=?;  CALL AddCategory(@categoryname,@SKU,@tags,@companyid,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
     pool.query(
       sql,

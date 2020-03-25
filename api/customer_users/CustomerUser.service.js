@@ -18,6 +18,7 @@ module.exports = {
   //Service to create customer profile
   createCustomer: (req, callBack) => {
     let user = req.body;
+
     let sql = `SET @Fname=?;SET @Lname=?;SET @Email=?;SET @PhoneNumber=?;SET @CountryID=?;SET @ProvinceId=?;  SET @city = ?;SET @PostalCode =? ; SET @Address=? ;SET @Password=?; SET @CompanyId=?; CALL CreateCustomerUser(@Fname,@Lname,@Email,@PhoneNumber,@CountryID,@ProvinceId,@city,@PostalCode,@Address,@Password,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
     pool.query(
       sql,
