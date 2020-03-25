@@ -1,7 +1,8 @@
 const {
   getUserByUserEmail,
   createCustomer,
-  resetPassword
+  resetPassword,
+  edituser
 } = require("./CustomerUser.service");
 
 const { sign } = require("jsonwebtoken");
@@ -105,6 +106,29 @@ module.exports = {
         });
       }
       console.log(body.password);
+    });
+  },
+  //edit user
+  editcustomeruser: (req, res) => {
+    edituser(req, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: "0",
+          message: "Internal Server error! Please try again",
+          data: err
+        });
+      } else if (results[13][0].Err_msg != null) {
+        return res.status(400).json({
+          success: "0",
+          message: results[13][0].Err_msg
+        });
+      } else {
+        return res.status(200).json({
+          success: "1",
+          message: "User Profile updated Successfully"
+        });
+      }
     });
   }
 };

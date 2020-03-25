@@ -114,5 +114,19 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+  getFeatureProduct: (req, callBack) => {
+    let sql=`call FeatureProduct()`;
+    pool.query(
+      sql,
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          return callBack(error);
+        }
+        //console.log(results);
+        return callBack(null, results);
+      }
+    );
   }
 };
