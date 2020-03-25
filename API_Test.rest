@@ -331,19 +331,21 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":1,
+    "purchase_ord_id":4,
     "SupplierId":1,
     "PurchaseOrderTotal":10000,
     "products":[
         {
-           "PurchaseOrder_ProductId":2,
-           "Quantity":40,
-           "Total":3000 
+            "ProductId":1,
+           "PurchaseOrder_ProductId":7,
+           "Quantity":20,
+           "Total":8000 
         },
         {
-           "PurchaseOrder_ProductId":1,
-           "Quantity":15,
-           "Total":10000 
+           "ProductId":2,
+           "PurchaseOrder_ProductId":8,
+           "Quantity":10,
+           "Total":2000 
         }
     ]
 }
