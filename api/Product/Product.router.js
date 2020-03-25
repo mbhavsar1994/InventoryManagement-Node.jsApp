@@ -5,7 +5,8 @@ const {
   getProducts,
   DeleteProduct,
   getProductById,
-  editProduct
+  editProduct,
+  featureProduct
 } = require("./Product.controller");
 
 /**
@@ -233,5 +234,9 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   editProduct
 );
-
+featureProduct
+router.get(
+  "/featureproduct",
+  featureProduct
+);
 module.exports = router;

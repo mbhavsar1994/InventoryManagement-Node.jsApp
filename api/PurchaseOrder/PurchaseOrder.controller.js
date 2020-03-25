@@ -54,7 +54,7 @@ module.exports = {
       }
     });
   },
-
+//Method to edit purchase order api
   editPurchaseOrder: (req, res) => {
     EditPurchaseOrder(req, (err, results) => {
       if (err) {

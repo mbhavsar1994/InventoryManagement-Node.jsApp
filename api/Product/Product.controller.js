@@ -3,7 +3,8 @@ const {
   AddProduct,
   RemoveProduct,
   GetProductById,
-  EditProduct
+  EditProduct,
+  getFeatureProduct
 } = require("./Product.service");
 const _ = require("lodash");
 
@@ -209,6 +210,26 @@ module.exports = {
         return res.status(200).json({
           success: "1",
           message: "Product details updated Successfully"
+        });
+      }
+    });
+  },
+
+  //get product that are sales mostly in last 30 days
+  featureProduct: (req, res) => {
+    getFeatureProduct(req, (err, results) => {
+      if(err)
+      {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      }
+      else{
+        console.log(results[0]);
+        return res.status(200).json({
+          success: "1",
+          data: results[0]
         });
       }
     });

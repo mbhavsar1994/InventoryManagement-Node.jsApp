@@ -65,6 +65,7 @@ content-type: application/json
         "companyid":1  
 }
 
+
 // Forget Password for Customer User ----------------------->
 ###
 GET http://localhost:3000/api/customeruser/forgetPasswordCustomer HTTP/1.1
@@ -288,7 +289,23 @@ content-type: application/json
         }
     ]
 }
+//create sales api
+###
+POST http://localhost:3000/api/sales/createsales HTTP/1.1
+content-type: application/json
 
+{
+    "customerid":"1",
+    "total":"3000",
+    "product": [{"productid": "1",
+                  "qty" : "2",
+                  "price": "12.33",
+                  "subtotal":"1000"},
+                  {"productid": "2",
+                  "qty" : "2",
+                  "price": "166.33",
+                  "subtotal":"1000"}]
+}
 // Edit Purchase Order -------------------------------->
 
 ###
@@ -330,4 +347,30 @@ content-type: application/json
 
 {
     "CompanyId":1
+}
+
+
+//fetch the most popular product
+###
+GET http://localhost:3000/api/product/featureproduct HTTP/1.1
+content-type: application/json
+
+//edit user customer 
+###
+POST   http://localhost:3000/api/customeruser/editcustomeruser HTTP/1.1
+content-type: application/json
+
+{
+    "id":"1",
+    "Fname": "loveleen11",
+    "Lname": "minhas",
+    "email":"minhas@gmail.com",
+    "phonenumber":"1234567898",
+    "countryid":1,
+    "provinceid":2,
+    "city":"jalan",
+    "postal":"asdff",
+    "address":"bvjdnks",
+    "password":"123",
+    "companyid":1  
 }
