@@ -8,7 +8,15 @@ module.exports = {
   //creating sales
   createSales: (req, res) => {
     add_Customer_orderDetails(req, (err, results) => {
-      if(results[3][0].status==null)
+      console.log(results);
+      if(results==undefined)
+      {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      }
+      else if(results[3][0].status==null)
       {
         return res.status(500).json({
           success: "0",
