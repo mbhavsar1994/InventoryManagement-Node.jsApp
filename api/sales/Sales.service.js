@@ -1,7 +1,7 @@
 const pool = require("../../Config/database");
 
 module.exports = {
-  //geting countries
+  //add customer order details
   add_Customer_orderDetails: (req, callBack) => {
     let sales=req.body;
     let query=`SET @customerId=?; SET @total=?; CALL CustomerOrderDetails(@customerId,@total,@orderid,@Err,@status);select @status as status; select @err as Error;select @orderid as orderid`;
@@ -17,9 +17,8 @@ module.exports = {
 
         return callBack(null, results);
       });
-    //let query=`CALL AddSales(@CustomerOrderId,@ProductId,@Price,@Quantity,@SubTotal,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
-    //console.log(sales.product);
   },
+  //adding product of particular customer order
   addSalesorderProduct: (req,orderid,callBack) => {
     let product = req.body.product;
     var products = [];
@@ -36,7 +35,8 @@ module.exports = {
     }
       
 
-    let sql = `INSERT INTO Sales_Order_Products (CustomerOrderId, ProductId,Price,Quantity,SubTotal) VALUES ?`;
+    let sql = `INSERT INTO Sales_Order_Products (CustomerOrderId, ProductId,Price,Quantity,SubTotal) VALUES ?; 
+    Update product as a inner join Sales_Order_Products as b on a.ProductId=b.ProductId Set a.AvailableQty=(a.AvailableQty-b.Quantity) where a.ProductId=b.ProductId;`;
 
     pool.query(
       sql,
@@ -51,6 +51,7 @@ module.exports = {
       }
     );
   },
+  //getting order of particular company and of particular order id
   getSalesById: (orderid,companyid, callBack) => {
     let sql=`select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
     inner join 
@@ -89,6 +90,7 @@ module.exports = {
       }
     );
   },
+  //getting all the orders of particular company
   getAllSales: (companyid, callBack) => {
     let sql=`
     select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 

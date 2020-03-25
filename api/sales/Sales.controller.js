@@ -5,7 +5,7 @@ const { add_Customer_orderDetails ,
   const _ = require("lodash");
 
 module.exports = {
-  //fetching countries
+  //creating sales
   createSales: (req, res) => {
     add_Customer_orderDetails(req, (err, results) => {
       if(results[3][0].status==null)
@@ -43,9 +43,9 @@ module.exports = {
           }
         });
       }
-     // console.log(results[3][0].status);
     });
   },
+  //Getting all the order by passing order id and company id
   GetSalesOrderById: (req, res) => {
     let orderid="";
     let companyid="";
@@ -83,6 +83,7 @@ module.exports = {
       }
     });
   },
+  //get all the sales by passing country in body
   GetSales: (req, res) => {
     var response = [];
     console.log(req.body.companyid);

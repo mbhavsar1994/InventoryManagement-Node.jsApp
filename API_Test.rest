@@ -313,15 +313,15 @@ content-type: application/json
 
 {
     "customerid":"1",
-    "total":"3000",
+    "total":"15000",
     "product": [{"productid": "1",
                   "qty" : "2",
                   "price": "12.33",
-                  "subtotal":"1000"},
+                  "subtotal":"10000"},
                   {"productid": "2",
                   "qty" : "2",
                   "price": "166.33",
-                  "subtotal":"1000"}]
+                  "subtotal":"5000"}]
 }
 // Edit Purchase Order -------------------------------->
 
