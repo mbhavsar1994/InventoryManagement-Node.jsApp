@@ -308,19 +308,20 @@ content-type: application/json
 //create sales api
 ###
 POST http://localhost:3000/api/sales/createsales HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 {
     "customerid":"1",
-    "total":"3000",
+    "total":"15000",
     "product": [{"productid": "1",
                   "qty" : "2",
                   "price": "12.33",
-                  "subtotal":"1000"},
+                  "subtotal":"10000"},
                   {"productid": "2",
                   "qty" : "2",
                   "price": "166.33",
-                  "subtotal":"1000"}]
+                  "subtotal":"5000"}]
 }
 // Edit Purchase Order -------------------------------->
 
@@ -420,3 +421,28 @@ content-type: application/json
     "companyid":1  
 }
 
+// Get Sales By Id 
+###
+
+GET http://localhost:3000/api/sales/getsalesorderbyid?orderid=50&companyid=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+// Get sales---by filter---------------------->
+###
+POST http://localhost:3000/api/sales/getsales?CustomerOrderId=1&Date=2020-03-24 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+{
+    "companyid":"1"
+}
+// Get all sales----------------------->
+###
+POST http://localhost:3000/api/sales/getsales HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+{
+    "companyid":"1"
+}
