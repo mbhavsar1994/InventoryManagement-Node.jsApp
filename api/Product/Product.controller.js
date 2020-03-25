@@ -12,6 +12,7 @@ module.exports = {
   // Function to create product  for company
   CreateProduct: (req, res) => {
     AddProduct(req, (err, results) => {
+      console.log(results);
       if (err) {
         console.log(err);
         return res.status(500).json({
@@ -30,7 +31,7 @@ module.exports = {
           message: results[14][0]["Err_msg"]
         });
       } else {
-        return res.status(201).json({
+        return res.status(200).json({
           success: "1",
           message: "Product created Successfully"
         });

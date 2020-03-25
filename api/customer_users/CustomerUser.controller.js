@@ -111,6 +111,7 @@ module.exports = {
   //edit user
   editcustomeruser: (req, res) => {
     edituser(req, (err, results) => {
+      console.log(results);
       if (err) {
         console.log(err);
         return res.status(500).json({

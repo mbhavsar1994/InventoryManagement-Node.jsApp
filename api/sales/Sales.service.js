@@ -22,7 +22,7 @@ module.exports = {
   addSalesorderProduct: (req,orderid,callBack) => {
     let product = req.body.product;
     var products = [];
-    console.log("serv"+orderid)
+    //console.log("serv"+orderid)
     for (var i = 0; i < product.length; i++)
     {
       products.push([
