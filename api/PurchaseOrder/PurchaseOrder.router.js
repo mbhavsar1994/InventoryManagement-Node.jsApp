@@ -14,11 +14,7 @@ router.post(
   createPurchaseOrder
 );
 
-router.put(
-  "/edit",
-  passport.authenticate("jwt", { session: false }),
-  editPurchaseOrder
-);
+router.put("/edit", editPurchaseOrder);
 
 /**
  * @swagger
@@ -56,6 +52,10 @@ router.put(
   cancelPurchaseOrder
 );
 
-router.post("/getpurchaseorders", getPurchaseOrders);
+router.post(
+  "/getpurchaseorders",
+  passport.authenticate("jwt", { session: false }),
+  getPurchaseOrders
+);
 
 module.exports = router;

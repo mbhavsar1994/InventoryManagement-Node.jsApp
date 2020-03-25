@@ -40,7 +40,7 @@ module.exports = {
         if (error) {
           return callBack(error);
         }
-        console.log(results[0]);
+        console.log(results);
 
         return callBack(null, results);
       }

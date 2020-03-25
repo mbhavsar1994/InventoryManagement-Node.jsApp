@@ -110,20 +110,19 @@ module.exports = {
     for (var i = 0; i < product_jason.length; i++) {
       count++;
 
-      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId IN(?,?)`;
+      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId=?`;
 
       var product = [
         product_jason[i].Quantity,
         product_jason[i].Total,
         product_jason[i].PurchaseOrder_ProductId
       ];
-
-      Execute_Update(sql, product, (err, results) => {
+      Execute_Update(sql, product, (err, _results) => {
         if (err) {
           return callBack(err);
         } else {
           if (count == product_jason.length) {
-            return callBack(null, results);
+            return callBack(null, _results);
           }
         }
       });
@@ -137,7 +136,7 @@ module.exports = {
     for (var i = 0; i < product_jason.length; i++) {
       count++;
 
-      let sql = `Update Delivery_Order_Products SET Quantity=?,Total=? WHERE DeliveryOrder_ProductId IN(?,?)`;
+      let sql = `Update Delivery_Order_Products SET Quantity=?,Total=? WHERE DeliveryOrder_ProductId=?`;
 
       var product = [
         product_jason[i].Quantity,

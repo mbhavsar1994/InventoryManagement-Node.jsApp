@@ -11,8 +11,8 @@ POST http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "amidave80@gmail.com",
-    "password": "123456"
+    "email": "mpbh@gmail.com",
+    "password": "123"
 }
 
 // For Creating Company User and Company Details ---------------->
@@ -52,18 +52,18 @@ POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-        "Fname": "ami testing",
-        "Lname": "dave",
-        "email":"amidave@gmail.com",
+        "Fname": "Loveleen",
+        "Lname": "minhas",
+        "email":"minh8as@gmail.com",
         "phonenumber":"1234567898",
         "countryid":1,
         "provinceid":2,
         "city":"montreal",
         "postal":"asdff",
         "address":"bvjdnks",
-        "password":"ami123",
+        "password":"lovellen1234",
         "companyid":1  
-    }
+}
 
 
 // Forget Password for Customer User ----------------------->
@@ -79,11 +79,12 @@ content-type: application/json
 ###
 
 POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
-
 {
-    "SupplierEmail": "supplier19@gmail.com",
+    "SupplierName" :"Meh33kkul1 B1havsar",
+    "SupplierEmail": "suppliuu321er119@gom",
     "SupplierPhone":"4157891458",
     "DiscountRate":"10",
     "CountryId":"1",
@@ -103,16 +104,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 
 {
     "SupplierId"  : "9",
-    "SupplierName": "supplier14",
-    "SupplierEmail": "supplier1423@gmail.com",
+    "SupplierName": "sup88plier14",
+    "SupplierEmail": "sup888plier1423@gmail.com",
     "SupplierPhone":"4157891458",
-    "DiscountRate":"10",
+    "DiscountRate":"15",
     "CountryId":"1",
     "ProvinceId":"1",
-    "Address1":"3,3225",
-    "Address2":"Rue Saint Denis",
+    "Address1":"500",
+    "Address2":"Rue Sherbrook",
     "City":"Montreal",
-    "PostalCode":"H3S1J3",
+    "PostalCode":"H4R8H3",
     "CompanyId" : "1"
 }
 
@@ -124,7 +125,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 
+###
 
+POST http://localhost:3000/api/supplier/getsuppliers HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+{
+   "CompanyId":1
+}
+
+
+Query Param
+//SupplierName
+//SupplierId
+//City
+//CountryName
+//
 
 
 
@@ -151,15 +168,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-    "Product_name":"test7",
-    "SKU":"cnv-1452-13",
-    "PurchasePrice":"1000",
-    "RetailPrice":"1500",
+    "Product_name":"V-neck Dress",
+    "SKU":"clh-1000-01",
+    "PurchasePrice":"50",
+    "RetailPrice":"55",
     "CategoryId":2,
     "Country_Origin_id":1,
     "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
     "SupplierId":2,
-    "Barcode":"45785 14232",
+    "Barcode":"45000 10000",
     "Qty_minimum_required":50,
     "CompanyId":1
 }
@@ -170,9 +187,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-    "categoryname": "minehas111",
-    "SKU": "xyz-234-13",
-    "tags": "winter",
+    "categoryname": "Bags",
+    "SKU": "bgs-1000-01",
+    "tags": "sports",
     "companyid":1
 }
 
@@ -184,10 +201,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-   "categoryId": "1004",
-    "categoryname":"Pants",
-    "SKU": "xyz-234-27",
-    "tags"  : "Mens Women Pants"
+   "categoryId": "3",
+    "categoryname":"Jackets",
+    "SKU": "jns-1000-01",
+    "tags"  : "Winter"
 }
 
 // Get all Categories ------------------------------->
@@ -219,31 +236,40 @@ content-type: application/json
     "ProductId":"8"
 }
 
-###
 // Edit Product --------------------------------------->
+###
+
 PUT  http://localhost:3000/api/product/editproduct HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
     "ProductId":8,
-    "ProductName":"zara shoes",
-    "Description":"Comfertable stylish shoes",
-    "PurchasePrice":"100",
-    "RetailPrice":"600",
-    "CategoryId":2,
+    "ProductName":"Mesh Sneakers",
+    "Description":"Sneakers in mesh, faux leather",
+    "PurchasePrice":"120",
+    "RetailPrice":"150",
+    "CategoryId":1,
     "Country_Origin_id":1,
     "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
-    "SupplierId":2,
+    "SupplierId":1,
     "QtyMinRequired":20,
     "CompanyId":1
+}
+
+// Get All Products ----------------------------> 
+###
+POST  http://localhost:3000/api/product/getproducts HTTP/1.1
+content-type: application/json
+
+{
+    "CompanyId": 1
 }
 
 // Get Product By Id ---------------------------->
 ###
 
 GET http://localhost:3000/api/product/getproductbyId?ProductId=5&CompanyId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg0MzQ4MTM4fQ.N0AYA_Jug8OMCRdO3frRDH-L_qWMghSO7mWoMpqXZso
 content-type: application/json
 
 // Get Suppiler By Id ---------------------------->
@@ -253,6 +279,7 @@ GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=10&CompanyId=1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
+// Create Puchase Order -------------------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
@@ -316,9 +343,30 @@ content-type: application/json
            "PurchaseOrder_ProductId":5,
            "Quantity":15,
            "Total":10000 
-
         }
     ]
+}
+
+
+###
+POST  http://localhost:3000/api/delivery/create HTTP/1.1
+content-type: application/json
+
+{
+    "PurchaseOrderId":"4"
+}
+
+####
+// get All delivery 
+//Search Query param
+//SupplierName
+//DeliveryId
+//Status 
+POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
+content-type: application/json
+
+{
+    "CompanyId":"4"
 }
 
 // Cancel Purchase Order ------------------------------>
@@ -339,6 +387,7 @@ content-type: application/json
 {
     "CompanyId":1
 }
+
 
 
 //fetch the most popular product
