@@ -2,8 +2,8 @@ POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "m.bh@gmail.com",
-    "password": "123456"
+    "email": "amidav11e80@gmail.com",
+    "password": "ami123"
 }
 
 ###
@@ -22,14 +22,14 @@ POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
 
 {   
-    "Fname": "Ami",
-    "Lname": "Dave",
-    "Email":"amidav11e80@gmail.com",
+    "Fname": "Mehul",
+    "Lname": "Bhavsar",
+    "Email":"m.bhavsar6@gmail.com",
     "Password":"ami123",
     "PhoneNumber":"4157891458",
     "CompanyName":"IS11I",
     "Website":"www.abc.com",
-    "Logo":"‪D:\SuperMarket-Project\logo.jpeg",
+    "Logo":"‪D:/SuperMarket-Project/logo.jpeg",
     "Address1":"12,4000",
     "Address2":"Rue Barclay",
     "City":"Montreal",
@@ -37,6 +37,8 @@ content-type: application/json
     "ProvinceId":"1",
     "PostalCode":"H3S1K3"
 }
+
+###
 // Forget Password for Company User -------------------------->
 ###
 
@@ -83,8 +85,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-    "SupplierName" :"Meh33kkul1 B1havsar",
-    "SupplierEmail": "suppliuu321er119@gom",
+    "SupplierName" :"Mehul Bhavsar",
+    "SupplierEmail": "mpsupp@gmail.com",
     "SupplierPhone":"4157891458",
     "DiscountRate":"10",
     "CountryId":"1",
@@ -93,7 +95,7 @@ content-type: application/json
     "Address2":"Rue Saint Denis",
     "City":"Montreal",
     "PostalCode":"H3S1J3",
-    "CompanyId" : "1"
+    "CompanyId":1
 }
 
 ###
@@ -164,12 +166,13 @@ content-type: application/json
 ###
 
 POST  http://localhost:3000/api/product/createproduct HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1MjU4Nn0.PvSU7Fur2hjI1DOlzSssS2RbGlDkfzjqFdfkuT4kmR0
 content-type: application/json
 
 {
     "Product_name":"V-neck Dress",
     "SKU":"clh-1000-01",
+    "Description":"woman dress",
     "PurchasePrice":"50",
     "RetailPrice":"55",
     "CategoryId":2,
@@ -183,7 +186,7 @@ content-type: application/json
 //creating new  category
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NDEyN30.oRkQkiqLhXgqmqn55f0NtDwZWNtLUHBMb0jwlYm0BUU
 content-type: application/json
 
 {

@@ -43,6 +43,12 @@ module.exports = {
     var response = [];
     console.log(req.query);
 
+    if (typeof req.body.CompanyId == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..CompanyId id is missing!"
+      });
+    }
     getAllCategory(req.body.CompanyId, (err, results) => {
       if (err) {
         console.log(err);
