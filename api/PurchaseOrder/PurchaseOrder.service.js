@@ -110,7 +110,7 @@ module.exports = {
     for (var i = 0; i < product_jason.length; i++) {
       count++;
 
-      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId IN(?,?)`;
+      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId=?`;
 
       var product = [
         product_jason[i].Quantity,
@@ -137,7 +137,7 @@ module.exports = {
     for (var i = 0; i < product_jason.length; i++) {
       count++;
 
-      let sql = `Update Delivery_Order_Products SET Quantity=?,Total=? WHERE DeliveryOrder_ProductId IN(?,?)`;
+      let sql = `Update Delivery_Order_Products SET Quantity=?,Total=? WHERE DeliveryOrder_ProductId=?`;
 
       var product = [
         product_jason[i].Quantity,
