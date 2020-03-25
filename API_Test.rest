@@ -178,28 +178,19 @@ content-type: application/json
     "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
     "SupplierId":2,
     "Barcode":"45000 10000",
-<<<<<<< HEAD
     "Qty_minimum_required":50
-=======
-    "Qty_minimum_required":50,
-    "CompanyId":"1"
->>>>>>> 53e2f4eb47a42cbb672363f9f31d7bf5d83759fd
 }
 //creating new  category
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
-<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NDQ5Mn0.jOB1IvYq32FPElKHlRotyDolQBBSntfRZHAeacrq98Q 
-=======
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTcwOX0.4MlmwvbDsZbIpYS-TZl0jItElcM41UhYvnJIAVZ9S1c
->>>>>>> 53e2f4eb47a42cbb672363f9f31d7bf5d83759fd
 content-type: application/json
 
 {
-    "categoryname": "pants",
-    "SKU": "bgs-1000-01",
-    "tags": "sports",
-    "companyid":"1"
+    "categoryname": "Cosmatics",
+    "SKU": "shi-1000-01",
+    "tags": "Cosmatics",
+    "companyid":1
 }
 
 // Edit category ------------------------------------->
@@ -358,11 +349,11 @@ content-type: application/json
 ####
 
 POST  http://localhost:3000/api/delivery/create HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTI2OH0.GggcHDYu0f3rA1zsmA1SvChfxtPHmxXk6fnAxhLvB7k
 content-type: application/json
 
 {
-    "PurchaseOrderId":"4"
+    "PurchaseOrderId":"8"
 }
 
 ####
@@ -379,6 +370,7 @@ content-type: application/json
 ####
 
 POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTI2OH0.GggcHDYu0f3rA1zsmA1SvChfxtPHmxXk6fnAxhLvB7k
 content-type: application/json
 
 {
@@ -398,11 +390,11 @@ content-type: application/json
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im0uYmhAZ21haWwuY29tIiwiaWF0IjoxNTg1MTQ1NzU1fQ.o2x53pTPmGEEp9you24Iqgz5HyIhJ_oM9rH-RUPZ-0s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
 
 {
-    "CompanyId":2
+    "CompanyId":1
 }
 
 

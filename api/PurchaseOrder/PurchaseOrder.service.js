@@ -178,7 +178,7 @@ module.exports = {
   // Service to get all purchase orders information
   getAllPurchaseOrders: (CompanyId, callBack) => {
     pool.query(
-      "select a.Purchase_OrderId,a.SupplierId,a.Date,a.Status,b.SupplierName,b.CompanyId,Sum(c.Quantity),Sum(c.Total) as 'Total' as 'Total Units' from Purchase_orders as a inner join Suppliers as b on a.SupplierId=b.SupplierId inner join Purchase_Order_Products as c on c.Purchase_OrderId=a.Purchase_OrderId group by c.Purchase_OrderId;",
+      "select a.Purchase_OrderId,a.SupplierId,a.Date,a.Status,b.SupplierName,b.CompanyId,Sum(c.Quantity),Sum(c.Total) as  'Total Units' from Purchase_orders as a inner join Suppliers as b on a.SupplierId=b.SupplierId inner join Purchase_Order_Products as c on c.Purchase_OrderId=a.Purchase_OrderId  where b.CompanyId=? group by c.Purchase_OrderId",
       [CompanyId],
 
       (error, results, fields) => {
