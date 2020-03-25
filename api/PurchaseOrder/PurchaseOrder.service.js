@@ -115,13 +115,12 @@ module.exports = {
         product_jason[i].Total,
         product_jason[i].PurchaseOrder_ProductId
       ];
-
-      Execute_Update(sql, product, (err, results) => {
+      Execute_Update(sql, product, (err, _results) => {
         if (err) {
           return callBack(err);
         } else {
           if (count == product_jason.length) {
-            return callBack(null, results);
+            return callBack(null, _results);
           }
         }
       });

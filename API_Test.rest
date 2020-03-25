@@ -11,8 +11,8 @@ POST http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "amidave80@gmail.com",
-    "password": "123456"
+    "email": "mpbh@gmail.com",
+    "password": "123"
 }
 
 // For Creating Company User and Company Details ---------------->
@@ -54,7 +54,7 @@ content-type: application/json
 {
         "Fname": "loveleen",
         "Lname": "minhas",
-        "email":"minhas@gmail.com",
+        "email":"minh8as@gmail.com",
         "phonenumber":"1234567898",
         "countryid":1,
         "provinceid":2,
@@ -78,11 +78,12 @@ content-type: application/json
 ###
 
 POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
-content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
 
 {
-    "SupplierEmail": "supplier19@gmail.com",
+    "SupplierName" :"Meh33kkul1 B1havsar",
+    "SupplierEmail": "suppliuu321er119@gom",
     "SupplierPhone":"4157891458",
     "DiscountRate":"10",
     "CountryId":"1",
@@ -102,8 +103,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 
 {
     "SupplierId"  : "9",
-    "SupplierName": "supplier14",
-    "SupplierEmail": "supplier1423@gmail.com",
+    "SupplierName": "sup88plier14",
+    "SupplierEmail": "sup888plier1423@gmail.com",
     "SupplierPhone":"4157891458",
     "DiscountRate":"10",
     "CountryId":"1",
@@ -123,7 +124,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 
+###
 
+POST http://localhost:3000/api/supplier/getsuppliers HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+{
+   "CompanyId":1
+}
+
+
+Query Param
+//SupplierName
+//SupplierId
+//City
+//CountryName
+//
 
 
 
@@ -300,4 +317,21 @@ content-type: application/json
            "Total":10000 
         }
     ]
+}
+
+###
+POST  http://localhost:3000/api/delivery/create HTTP/1.1
+content-type: application/json
+
+{
+    "PurchaseOrderId":"4"
+}
+
+####
+
+POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
+content-type: application/json
+
+{
+    "CompanyId":1
 }
