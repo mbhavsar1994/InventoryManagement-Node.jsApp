@@ -101,60 +101,60 @@ module.exports = {
     );
   },
 
-  // Edit Purchase Order details for perticular product --------------------------->
+  // Edit Purchase Order ------------------------>
 
-  EditPurchaseOrder_Products: (req, callBack) => {
+  EditPurchaseOrder_Products1: (req, callBack) => {
     let product_jason = req.body.products;
-    var count = 0;
+    var products = [];
+    var delivery_products = [];
 
     for (var i = 0; i < product_jason.length; i++) {
-      count++;
-
-      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId=?`;
-
-      var product = [
+      products.push([
+        product_jason[i].ProductId,
         product_jason[i].Quantity,
         product_jason[i].Total,
         product_jason[i].PurchaseOrder_ProductId
-      ];
+      ]);
 
-      Execute_Update(sql, product, (err, results) => {
-        if (err) {
-          return callBack(err);
-        } else {
-          if (count == product_jason.length) {
-            return callBack(null, results);
-          }
-        }
-      });
-    }
-  },
-
-  EditDeliveryOrder_Products: (req, callBack) => {
-    let product_jason = req.body.products;
-    var count = 0;
-
-    for (var i = 0; i < product_jason.length; i++) {
-      count++;
-
-      let sql = `Update Delivery_Order_Products SET Quantity=?,Total=? WHERE DeliveryOrder_ProductId=?`;
-
-      var product = [
+      delivery_products.push([
+        product_jason[i].ProductId,
         product_jason[i].Quantity,
         product_jason[i].Total,
-        product_jason[i].DeliveryOrder_ProductId
-      ];
-
-      Execute_Update(sql, product, (err, results) => {
-        if (err) {
-          return callBack(err);
-        } else {
-          if (count == product_jason.length) {
-            return callBack(null, results);
-          }
-        }
-      });
+        product_jason[i].PurchaseOrder_ProductId
+      ]);
     }
+    let sql = `Drop table if exists TempProduct ;
+      CREATE TEMPORARY TABLE TempProduct(
+          ProductId INT,
+          Quantity INT ,
+          Total double,
+          PurchaseOrder_ProductId int 
+      );
+
+      Insert into TempProduct (ProductId,Quantity,Total, PurchaseOrder_ProductId) VALUES ?;
+
+      UPDATE IMS.Purchase_Order_Products as pop inner join TempProduct as temp on pop.PurchaseOrder_ProductId= temp.PurchaseOrder_ProductId SET pop.Quantity = temp.Quantity,pop.Total=temp.Total WHERE pop.ProductId =temp.ProductId ;
+       
+     
+
+      UPDATE IMS.Delivery_Order_Products as dop inner join IMS.Delivery on dop.DeliveryId=Delivery.DeliveryId inner join IMS.Purchase_orders on Delivery.Purchase_OrderId=Purchase_orders.Purchase_OrderId inner join TempProduct as temp on Purchase_orders.Purchase_OrderId= temp.PurchaseOrder_ProductId 
+      SET dop.Quantity = temp.Quantity,dop.Total=temp.Total WHERE dop.ProductId =temp.ProductId ;
+      
+      `;
+
+    pool.query(
+      sql,
+      [products, delivery_products],
+
+      (error, results, _fields) => {
+        if (error) {
+          return callBack(error);
+        } else {
+        }
+
+        return callBack(null, results);
+      }
+    );
   },
 
   // Cancel Purchase Order ------------------------------------------------------------>
@@ -178,7 +178,7 @@ module.exports = {
   // Service to get all purchase orders information
   getAllPurchaseOrders: (CompanyId, callBack) => {
     pool.query(
-      "SELECT Purchase_orders.Purchase_OrderId,Purchase_orders.SupplierId,Purchase_orders.Date,Purchase_orders.Status,Suppliers.SupplierId,Suppliers.CompanyId FROM IMS.Purchase_orders inner join Suppliers on Purchase_orders.SupplierId = Suppliers.SupplierId  where  Suppliers.CompanyId=?;",
+      "select a.Purchase_OrderId,a.SupplierId,a.Date,a.Status,b.SupplierName,b.CompanyId,Sum(c.Quantity),Sum(c.Total) as 'Total' as 'Total Units' from Purchase_orders as a inner join Suppliers as b on a.SupplierId=b.SupplierId inner join Purchase_Order_Products as c on c.Purchase_OrderId=a.Purchase_OrderId group by c.Purchase_OrderId;",
       [CompanyId],
 
       (error, results, fields) => {

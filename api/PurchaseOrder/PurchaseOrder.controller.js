@@ -2,8 +2,7 @@ const {
   AddPurchaseOrder,
   AddPurchaseOrder_Products,
   EditPurchaseOrder,
-  EditPurchaseOrder_Products,
-  EditDeliveryOrder_Products,
+  EditPurchaseOrder_Products1,
   Cancelpurchase_Order,
   getAllPurchaseOrders
 } = require("./PurchaseOrder.service");
@@ -54,7 +53,7 @@ module.exports = {
       }
     });
   },
-//Method to edit purchase order api
+  //Method to edit purchase order api
   editPurchaseOrder: (req, res) => {
     EditPurchaseOrder(req, (err, results) => {
       if (err) {
@@ -75,7 +74,7 @@ module.exports = {
           message: results[5][0]["Err_msg"]
         });
       } else {
-        EditPurchaseOrder_Products(req, (err, results) => {
+        EditPurchaseOrder_Products1(req, (err, results) => {
           if (err) {
             console.log(err);
             return res.status(500).json({
@@ -83,28 +82,16 @@ module.exports = {
               message: "Internal server error! please try again later",
               data: err
             });
-          } else if (results) {
-            EditDeliveryOrder_Products(req, (err, results) => {
-              if (err) {
-                console.log(err);
-                return res.status(500).json({
-                  success: "0",
-                  message: "Internal server error! please try again later",
-                  data: err
-                });
-              } else {
-                return res.status(200).json({
-                  success: "1",
-                  message: "Purchase Order updated Successfully"
-                });
-              }
+          } else {
+            return res.status(200).json({
+              success: "1",
+              message: "Purchase Order updated Successfully"
             });
           }
         });
       }
     });
   },
-
   // Cancel Purchase Order --------------------------------------------->
   cancelPurchaseOrder: (req, res) => {
     let CompanyId = "";
