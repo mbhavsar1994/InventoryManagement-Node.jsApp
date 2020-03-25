@@ -54,11 +54,7 @@ content-type: application/json
 {
         "Fname": "Loveleen",
         "Lname": "minhas",
-<<<<<<< HEAD
         "email":"minh8as@gmail.com",
-=======
-        "email":"lloveleen@gmail.com",
->>>>>>> e3866e9aa3b2951914d510e2df1ea3d3d002da9a
         "phonenumber":"1234567898",
         "countryid":1,
         "provinceid":2,
@@ -83,7 +79,6 @@ content-type: application/json
 ###
 
 POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
-<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
@@ -92,16 +87,6 @@ content-type: application/json
     "SupplierEmail": "suppliuu321er119@gom",
     "SupplierPhone":"4157891458",
     "DiscountRate":"10",
-=======
-content-type: application/json
-
-
-{
-    "SupplierName": "H&M",
-    "SupplierEmail": "HM@gmail.com",
-    "SupplierPhone":"5147851235",
-    "DiscountRate":"5",
->>>>>>> e3866e9aa3b2951914d510e2df1ea3d3d002da9a
     "CountryId":"1",
     "ProvinceId":"1",
     "Address1":"3,3225",
@@ -118,15 +103,9 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
-<<<<<<< HEAD
     "SupplierId"  : "9",
     "SupplierName": "sup88plier14",
     "SupplierEmail": "sup888plier1423@gmail.com",
-=======
-    "SupplierId"  : "5",
-    "SupplierName": "Nike",
-    "SupplierEmail": "Nike@gmail.com",
->>>>>>> e3866e9aa3b2951914d510e2df1ea3d3d002da9a
     "SupplierPhone":"4157891458",
     "DiscountRate":"15",
     "CountryId":"1",
@@ -367,7 +346,7 @@ content-type: application/json
     ]
 }
 
-<<<<<<< HEAD
+
 ###
 POST  http://localhost:3000/api/delivery/create HTTP/1.1
 content-type: application/json
@@ -377,7 +356,11 @@ content-type: application/json
 }
 
 ####
-
+// get All delivery 
+//Search Query param
+//SupplierName
+//DeliveryId
+//Status 
 POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
 =======
 // Cancel Purchase Order ------------------------------>
@@ -399,8 +382,7 @@ content-type: application/json
 {
     "CompanyId":1
 }
-<<<<<<< HEAD
-=======
+
 
 
 //fetch the most popular product
@@ -427,4 +409,4 @@ content-type: application/json
     "password":"123",
     "companyid":1  
 }
->>>>>>> e3866e9aa3b2951914d510e2df1ea3d3d002da9a
+
