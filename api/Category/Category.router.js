@@ -76,7 +76,11 @@ router.post("/getcategories", getCategories);
  *
  */
 
-router.post("/createCategory", createCategory);
+router.post(
+  "/createCategory",
+  passport.authenticate("jwt", { session: false }),
+  createCategory
+);
 
 /**
  * @swagger

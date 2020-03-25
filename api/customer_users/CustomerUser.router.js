@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const passport = require("passport");
 const {
   authcustomeruser,
   createcustomeruser,
@@ -10,7 +11,11 @@ router.post("/authcustomeruser", authcustomeruser);
 
 router.post("/createcustomeruser", createcustomeruser);
 
-router.post("/editcustomeruser", editcustomeruser);
+router.post(
+  "/editcustomeruser",
+  passport.authenticate("jwt", { session: false }),
+  editcustomeruser
+);
 
 router.get("/forgetPasswordCustomer", forgetPasswordCustomer);
 

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+const passport = require("passport");
 const { createSales } = require("./Sales.controller");
 
 router.post(

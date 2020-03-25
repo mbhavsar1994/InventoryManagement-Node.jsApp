@@ -362,7 +362,12 @@ content-type: application/json
 //DeliveryId
 //Status 
 POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
-=======
+content-type: application/json
+
+{
+    "CompanyId":"4"
+}
+
 // Cancel Purchase Order ------------------------------>
 ### 
 
@@ -376,7 +381,6 @@ content-type: application/json
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders?SupplierId=1&PurchaseOrderId=1 HTTP/1.1
->>>>>>> e3866e9aa3b2951914d510e2df1ea3d3d002da9a
 content-type: application/json
 
 {
