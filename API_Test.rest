@@ -180,13 +180,12 @@ content-type: application/json
     "Image":"‪D:\\SuperMarket-Project\\logo.jpeg",
     "SupplierId":2,
     "Barcode":"45000 10000",
-    "Qty_minimum_required":50,
-    "CompanyId":1
+    "Qty_minimum_required":50
 }
 //creating new  category
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NDEyN30.oRkQkiqLhXgqmqn55f0NtDwZWNtLUHBMb0jwlYm0BUU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NDQ5Mn0.jOB1IvYq32FPElKHlRotyDolQBBSntfRZHAeacrq98Q 
 content-type: application/json
 
 {
@@ -333,26 +332,26 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":4,
+    "purchase_ord_id":3,
     "SupplierId":1,
     "PurchaseOrderTotal":10000,
     "products":[
         {
-            "ProductId":1,
-           "PurchaseOrder_ProductId":7,
-           "Quantity":20,
-           "Total":8000 
+           "PurchaseOrder_ProductId":2,
+           "Quantity":40,
+           "Total":3000 
         },
         {
-           "ProductId":2,
-           "PurchaseOrder_ProductId":8,
-           "Quantity":10,
-           "Total":2000 
+           "PurchaseOrder_ProductId":5,
+           "Quantity":15,
+           "Total":10000 
         }
     ]
 }
+####
 
 POST  http://localhost:3000/api/delivery/create HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 {
