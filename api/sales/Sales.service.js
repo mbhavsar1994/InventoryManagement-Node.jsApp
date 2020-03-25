@@ -50,5 +50,69 @@ module.exports = {
         return callBack(null, resultss);
       }
     );
+  },
+  getSalesById: (orderid,companyid, callBack) => {
+    let sql=`select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
+    inner join 
+    Sales_Order_Products as b
+    on
+    a.CustomerOrderId=b.CustomerOrderId
+    inner join 
+    user_master_customer as c
+    on
+    c.CustomerId=a.CustomerId
+    where CompanyId=0
+    group by CustomerOrderId
+    ;
+    select a.CustomerOrderId, c.Fname ,a.Date,Sum(Quantity),a.Total  from Customer_OrderDetails as a 
+    inner join 
+    Sales_Order_Products as b
+    on
+    a.CustomerOrderId=b.CustomerOrderId
+    inner join 
+    user_master_customer as c
+    on
+    c.CustomerId=a.CustomerId
+    where a.CustomerOrderId=? and c.CompanyId=?
+    group by CustomerOrderId`;
+    pool.query(
+      sql,
+      [orderid,
+      companyid],
+
+      (error, results, _fields) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        return callBack(null, results);
+      }
+    );
+  },
+  getAllSales: (companyid, callBack) => {
+    let sql=`
+    select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
+        inner join 
+        Sales_Order_Products as b
+        on
+        a.CustomerOrderId=b.CustomerOrderId
+        inner join 
+        user_master_customer as c
+        on
+        c.CustomerId=a.CustomerId
+        where CompanyId=?
+        group by CustomerOrderId`;
+    pool.query(
+      sql,
+      [companyid],
+
+      (error, results, _fields) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        return callBack(null, results);
+      }
+    );
   }
 };
