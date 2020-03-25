@@ -2,8 +2,8 @@ POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "m.bh@gmail.com",
-    "password": "123456"
+    "email": "amidav11e80@gmail.com",
+    "password": "ami123"
 }
 
 ###
@@ -11,8 +11,8 @@ POST http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "amidave80@gmail.com",
-    "password": "123456"
+    "email": "mpbh@gmail.com",
+    "password": "123"
 }
 
 // For Creating Company User and Company Details ---------------->
@@ -22,14 +22,14 @@ POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
 content-type: application/json
 
 {   
-    "Fname": "Ami",
-    "Lname": "Dave",
-    "Email":"amidav11e80@gmail.com",
+    "Fname": "Mehul",
+    "Lname": "Bhavsar",
+    "Email":"m.bhavsar6@gmail.com",
     "Password":"ami123",
     "PhoneNumber":"4157891458",
     "CompanyName":"IS11I",
     "Website":"www.abc.com",
-    "Logo":"‪D:\SuperMarket-Project\logo.jpeg",
+    "Logo":"‪D:/SuperMarket-Project/logo.jpeg",
     "Address1":"12,4000",
     "Address2":"Rue Barclay",
     "City":"Montreal",
@@ -37,6 +37,8 @@ content-type: application/json
     "ProvinceId":"1",
     "PostalCode":"H3S1K3"
 }
+
+###
 // Forget Password for Company User -------------------------->
 ###
 
@@ -54,7 +56,7 @@ content-type: application/json
 {
         "Fname": "Loveleen",
         "Lname": "minhas",
-        "email":"lloveleen@gmail.com",
+        "email":"minh8as@gmail.com",
         "phonenumber":"1234567898",
         "countryid":1,
         "provinceid":2,
@@ -79,21 +81,21 @@ content-type: application/json
 ###
 
 POST  http://localhost:3000/api/supplier/createSupplier HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
-
 {
-    "SupplierName": "H&M",
-    "SupplierEmail": "HM@gmail.com",
-    "SupplierPhone":"5147851235",
-    "DiscountRate":"5",
+    "SupplierName" :"Mehul Bhavsar",
+    "SupplierEmail": "mpsupp@gmail.com",
+    "SupplierPhone":"4157891458",
+    "DiscountRate":"10",
     "CountryId":"1",
     "ProvinceId":"1",
     "Address1":"3,3225",
     "Address2":"Rue Saint Denis",
     "City":"Montreal",
     "PostalCode":"H3S1J3",
-    "CompanyId" : "1"
+    "CompanyId":1
 }
 
 ###
@@ -103,9 +105,9 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
-    "SupplierId"  : "5",
-    "SupplierName": "Nike",
-    "SupplierEmail": "Nike@gmail.com",
+    "SupplierId"  : "4",
+    "SupplierName": "Ahm corp",
+    "SupplierEmail": "amhcorp@gmail.com",
     "SupplierPhone":"4157891458",
     "DiscountRate":"15",
     "CountryId":"1",
@@ -125,7 +127,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 
+###
 
+POST http://localhost:3000/api/supplier/getsuppliers HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+{
+   "CompanyId":50
+}
+
+####
+Query Param
+//SupplierName
+//SupplierId
+//City
+//CountryName
+//
 
 
 
@@ -141,19 +159,20 @@ POST http://localhost:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {
-    "country_id": 1
+    "country_id": 150
 }
 
 // Add new Product -------------------------------->
 ###
 
 POST  http://localhost:3000/api/product/createproduct HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1MjU4Nn0.PvSU7Fur2hjI1DOlzSssS2RbGlDkfzjqFdfkuT4kmR0
 content-type: application/json
 
 {
     "Product_name":"V-neck Dress",
     "SKU":"clh-1000-01",
+    "Description":"woman dress",
     "PurchasePrice":"50",
     "RetailPrice":"55",
     "CategoryId":2,
@@ -167,7 +186,7 @@ content-type: application/json
 //creating new  category
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NDEyN30.oRkQkiqLhXgqmqn55f0NtDwZWNtLUHBMb0jwlYm0BUU
 content-type: application/json
 
 {
@@ -185,7 +204,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-   "categoryId": "3",
+    "categoryId": "5",
     "categoryname":"Jackets",
     "SKU": "jns-1000-01",
     "tags"  : "Winter"
@@ -292,19 +311,20 @@ content-type: application/json
 //create sales api
 ###
 POST http://localhost:3000/api/sales/createsales HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 content-type: application/json
 
 {
     "customerid":"1",
-    "total":"3000",
+    "total":"15000",
     "product": [{"productid": "1",
                   "qty" : "2",
                   "price": "12.33",
-                  "subtotal":"1000"},
+                  "subtotal":"10000"},
                   {"productid": "2",
                   "qty" : "2",
                   "price": "166.33",
-                  "subtotal":"1000"}]
+                  "subtotal":"5000"}]
 }
 // Edit Purchase Order -------------------------------->
 
@@ -332,6 +352,33 @@ content-type: application/json
     ]
 }
 
+POST  http://localhost:3000/api/delivery/create HTTP/1.1
+content-type: application/json
+
+{
+    "PurchaseOrderId":"4"
+}
+
+####
+
+
+########
+// get All delivery 
+//Search Query param
+//SupplierName
+//DeliveryId
+//Status 
+###
+
+####
+
+POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
+content-type: application/json
+
+{
+    "CompanyId":"4"
+}
+
 // Cancel Purchase Order ------------------------------>
 ### 
 
@@ -344,12 +391,14 @@ content-type: application/json
 
 // Get all Purchase orders  ------------------------------->
 ###
-POST  http://localhost:3000/api/purchaseorder/getpurchaseorders?SupplierId=1&PurchaseOrderId=1 HTTP/1.1
+POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im0uYmhAZ21haWwuY29tIiwiaWF0IjoxNTg1MTQ1NzU1fQ.o2x53pTPmGEEp9you24Iqgz5HyIhJ_oM9rH-RUPZ-0s
 content-type: application/json
 
 {
-    "CompanyId":1
+    "CompanyId":2
 }
+
 
 
 //fetch the most popular product
@@ -375,4 +424,30 @@ content-type: application/json
     "address":"bvjdnks",
     "password":"123",
     "companyid":1  
+}
+
+// Get Sales By Id 
+###
+
+GET http://localhost:3000/api/sales/getsalesorderbyid?orderid=50&companyid=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+// Get sales---by filter---------------------->
+###
+POST http://localhost:3000/api/sales/getsales?CustomerOrderId=1&Date=2020-03-24 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+{
+    "companyid":"1"
+}
+// Get all sales----------------------->
+###
+POST http://localhost:3000/api/sales/getsales HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
+content-type: application/json
+
+{
+    "companyid":"1"
 }

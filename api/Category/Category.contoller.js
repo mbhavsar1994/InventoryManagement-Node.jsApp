@@ -43,6 +43,12 @@ module.exports = {
     var response = [];
     console.log(req.query);
 
+    if (typeof req.body.CompanyId == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..CompanyId id is missing!"
+      });
+    }
     getAllCategory(req.body.CompanyId, (err, results) => {
       if (err) {
         console.log(err);
@@ -91,15 +97,15 @@ module.exports = {
           message: "Internal Server error! Please try again",
           data: err
         });
-      } else if (results[6][0]["status"] == null) {
+      } else if (results[5][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
           message: "Internal server error!"
         });
-      } else if (results[6][0]["status"] == "0") {
+      } else if (results[5][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[7][0]["Err_msg"]
+          message: results[6][0]["Err_msg"]
         });
       } else {
         return res.status(200).json({

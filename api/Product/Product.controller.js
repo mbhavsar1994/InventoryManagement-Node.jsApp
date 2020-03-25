@@ -44,6 +44,13 @@ module.exports = {
     var response = [];
     console.log(req.query);
 
+    if (typeof req.body.CompanyId == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..CompanyId id is missing!"
+      });
+    }
+
     getAllProduct(req.body.CompanyId, (err, results) => {
       if (err) {
         console.log(err);
@@ -218,14 +225,12 @@ module.exports = {
   //get product that are sales mostly in last 30 days
   featureProduct: (req, res) => {
     getFeatureProduct(req, (err, results) => {
-      if(err)
-      {
+      if (err) {
         return res.status(500).json({
           success: "0",
           message: "Internal server error!"
         });
-      }
-      else{
+      } else {
         console.log(results[0]);
         return res.status(200).json({
           success: "1",
