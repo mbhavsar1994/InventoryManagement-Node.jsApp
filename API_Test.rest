@@ -330,17 +330,19 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":3,
+    "purchase_ord_id":8,
     "SupplierId":1,
     "PurchaseOrderTotal":10000,
     "products":[
         {
-           "PurchaseOrder_ProductId":2,
-           "Quantity":40,
+           "ProductId":1,
+           "PurchaseOrder_ProductId":27,
+           "Quantity":30,
            "Total":3000 
         },
         {
-           "PurchaseOrder_ProductId":5,
+           "ProductId":2,
+           "PurchaseOrder_ProductId":28,
            "Quantity":15,
            "Total":10000 
         }
@@ -383,17 +385,17 @@ PUT http://localhost:3000/api/purchaseorder/cancel HTTP/1.1
 content-type: application/json
 
 {
-    "Purchase_OrderId":2
+    "CompanyId":1,
+    "Purchase_OrderId":3
 }
 
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im0uYmhAZ21haWwuY29tIiwiaWF0IjoxNTg1MTQ1NzU1fQ.o2x53pTPmGEEp9you24Iqgz5HyIhJ_oM9rH-RUPZ-0s
 content-type: application/json
 
 {
-    "CompanyId":2
+    "CompanyId":1
 }
 
 

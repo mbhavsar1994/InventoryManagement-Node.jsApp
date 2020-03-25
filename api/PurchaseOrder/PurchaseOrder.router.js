@@ -46,16 +46,8 @@ router.put("/edit", editPurchaseOrder);
  *         description: Internal server error! SQL error
  */
 // Route to cancel the purchase order ------------------------>
-router.put(
-  "/cancel",
-  passport.authenticate("jwt", { session: false }),
-  cancelPurchaseOrder
-);
+router.put("/cancel", cancelPurchaseOrder);
 
-router.post(
-  "/getpurchaseorders",
-  passport.authenticate("jwt", { session: false }),
-  getPurchaseOrders
-);
+router.post("/getpurchaseorders", getPurchaseOrders);
 
 module.exports = router;
