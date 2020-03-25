@@ -55,11 +55,6 @@ module.exports = {
     });
   },
 
-<<<<<<< HEAD
-  // Edit Purchase Order ----------------------------------------------->
-=======
-  //Method to edit purchase order api
->>>>>>> 4163915d8c22ec0c8fbd2cd5e92fd2c4f6a3c474
   editPurchaseOrder: (req, res) => {
     EditPurchaseOrder(req, (err, results) => {
       if (err) {
