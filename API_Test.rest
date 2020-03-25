@@ -103,9 +103,9 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M0BnbWFpbC5jb20iLCJpYXQiOjE1ODQ5MTk4OTB9.SxQ4AjeIVZEXNwUcd8UH0xAghCtjD0wJfQfwfZUuG68
 
 {
-    "SupplierId"  : "9",
-    "SupplierName": "sup88plier14",
-    "SupplierEmail": "sup888plier1423@gmail.com",
+    "SupplierId"  : "4",
+    "SupplierName": "Ahm corp",
+    "SupplierEmail": "amhcorp@gmail.com",
     "SupplierPhone":"4157891458",
     "DiscountRate":"15",
     "CountryId":"1",
@@ -132,10 +132,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-   "CompanyId":1
+   "CompanyId":50
 }
 
-
+####
 Query Param
 //SupplierName
 //SupplierId
@@ -157,7 +157,7 @@ POST http://localhost:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {
-    "country_id": 1
+    "country_id": 150
 }
 
 // Add new Product -------------------------------->
@@ -201,7 +201,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaTE0M
 content-type: application/json
 
 {
-   "categoryId": "3",
+    "categoryId": "5",
     "categoryname":"Jackets",
     "SKU": "jns-1000-01",
     "tags"  : "Winter"
@@ -346,8 +346,6 @@ content-type: application/json
     ]
 }
 
-
-###
 POST  http://localhost:3000/api/delivery/create HTTP/1.1
 content-type: application/json
 
@@ -356,11 +354,18 @@ content-type: application/json
 }
 
 ####
+
+
+########
 // get All delivery 
 //Search Query param
 //SupplierName
 //DeliveryId
 //Status 
+###
+
+####
+
 POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
 content-type: application/json
 
@@ -380,11 +385,12 @@ content-type: application/json
 
 // Get all Purchase orders  ------------------------------->
 ###
-POST  http://localhost:3000/api/purchaseorder/getpurchaseorders?SupplierId=1&PurchaseOrderId=1 HTTP/1.1
+POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im0uYmhAZ21haWwuY29tIiwiaWF0IjoxNTg1MTQ1NzU1fQ.o2x53pTPmGEEp9you24Iqgz5HyIhJ_oM9rH-RUPZ-0s
 content-type: application/json
 
 {
-    "CompanyId":1
+    "CompanyId":2
 }
 
 
