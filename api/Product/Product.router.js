@@ -5,12 +5,13 @@ const {
   getProducts,
   DeleteProduct,
   getProductById,
-  editProduct
+  editProduct,
+  featureProduct
 } = require("./Product.controller");
 
 /**
  * @swagger
- * /api/category/createproduct:
+ * /api/product/createproduct:
  *   post:
  *     tags:
  *       - Product
@@ -233,5 +234,9 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   editProduct
 );
-
+featureProduct
+router.get(
+  "/featureproduct",
+  featureProduct
+);
 module.exports = router;

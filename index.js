@@ -111,11 +111,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const companyuserRouter = require("./api/company_users/CompanyUser.router");
 const customeruserRouter = require("./api/customer_users/CustomerUser.router");
 const countriesRouter = require("./api/countryandprovince/CountryAndProvince.router");
+
 const supplierRouter = require("./api/Supplier/Supplier.router");
 const categoryRouter = require("./api/Category/Category.router");
 const productRouter = require("./api/Product/Product.router");
 const purchaseOrderRouter = require("./api/PurchaseOrder/PurchaseOrder.router");
+
 const DeliveryRouter = require("./api/Delivery/Delivery.router");
+
+const salesRouter = require("./api/sales/Sales.router");
 
 app.use("/api/companyuser", companyuserRouter);
 app.use("/api/customeruser", customeruserRouter);
@@ -126,6 +130,8 @@ app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/purchaseorder", purchaseOrderRouter);
 app.use("/api/delivery", DeliveryRouter);
+
+app.use("/api/sales", salesRouter);
 // Main Root
 app.get("/", function(req, res) {
   res.json({ message: "Inventory Management API is up!" });

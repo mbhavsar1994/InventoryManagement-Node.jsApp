@@ -6,6 +6,7 @@ const {
 const _ = require("lodash");
 
 module.exports = {
+  // Function to receive delivery update
   ReceivedDelivery: (req, res) => {
     if (
       typeof req.body.PurchaseOrderId != "undefined" &&
@@ -42,6 +43,7 @@ module.exports = {
       }
     });
   },
+  // function to get all delivery result and search
   GetAllDelivery: (req, res) => {
     let CompanyId = "";
     let response = [];

@@ -101,6 +101,8 @@ module.exports = {
     );
   },
 
+  // Edit Purchase Order details for perticular product --------------------------->
+
   EditPurchaseOrder_Products: (req, callBack) => {
     let product_jason = req.body.products;
     var count = 0;
@@ -108,7 +110,7 @@ module.exports = {
     for (var i = 0; i < product_jason.length; i++) {
       count++;
 
-      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId=? `;
+      let sql = `Update Purchase_Order_Products SET Quantity=?,Total=? WHERE PurchaseOrder_ProductId=?`;
 
       var product = [
         product_jason[i].Quantity,
@@ -125,5 +127,67 @@ module.exports = {
         }
       });
     }
+  },
+
+  EditDeliveryOrder_Products: (req, callBack) => {
+    let product_jason = req.body.products;
+    var count = 0;
+
+    for (var i = 0; i < product_jason.length; i++) {
+      count++;
+
+      let sql = `Update Delivery_Order_Products SET Quantity=?,Total=? WHERE DeliveryOrder_ProductId=?`;
+
+      var product = [
+        product_jason[i].Quantity,
+        product_jason[i].Total,
+        product_jason[i].DeliveryOrder_ProductId
+      ];
+
+      Execute_Update(sql, product, (err, results) => {
+        if (err) {
+          return callBack(err);
+        } else {
+          if (count == product_jason.length) {
+            return callBack(null, results);
+          }
+        }
+      });
+    }
+  },
+
+  // Cancel Purchase Order ------------------------------------------------------------>
+
+  Cancelpurchase_Order: (req, callBack) => {
+    pool.query(
+      "UPDATE Purchase_orders SET Status='Cancelled' WHERE Purchase_OrderId=?;",
+      [req.body.Purchase_OrderId],
+
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        console.log(results);
+        return callBack(null, results);
+      }
+    );
+  },
+
+  // Service to get all purchase orders information
+  getAllPurchaseOrders: (CompanyId, callBack) => {
+    pool.query(
+      "SELECT Purchase_orders.Purchase_OrderId,Purchase_orders.SupplierId,Purchase_orders.Date,Purchase_orders.Status,Suppliers.SupplierId,Suppliers.CompanyId FROM IMS.Purchase_orders inner join Suppliers on Purchase_orders.SupplierId = Suppliers.SupplierId  where  Suppliers.CompanyId=?;",
+      [CompanyId],
+
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        console.log(results);
+        return callBack(null, results);
+      }
+    );
   }
 };
