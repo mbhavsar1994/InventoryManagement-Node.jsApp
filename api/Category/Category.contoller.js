@@ -29,7 +29,7 @@ module.exports = {
           message: results[7][0]["Err_msg"]
         });
       } else {
-        return res.status(201).json({
+        return res.status(200).json({
           success: "1",
           message: "Category created Successfully"
         });
