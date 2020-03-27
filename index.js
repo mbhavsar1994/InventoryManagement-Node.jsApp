@@ -37,7 +37,12 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
         if (results) {
           next(null, results);
         } else {
-          next(null, false);
+          next(
+            null,
+            false,
+
+            { success: "0", message: "Invalid access token." }
+          );
         }
       });
     }

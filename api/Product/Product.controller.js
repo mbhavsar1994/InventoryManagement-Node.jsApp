@@ -11,6 +11,13 @@ const _ = require("lodash");
 module.exports = {
   // Function to create product  for company
   CreateProduct: (req, res) => {
+    if (typeof req.file.filename == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Product Image is missing!"
+      });
+    }
+
     AddProduct(req, (err, results) => {
       console.log(results);
       if (err) {
@@ -66,6 +73,11 @@ module.exports = {
           .status(404)
           .json({ success: "0", message: " Resource does not exist." });
       } else {
+        for (var i in results) {
+          results[i].Image =
+            "http://18.218.124.225:3000/uploads/" + results[i].Image;
+        }
+
         if (typeof req.query.ProductName != "undefined") {
           results.filter(function(result) {
             if (result.ProductName.toString() == req.query.ProductName) {
@@ -185,6 +197,10 @@ module.exports = {
           .status(404)
           .json({ success: "0", message: " Resource does not exist." });
       } else {
+        for (var i in results) {
+          results[i].Image =
+            "http://18.218.124.225:3000/uploads/" + results[i].Image;
+        }
         return res.status(200).json({
           success: "1",
           data: results
@@ -235,7 +251,7 @@ module.exports = {
         console.log(results[0]);
         return res.status(200).json({
           success: "1",
-          data: results[0]
+          data: result
         });
       }
     });
