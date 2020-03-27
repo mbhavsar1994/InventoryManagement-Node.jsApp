@@ -7,7 +7,8 @@ const {
   getProductById,
   editProduct,
   featureProduct,
-  totalvaluation
+  totalvaluation,
+  totalarticle
 } = require("./Product.controller");
 
 /**
@@ -240,4 +241,7 @@ router.get(
 
 //total valuation
 router.get("/total_value",totalvaluation);
+
+//total article
+router.get("/total_articles",totalarticle);
 module.exports = router;

@@ -5,7 +5,8 @@ const {
   GetProductById,
   EditProduct,
   getFeatureProduct,
-  valuation
+  valuation,
+  articles
 } = require("./Product.service");
 const _ = require("lodash");
 
@@ -244,6 +245,32 @@ module.exports = {
   //total valuation
   totalvaluation: (req, res) => {
     valuation(req, (err, results) => {
+      console.log(results[0]);
+      if (err) {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      } else if(results==undefined){
+        console.log(results[0]);
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      }
+      else{
+        console.log("hi"+results[0]["sum"]);
+        return res.status(200).json({
+          success: "1",
+          data:results[0]["sum"]
+        });
+      }
+    
+    });
+  },
+  //total_articles
+  totalarticle: (req, res) => {
+    articles(req, (err, results) => {
       console.log(results[0]);
       if (err) {
         return res.status(500).json({
