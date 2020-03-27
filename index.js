@@ -151,6 +151,7 @@ const DeliveryRouter = require("./api/Delivery/Delivery.router");
 
 const salesRouter = require("./api/sales/Sales.router");
 
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use("/api/companyuser", companyuserRouter);
 app.use("/api/customeruser", customeruserRouter);
 app.use("/api/countries", countriesRouter);
