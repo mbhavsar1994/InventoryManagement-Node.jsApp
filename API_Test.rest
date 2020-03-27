@@ -467,3 +467,15 @@ content-type: application/json
 ###
 GET http://localhost:3000/api/product/total_articles HTTP/1.1
 content-type: application/json
+
+
+//Highest Sold Product 
+###
+GET http://localhost:3000/api/sales/getmostsoldproduct?companyid=1 HTTP/1.1
+content-type: application/json
+
+
+//Lowest Sold Product 
+###
+GET http://localhost:3000/api/sales/getlowestsoldproduct?companyid=1 HTTP/1.1
+content-type: application/json
