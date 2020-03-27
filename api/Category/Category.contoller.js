@@ -10,6 +10,7 @@ module.exports = {
   //Function to create new category----------------------------------------------------
   createCategory: (req, res) => {
     create_Category(req, (err, results) => {
+      console.log(results[6][0]);
       if (err) {
         console.log(err);
         return res.status(500).json({
@@ -17,15 +18,15 @@ module.exports = {
           message: "Internal server error! please try again.",
           data: err
         });
-      } else if (results[5][0]["status"] == null) {
+      } else if (results[6][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
           message: "Internal server error!"
         });
-      } else if (results[5][0]["status"] == "0") {
+      } else if (results[6][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[6][0]["Err_msg"]
+          message: results[7][0]["Err_msg"]
         });
       } else {
         return res.status(201).json({
