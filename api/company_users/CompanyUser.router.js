@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
+
+const { upload } = require("../../index");
 const {
   authcompanyuser,
   createCompany,
@@ -132,7 +134,7 @@ router.post("/authcompanyuser", authcompanyuser);
  *       '500':
  *         description: Internal server error! SQL DB error
  */
-router.post("/createCompany", createCompany);
+router.post("/createCompany", upload.single("Logo"), createCompany);
 
 /**
  * @swagger

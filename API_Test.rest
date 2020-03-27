@@ -2,8 +2,8 @@ POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "amidav11e80@gmail.com",
-    "password": "ami123"
+    "email": "m.rock@gmail.com",
+    "password": "mp"
 }
 
 ###
@@ -19,7 +19,7 @@ content-type: application/json
 
 ###
 POST  http://localhost:3000/api/companyuser/createCompany HTTP/1.1
-content-type: application/json
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 {   
     "Fname": "Ami",
@@ -29,7 +29,6 @@ content-type: application/json
     "PhoneNumber":"4157891458",
     "CompanyName":"IS111I",
     "Website":"www.abc.com",
-    "Logo":"‪D:/SuperMarket-Project/logo.jpeg",
     "Address1":"12,4000",
     "Address2":"Rue Barclay",
     "City":"Montreal",
@@ -37,6 +36,16 @@ content-type: application/json
     "ProvinceId":"1",
     "PostalCode":"H3S1K3"
 }
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="Logo"; filename="download.png"
+Content-Type: image/png
+
+< C:\Users\mbhav\OneDrive\Desktop\download.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+
 // Forget Password for Company User -------------------------->
 ###
 
@@ -173,14 +182,8 @@ content-type: application/json
     "Country_Origin_id":1,
     "Image":"‪D:\\SuperMarket-Project\\products\\hoodie.jpg",
     "SupplierId":2,
-<<<<<<< HEAD
     "Barcode":"45000 10000",
     "Qty_minimum_required":50
-=======
-    "Barcode":"45000 10003",
-    "Qty_minimum_required":50,
-    "CompanyId":"1"
->>>>>>> a9bdd148987b25c626be427e0723956cfb9e36b1
 }
 
 
@@ -191,18 +194,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-<<<<<<< HEAD
     "categoryname": "Cosmatics",
     "SKU": "shi-1000-01",
     "tags": "Cosmatics",
     "companyid":1
-=======
-
-    "categoryname": "Bags",
-    "SKU": "bgs-1000-01",
-    "tags": "sports",
-    "companyid":"1"
->>>>>>> a9bdd148987b25c626be427e0723956cfb9e36b1
 }
 
 // Edit category ------------------------------------->
@@ -214,9 +209,9 @@ content-type: application/json
 
 {
     "categoryId": "4",
-    "categoryname":"Jeans",
+    "categoryname":"Books",
     "SKU": "jns-1000-01",
-    "tags"  : "Jeans"
+    "tags"  : "Book"
 }
 
 // Get all Categories ------------------------------->
@@ -342,19 +337,17 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":8,
+    "purchase_ord_id":3,
     "SupplierId":1,
     "PurchaseOrderTotal":10000,
     "products":[
         {
-           "ProductId":1,
-           "PurchaseOrder_ProductId":27,
-           "Quantity":30,
+           "PurchaseOrder_ProductId":2,
+           "Quantity":40,
            "Total":3000 
         },
         {
-           "ProductId":2,
-           "PurchaseOrder_ProductId":28,
+           "PurchaseOrder_ProductId":5,
            "Quantity":15,
            "Total":10000 
         }
@@ -367,7 +360,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-    "PurchaseOrderId":"8"
+    "PurchaseOrderId":"9"
 }
 
 ####
@@ -398,14 +391,13 @@ PUT http://localhost:3000/api/purchaseorder/cancel HTTP/1.1
 content-type: application/json
 
 {
-    "CompanyId":1,
-    "Purchase_OrderId":3
+    "Purchase_OrderId":2
 }
 
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
 
 {

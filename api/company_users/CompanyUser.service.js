@@ -30,7 +30,7 @@ module.exports = {
         user.PhoneNumber,
         user.CompanyName,
         user.Website,
-        user.Logo,
+        req.file.filename,
         user.Address1,
         user.Address2,
         user.City,
