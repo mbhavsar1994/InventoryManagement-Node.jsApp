@@ -457,3 +457,13 @@ content-type: application/json
 {
     "companyid":"1"
 }
+
+//total 
+###
+GET http://localhost:3000/api/product/total_value HTTP/1.1
+content-type: application/json
+
+//total articles 
+###
+GET http://localhost:3000/api/product/total_articles HTTP/1.1
+content-type: application/json

@@ -122,8 +122,36 @@ module.exports = {
         console.log(error);
         return callBack(error);
       }
-      //console.log(results);
-      return callBack(null, results);
-    });
+      return callBack(null,error);
+    }
+    );
+  },
+  valuation: (req, callBack) => {
+    let sql=`select Sum(RetailPrice*AvailableQty) as 'sum' from product`;
+    pool.query(
+      sql,
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          return callBack(error);
+        }
+        //console.log(results);
+        return callBack(null, results);
+      }
+    );
+  },
+  articles: (req, callBack) => {
+    let sql=`select Sum(AvailableQty) as 'sum' from product`;
+    pool.query(
+      sql,
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          return callBack(error);
+        }
+        //console.log(results);
+        return callBack(null, results);
+      }
+    );
   }
 };

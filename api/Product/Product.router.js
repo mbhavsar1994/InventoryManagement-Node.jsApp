@@ -7,7 +7,9 @@ const {
   DeleteProduct,
   getProductById,
   editProduct,
-  featureProduct
+  featureProduct,
+  totalvaluation,
+  totalarticle
 } = require("./Product.controller");
 
 /**
@@ -233,6 +235,16 @@ router.put(
   upload.single("Image"),
   editProduct
 );
-featureProduct;
-router.get("/featureproduct", featureProduct);
+
+//featureProduct
+router.get(
+  "/featureproduct",
+  featureProduct
+);
+
+//total valuation
+router.get("/total_value",totalvaluation);
+
+//total article
+router.get("/total_articles",totalarticle);
 module.exports = router;
