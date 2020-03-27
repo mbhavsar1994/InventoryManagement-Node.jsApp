@@ -1,9 +1,9 @@
-POST http://18.218.124.225:3000/api/companyuser/authcompanyuser HTTP/1.1
+POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "m.rock@gmail.com",
-    "password": "mp"
+    "email": "rajwinder12345@gmail.com",
+    "password": "rajwinder123"
 }
 
 ###
@@ -134,7 +134,7 @@ content-type: application/json
 // Get Supplier By Id ------------------------->
 ###
 
-GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=9&CompanyId=1 HTTP/1.1
+GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=1&CompanyId=1 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTI2OH0.GggcHDYu0f3rA1zsmA1SvChfxtPHmxXk6fnAxhLvB7k
 content-type: application/json
 

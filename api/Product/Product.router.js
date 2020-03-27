@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
+const { upload } = require("../../index");
 const {
   CreateProduct,
   getProducts,
@@ -66,6 +67,7 @@ const {
 router.post(
   "/createproduct",
   passport.authenticate("jwt", { session: false }),
+  upload.single("Image"),
   CreateProduct
 );
 
@@ -230,6 +232,7 @@ router.put("/deleteproduct", DeleteProduct);
 router.put(
   "/editproduct",
   passport.authenticate("jwt", { session: false }),
+  upload.single("Image"),
   editProduct
 );
 

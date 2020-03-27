@@ -17,7 +17,7 @@ module.exports = {
         product.RetailPrice,
         product.CategoryId,
         product.Country_Origin_id,
-        product.Image,
+        req.file.filename,
         product.SupplierId,
         product.Barcode,
         product.Qty_minimum_required,
@@ -101,7 +101,7 @@ module.exports = {
         product.RetailPrice,
         product.CategoryId,
         product.Country_Origin_id,
-        product.Image,
+        req.file.filename,
         product.SupplierId,
         product.QtyMinRequired,
         product.CompanyId
