@@ -147,9 +147,5 @@ router.get("/getcategorybyId", GetCategorydetailsById);
  *         description: No auth token
  */
 
-router.put(
-  "/editcategory",
-  passport.authenticate("jwt", { session: false }),
-  EditCategory
-);
+router.put("/editcategory", EditCategory);
 module.exports = router;

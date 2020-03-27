@@ -37,7 +37,7 @@ module.exports = {
   // Service to get all product information
   getAllProduct: (CompanyId, callBack) => {
     pool.query(
-      "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName` ,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? ;",
+      "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?;",
       [CompanyId],
 
       (error, results, fields) => {
@@ -116,17 +116,14 @@ module.exports = {
     );
   },
   getFeatureProduct: (req, callBack) => {
-    let sql=`call FeatureProduct()`;
-    pool.query(
-      sql,
-      (error, results, fields) => {
-        if (error) {
-          console.log(error);
-          return callBack(error);
-        }
-        //console.log(results);
-        return callBack(null, results);
+    let sql = `call FeatureProduct()`;
+    pool.query(sql, (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
       }
+      return callBack(null,error);
+    }
     );
   },
   valuation: (req, callBack) => {

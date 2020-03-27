@@ -1,3 +1,4 @@
+var dns = require("dns");
 const {
   getUserByUserEmail,
   createCompany_User,
@@ -32,7 +33,7 @@ module.exports = {
         results.Password = undefined;
         let payload = { email: results.Email };
         let token = sign(payload, process.env.JWT_KEY);
-
+        results.Logo = "http://18.218.124.225:3000/uploads/" + results.Logo;
         return res.status(200).json({
           success: "1",
           message: "login successfully",
@@ -50,6 +51,14 @@ module.exports = {
 
   //Function for Create Company User and Company Details ------------>
   createCompany: (req, res) => {
+    req.file.filename;
+
+    if (typeof req.file.filename == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Logo is missing!"
+      });
+    }
     createCompany_User(req, (err, results) => {
       if (err) {
         console.log(err);
