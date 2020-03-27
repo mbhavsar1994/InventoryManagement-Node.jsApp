@@ -117,13 +117,16 @@ module.exports = {
   },
   getFeatureProduct: (req, callBack) => {
     let sql = `call FeatureProduct()`;
-    pool.query(sql, (error, results, fields) => {
-      if (error) {
-        console.log(error);
-        return callBack(error);
+    pool.query(
+      sql,
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          return callBack(error);
+        }
+        //console.log(results);
+        return callBack(null, results);
       }
-      return callBack(null,error);
-    }
     );
   },
   valuation: (req, callBack) => {

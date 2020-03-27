@@ -244,16 +244,23 @@ module.exports = {
   //get product that are sales mostly in last 30 days
   featureProduct: (req, res) => {
     getFeatureProduct(req, (err, results) => {
+      console.log(results);
       if (err) {
         return res.status(500).json({
           success: "0",
           message: "Internal server error!"
         });
-      } else {
-        console.log(results[0]);
+      } else if(results==null)
+      {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      }else {
+        console.log(results);
         return res.status(200).json({
           success: "1",
-          data: result
+          data: results
         });
       }
     });
