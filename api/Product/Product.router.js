@@ -6,7 +6,8 @@ const {
   DeleteProduct,
   getProductById,
   editProduct,
-  featureProduct
+  featureProduct,
+  totalvaluation
 } = require("./Product.controller");
 
 /**
@@ -234,9 +235,11 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   editProduct
 );
-featureProduct
+//featureProduct
 router.get(
   "/featureproduct",
   featureProduct
 );
+//total valuation
+router.get("/total_value",totalvaluation);
 module.exports = router;
