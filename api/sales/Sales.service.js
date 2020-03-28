@@ -3,28 +3,26 @@ const pool = require("../../Config/database");
 module.exports = {
   //add customer order details
   add_Customer_orderDetails: (req, callBack) => {
-    let sales=req.body;
-    let query=`SET @customerId=?; SET @total=?; CALL CustomerOrderDetails(@customerId,@total,@orderid,@Err,@status);select @status as status; select @err as Error;select @orderid as orderid`;
+    let sales = req.body;
+    let query = `SET @customerId=?; SET @total=?; CALL CustomerOrderDetails(@customerId,@total,@orderid,@Err,@status);select @status as status; select @err as Error;select @orderid as orderid`;
     pool.query(
       query,
-      [
-        sales.customerid,
-        sales.total
-      ],(error, results, _fields) => {
+      [sales.customerid, sales.total],
+      (error, results, _fields) => {
         if (error) {
           return callBack(error);
         }
 
         return callBack(null, results);
-      });
+      }
+    );
   },
   //adding product of particular customer order
-  addSalesorderProduct: (req,orderid,callBack) => {
+  addSalesorderProduct: (req, orderid, callBack) => {
     let product = req.body.product;
     var products = [];
     //console.log("serv"+orderid)
-    for (var i = 0; i < product.length; i++)
-    {
+    for (var i = 0; i < product.length; i++) {
       products.push([
         orderid,
         product[i].productid,
@@ -33,7 +31,6 @@ module.exports = {
         product[i].subtotal
       ]);
     }
-      
 
     let sql = `INSERT INTO Sales_Order_Products (CustomerOrderId, ProductId,Price,Quantity,SubTotal) VALUES ?; 
     Update product as a inner join Sales_Order_Products as b on a.ProductId=b.ProductId Set a.AvailableQty=(a.AvailableQty-b.Quantity) where a.ProductId=b.ProductId;`;
@@ -52,8 +49,8 @@ module.exports = {
     );
   },
   //getting order of particular company and of particular order id
-  getSalesById: (orderid,companyid, callBack) => {
-    let sql=`select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
+  getSalesById: (orderid, companyid, callBack) => {
+    let sql = `select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
     inner join 
     Sales_Order_Products as b
     on
@@ -78,8 +75,7 @@ module.exports = {
     group by CustomerOrderId`;
     pool.query(
       sql,
-      [orderid,
-      companyid],
+      [orderid, companyid],
 
       (error, results, _fields) => {
         if (error) {
@@ -92,7 +88,7 @@ module.exports = {
   },
   //getting all the orders of particular company
   getAllSales: (companyid, callBack) => {
-    let sql=`
+    let sql = `
     select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
@@ -116,5 +112,42 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+
+  getMaxSoldsItems: (companyid, callBack) => {
+    let sql = `select  ProductId, max(count) as Quantity from (SELECT  sop.ProductId, 
+    count(ProductId) as count FROM IMS.Sales_Order_Products as sop
+     inner join Customer_OrderDetails as cod 
+     on sop.CustomerOrderId=cod.CustomerOrderId  
+     inner join user_master_customer
+    as cm on cod.CustomerId= cm.CustomerId 
+    where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
+    and cm.CompanyId=?  group by sop.ProductId  ) as 
+    TotalSoldProduct group by  ProductId limit 1;`;
+    pool.query(sql, [companyid], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
+      }
+      return callBack(null, results);
+    });
+  },
+  getMinSoldsItems: (companyid, callBack) => {
+    let sql = `select  ProductId, min(count) as Quantity from (SELECT  sop.ProductId, 
+    count(ProductId) as count FROM IMS.Sales_Order_Products as
+     sop inner join Customer_OrderDetails as cod 
+  on sop.CustomerOrderId=cod.CustomerOrderId 
+   inner join user_master_customer
+   as cm on cod.CustomerId= cm.CustomerId 
+   where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
+   and cm.CompanyId=?  group by sop.ProductId  ) as TotalSoldProduct 
+   group by  ProductId limit 1;`;
+    pool.query(sql, [companyid], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
+      }
+      return callBack(null, results);
+    });
   }
 };
