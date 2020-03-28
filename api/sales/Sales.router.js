@@ -5,7 +5,8 @@ const {
   GetSalesOrderById,
   GetSales,
   GetHighestSoldProduct,
-  GetLeastSoldProduct
+  GetLeastSoldProduct,
+  GetSalsePerCategory
 } = require("./Sales.controller");
 
 router.post(
@@ -28,4 +29,5 @@ router.post(
 
 router.get("/getmostsoldproduct", GetHighestSoldProduct);
 router.get("/getlowestsoldproduct", GetLeastSoldProduct);
+router.get("/getsalespercategory", GetSalsePerCategory);
 module.exports = router;

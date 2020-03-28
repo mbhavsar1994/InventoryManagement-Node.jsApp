@@ -117,47 +117,35 @@ module.exports = {
   },
   getFeatureProduct: (companyId, callBack) => {
     let sql = `set @company_id=?;call FeatureProduct(@company_id)`;
-    pool.query(
-      sql,
-      [companyId],
-      (error, results, fields) => {
-        if (error) {
-          console.log(error);
-          return callBack(error);
-        }
-        //console.log(results);
-        return callBack(null, results);
+    pool.query(sql, [companyId], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
       }
-    );
+      //console.log(results);
+      return callBack(null, results);
+    });
   },
   valuation: (companyid, callBack) => {
-    let sql=`select Sum(RetailPrice*AvailableQty) as 'sum' from product where CompanyId=?`;
-    pool.query(
-      sql,
-      [companyid],
-      (error, results, fields) => {
-        if (error) {
-          console.log(error);
-          return callBack(error);
-        }
-        //console.log(results);
-        return callBack(null, results);
+    let sql = `select Sum(RetailPrice*AvailableQty) as 'sum' from product where CompanyId=?`;
+    pool.query(sql, [companyid], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
       }
-    );
+      //console.log(results);
+      return callBack(null, results);
+    });
   },
   articles: (companyid, callBack) => {
-    let sql=`select Sum(AvailableQty) as 'sum' from product where CompanyId=?`;
-    pool.query(
-      sql,
-      [companyid],
-      (error, results, fields) => {
-        if (error) {
-          console.log(error);
-          return callBack(error);
-        }
-        //console.log(results);
-        return callBack(null, results);
+    let sql = `select Sum(AvailableQty) as 'sum' from product where CompanyId=?`;
+    pool.query(sql, [companyid], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
       }
-    );
+      //console.log(results);
+      return callBack(null, results);
+    });
   }
 };

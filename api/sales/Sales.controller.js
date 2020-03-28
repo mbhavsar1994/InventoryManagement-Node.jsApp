@@ -4,7 +4,8 @@ const {
   getSalesById,
   getAllSales,
   getMaxSoldsItems,
-  getMinSoldsItems
+  getMinSoldsItems,
+  getSalesPerCategory
 } = require("./Sales.service");
 const _ = require("lodash");
 
@@ -182,6 +183,32 @@ module.exports = {
     }
 
     getMinSoldsItems(companyid, (err, results) => {
+      console.log(results);
+      if (err) {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      } else {
+        return res.status(200).json({
+          success: "1",
+          data: results
+        });
+      }
+    });
+  },
+  GetSalsePerCategory: (req, res) => {
+    let companyid = "";
+    if (typeof req.query.companyid != "undefined") {
+      companyid = req.query.companyid;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..company id is missing "
+      });
+    }
+
+    getSalesPerCategory(companyid, (err, results) => {
       console.log(results);
       if (err) {
         return res.status(500).json({
