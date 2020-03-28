@@ -191,5 +191,23 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+
+  getIncomingPurchaseOrder_report: (companyid, callBack) => {
+    let sql = `select pop.Purchase_OrderId, su.SupplierName as 'Supplier',Date, 
+     sum(pop.Quantity) as 'Total unit' 
+    ,Purchase_order_Totat_IncTax as Total 
+     from Purchase_orders as po  inner join Purchase_Order_Products as pop
+    on po.Purchase_OrderId=pop.Purchase_OrderId inner join Suppliers as su
+     on po.SupplierId= su.SupplierId 
+     where po.Status=1 and po.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) and su.CompanyId=?
+     group by pop.Purchase_OrderId `;
+    pool.query(sql, [companyid], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
+      }
+      return callBack(null, results);
+    });
   }
 };
