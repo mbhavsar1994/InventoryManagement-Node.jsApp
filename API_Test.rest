@@ -408,7 +408,7 @@ content-type: application/json
 
 //fetch the most popular product
 ###
-GET http://localhost:3000/api/product/featureproduct HTTP/1.1
+GET http://localhost:3000/api/product/featureproduct?companyid=1 HTTP/1.1
 content-type: application/json
 
 //edit user customer 
@@ -460,12 +460,12 @@ content-type: application/json
 
 //total 
 ###
-GET http://localhost:3000/api/product/total_value HTTP/1.1
+GET http://localhost:3000/api/product/total_value?companyid=1 HTTP/1.1
 content-type: application/json
 
 //total articles 
 ###
-GET http://localhost:3000/api/product/total_articles HTTP/1.1
+GET http://localhost:3000/api/product/total_articles?companyid=1 HTTP/1.1
 content-type: application/json
 
 
