@@ -17,7 +17,7 @@ module.exports = {
         product.RetailPrice,
         product.CategoryId,
         product.Country_Origin_id,
-        product.Image,
+        req.file.filename,
         product.SupplierId,
         product.Barcode,
         product.Qty_minimum_required,
@@ -101,7 +101,7 @@ module.exports = {
         product.RetailPrice,
         product.CategoryId,
         product.Country_Origin_id,
-        product.Image,
+        req.file.filename,
         product.SupplierId,
         product.QtyMinRequired,
         product.CompanyId
@@ -115,15 +115,49 @@ module.exports = {
       }
     );
   },
-  getFeatureProduct: (req, callBack) => {
-    let sql = `call FeatureProduct()`;
-    pool.query(sql, (error, results, fields) => {
-      if (error) {
-        console.log(error);
-        return callBack(error);
+  getFeatureProduct: (companyId, callBack) => {
+    let sql = `set @company_id=?;call FeatureProduct(@company_id)`;
+    pool.query(
+      sql,
+      [companyId],
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          return callBack(error);
+        }
+        //console.log(results);
+        return callBack(null, results);
       }
-      //console.log(results);
-      return callBack(null, results);
-    });
+    );
+  },
+  valuation: (companyid, callBack) => {
+    let sql=`select Sum(RetailPrice*AvailableQty) as 'sum' from product where CompanyId=?`;
+    pool.query(
+      sql,
+      [companyid],
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          return callBack(error);
+        }
+        //console.log(results);
+        return callBack(null, results);
+      }
+    );
+  },
+  articles: (companyid, callBack) => {
+    let sql=`select Sum(AvailableQty) as 'sum' from product where CompanyId=?`;
+    pool.query(
+      sql,
+      [companyid],
+      (error, results, fields) => {
+        if (error) {
+          console.log(error);
+          return callBack(error);
+        }
+        //console.log(results);
+        return callBack(null, results);
+      }
+    );
   }
 };

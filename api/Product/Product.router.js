@@ -1,12 +1,15 @@
 const router = require("express").Router();
 const passport = require("passport");
+const { upload } = require("../../index");
 const {
   CreateProduct,
   getProducts,
   DeleteProduct,
   getProductById,
   editProduct,
-  featureProduct
+  featureProduct,
+  totalvaluation,
+  totalarticle
 } = require("./Product.controller");
 
 /**
@@ -64,6 +67,7 @@ const {
 router.post(
   "/createproduct",
   passport.authenticate("jwt", { session: false }),
+  upload.single("Image"),
   CreateProduct
 );
 
@@ -228,8 +232,19 @@ router.put("/deleteproduct", DeleteProduct);
 router.put(
   "/editproduct",
   passport.authenticate("jwt", { session: false }),
+  upload.single("Image"),
   editProduct
 );
-featureProduct;
-router.get("/featureproduct", featureProduct);
+
+//featureProduct
+router.get(
+  "/featureproduct",
+  featureProduct
+);
+
+//total valuation
+router.get("/total_value",totalvaluation);
+
+//total article
+router.get("/total_articles",totalarticle);
 module.exports = router;
