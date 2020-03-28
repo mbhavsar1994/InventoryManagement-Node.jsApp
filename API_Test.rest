@@ -146,7 +146,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-   "CompanyId":50
+   "CompanyId":10
 }
 
 
