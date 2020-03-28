@@ -243,7 +243,18 @@ module.exports = {
 
   //get product that are sales mostly in last 30 days
   featureProduct: (req, res) => {
-    getFeatureProduct(req, (err, results) => {
+    let companyid=0;
+   if(req.query.companyid==undefined) 
+   {
+    return res.status(400).json({
+      success: "0",
+      message: "company id needed!"
+    });
+   }
+   else{
+     companyid=req.query.companyid;
+     console.log(companyid);
+    getFeatureProduct(companyid, (err, results) => {
       console.log(results);
       if (err) {
         return res.status(500).json({
@@ -257,43 +268,66 @@ module.exports = {
           message: "Internal server error!"
         });
       }else {
-        console.log(results);
+        //console.log(results);
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results[1]
         });
       }
     });
+   }
+    
   },
   //total valuation
   totalvaluation: (req, res) => {
-    valuation(req, (err, results) => {
-      console.log(results[0]);
-      if (err) {
-        return res.status(500).json({
-          success: "0",
-          message: "Internal server error!"
-        });
-      } else if(results==undefined){
-        console.log(results[0]);
-        return res.status(500).json({
-          success: "0",
-          message: "Internal server error!"
-        });
-      }
-      else{
+    let companyid=0;
+   if(req.query.companyid==undefined) 
+   {
+    return res.status(400).json({
+      success: "0",
+      message: "company id needed!"
+    });
+   }
+   else{
+     companyid=req.query.companyid;
+     console.log(companyid);
+     valuation(companyid, (err, results) => 
+     {
+       //console.log(results[0]);
+       if (err) {
+         return res.status(500).json({
+           success: "0",
+           message: "Internal server error!"
+          });
+        } else if(results==undefined){
+          console.log(results[0]);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
+          });
+        }else{
         console.log("hi"+results[0]["sum"]);
         return res.status(200).json({
           success: "1",
           data:results[0]["sum"]
-        });
-      }
-    
-    });
+        });}
+      });
+    }
   },
   //total_articles
   totalarticle: (req, res) => {
-    articles(req, (err, results) => {
+    let companyid=0;
+   if(req.query.companyid==undefined) 
+   {
+    return res.status(400).json({
+      success: "0",
+      message: "company id needed!"
+    });
+   }
+   else{
+     companyid=req.query.companyid;
+     console.log(companyid);
+     articles(companyid, (err, results) => {
       console.log(results[0]);
       if (err) {
         return res.status(500).json({
@@ -316,5 +350,6 @@ module.exports = {
       }
     
     });
+   }
   }
 };

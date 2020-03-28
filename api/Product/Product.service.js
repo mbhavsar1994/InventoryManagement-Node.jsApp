@@ -115,10 +115,11 @@ module.exports = {
       }
     );
   },
-  getFeatureProduct: (req, callBack) => {
-    let sql = `call FeatureProduct()`;
+  getFeatureProduct: (companyId, callBack) => {
+    let sql = `set @company_id=?;call FeatureProduct(@company_id)`;
     pool.query(
       sql,
+      [companyId],
       (error, results, fields) => {
         if (error) {
           console.log(error);
@@ -129,10 +130,11 @@ module.exports = {
       }
     );
   },
-  valuation: (req, callBack) => {
-    let sql=`select Sum(RetailPrice*AvailableQty) as 'sum' from product`;
+  valuation: (companyid, callBack) => {
+    let sql=`select Sum(RetailPrice*AvailableQty) as 'sum' from product where CompanyId=?`;
     pool.query(
       sql,
+      [companyid],
       (error, results, fields) => {
         if (error) {
           console.log(error);
@@ -143,10 +145,11 @@ module.exports = {
       }
     );
   },
-  articles: (req, callBack) => {
-    let sql=`select Sum(AvailableQty) as 'sum' from product`;
+  articles: (companyid, callBack) => {
+    let sql=`select Sum(AvailableQty) as 'sum' from product where CompanyId=?`;
     pool.query(
       sql,
+      [companyid],
       (error, results, fields) => {
         if (error) {
           console.log(error);
