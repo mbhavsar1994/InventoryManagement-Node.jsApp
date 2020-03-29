@@ -146,7 +146,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-   "CompanyId":50
+   "CompanyId":10
 }
 
 
@@ -158,7 +158,7 @@ content-type: application/json
 
 //for fetching provinces by passing country id
 ###
-POST http://localhost:3000/api/provinces/province HTTP/1.1
+POST http://18.218.124.225:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {
@@ -484,6 +484,13 @@ content-type: application/json
 //Incoming Purchase Report
 ###
 GET http://localhost:3000/api/purchaseorder/getincomingpurchaseorder?companyid=1 HTTP/1.1
+content-type: application/json
+
+####
+//Incoming Purchase Report
+###
+
+GET http://localhost:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
 content-type: application/json
 
 

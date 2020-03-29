@@ -254,7 +254,7 @@ module.exports = {
       companyid = req.query.companyid;
       console.log(companyid);
       getFeatureProduct(companyid, (err, results) => {
-        console.log(results);
+        console.log(results[1]);
         if (err) {
           return res.status(500).json({
             success: "0",
@@ -266,7 +266,10 @@ module.exports = {
             message: "Internal server error!"
           });
         } else {
-          //console.log(results);
+          for (var i in results[1]) {
+            results[1][i].image =
+              "http://18.218.124.225:3000/uploads/" + results[1][i].image;
+          }
           return res.status(200).json({
             success: "1",
             data: results[1]
