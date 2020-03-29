@@ -299,13 +299,13 @@ content-type: application/json
     "PurchaseOrderTotal":1000,
     "products":[
          {
-           "ProductId":1,
+           "ProductId":3,
            "Price": 180,
            "Quantity":50,
            "Total":6000
         },
         {
-           "ProductId":2,
+           "ProductId":35,
            "Price": 190,
            "Quantity":100,
            "Total":17000 
