@@ -166,6 +166,6 @@ router.post("/createCompany", upload.single("Logo"), createCompany);
 router.post("/forgetPasswordCompany", forgetPasswordCompany);
 
 router.get("/getCompanyById", GetCompanybyId);
-router.put("/editCompanyProfile", upload.single("Image"), editCompanyProfile);
+router.put("/editCompanyProfile", upload.single("Logo"), editCompanyProfile);
 
 module.exports = router;

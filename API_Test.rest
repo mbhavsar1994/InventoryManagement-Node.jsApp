@@ -520,7 +520,7 @@ Content-Type: application/json
 
 {   
     "CompanyId":1,
-    "CompanyName":"Shreeji Co.",
+    "CompanyName":"Shreeji Inc.",
     "Website":"shreejico@gmail.com",
     "Logo":"D:\\IMS\\InventoryManagement-Node.jsApp\\uploads\\e85d09b2-39b8-427c-b2ad-824bfc4b5508.jpg",
     "Address1":"8,3320",

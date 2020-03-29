@@ -155,13 +155,13 @@ module.exports = {
           .status(404)
           .json({ success: "0", message: " Resource does not exist." });
       } else {
-        for (var i in results) {
-          results[i].Image =
-            "http://18.218.124.225:3000/uploads/" + results[i].Image;
-        }
+        results[0].Logo =
+          "http://18.218.124.225:3000/uploads/" + results[0].Logo;
+        let result = results[0];
+
         return res.status(200).json({
           success: "1",
-          data: results
+          data: result
         });
       }
     });
