@@ -6,7 +6,8 @@ const {
   EditProduct,
   getFeatureProduct,
   valuation,
-  articles
+  articles,
+  incoming_products
 } = require("./Product.service");
 const _ = require("lodash");
 
@@ -243,113 +244,136 @@ module.exports = {
 
   //get product that are sales mostly in last 30 days
   featureProduct: (req, res) => {
-    let companyid=0;
-   if(req.query.companyid==undefined) 
-   {
-    return res.status(400).json({
-      success: "0",
-      message: "company id needed!"
-    });
-   }
-   else{
-     companyid=req.query.companyid;
-     console.log(companyid);
-    getFeatureProduct(companyid, (err, results) => {
-      console.log(results);
-      if (err) {
-        return res.status(500).json({
-          success: "0",
-          message: "Internal server error!"
-        });
-      } else if(results==null)
-      {
-        return res.status(500).json({
-          success: "0",
-          message: "Internal server error!"
-        });
-      }else {
-        //console.log(results);
-        return res.status(200).json({
-          success: "1",
-          data: results[1]
-        });
-      }
-    });
-   }
-    
+    let companyid = 0;
+    if (req.query.companyid == undefined) {
+      return res.status(400).json({
+        success: "0",
+        message: "company id needed!"
+      });
+    } else {
+      companyid = req.query.companyid;
+      console.log(companyid);
+      getFeatureProduct(companyid, (err, results) => {
+        console.log(results);
+        if (err) {
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
+          });
+        } else if (results == null) {
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
+          });
+        } else {
+          //console.log(results);
+          return res.status(200).json({
+            success: "1",
+            data: results[1]
+          });
+        }
+      });
+    }
   },
   //total valuation
   totalvaluation: (req, res) => {
-    let companyid=0;
-   if(req.query.companyid==undefined) 
-   {
-    return res.status(400).json({
-      success: "0",
-      message: "company id needed!"
-    });
-   }
-   else{
-     companyid=req.query.companyid;
-     console.log(companyid);
-     valuation(companyid, (err, results) => 
-     {
-       //console.log(results[0]);
-       if (err) {
-         return res.status(500).json({
-           success: "0",
-           message: "Internal server error!"
+    let companyid = 0;
+    if (req.query.companyid == undefined) {
+      return res.status(400).json({
+        success: "0",
+        message: "company id needed!"
+      });
+    } else {
+      companyid = req.query.companyid;
+      console.log(companyid);
+      valuation(companyid, (err, results) => {
+        //console.log(results[0]);
+        if (err) {
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
           });
-        } else if(results==undefined){
+        } else if (results == undefined) {
           console.log(results[0]);
           return res.status(500).json({
             success: "0",
             message: "Internal server error!"
           });
-        }else{
-        console.log("hi"+results[0]["sum"]);
-        return res.status(200).json({
-          success: "1",
-          data:results[0]["sum"]
-        });}
+        } else {
+          console.log("hi" + results[0]["sum"]);
+          return res.status(200).json({
+            success: "1",
+            data: results[0]["sum"]
+          });
+        }
       });
     }
   },
   //total_articles
   totalarticle: (req, res) => {
-    let companyid=0;
-   if(req.query.companyid==undefined) 
-   {
-    return res.status(400).json({
-      success: "0",
-      message: "company id needed!"
-    });
-   }
-   else{
-     companyid=req.query.companyid;
-     console.log(companyid);
-     articles(companyid, (err, results) => {
-      console.log(results[0]);
-      if (err) {
-        return res.status(500).json({
-          success: "0",
-          message: "Internal server error!"
-        });
-      } else if(results==undefined){
+    let companyid = 0;
+    if (req.query.companyid == undefined) {
+      return res.status(400).json({
+        success: "0",
+        message: "company id needed!"
+      });
+    } else {
+      companyid = req.query.companyid;
+      console.log(companyid);
+      articles(companyid, (err, results) => {
         console.log(results[0]);
-        return res.status(500).json({
-          success: "0",
-          message: "Internal server error!"
-        });
-      }
-      else{
-        console.log("hi"+results[0]["sum"]);
-        return res.status(200).json({
-          success: "1",
-          data:results[0]["sum"]
-        });
-      }
-    
-    });
-   }
+        if (err) {
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
+          });
+        } else if (results == undefined) {
+          console.log(results[0]);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
+          });
+        } else {
+          console.log("hi" + results[0]["sum"]);
+          return res.status(200).json({
+            success: "1",
+            data: results[0]["sum"]
+          });
+        }
+      });
+    }
+  },
+
+  // Total Of Current Incoming Products --------------------------------------------->
+  Incoming_Products: (req, res) => {
+    let CompanyId = 0;
+    if (req.query.CompanyId == undefined) {
+      return res.status(400).json({
+        success: "0",
+        message: "CompanyId is Missing!"
+      });
+    } else {
+      CompanyId = req.query.CompanyId;
+      incoming_products(CompanyId, (err, results) => {
+        console.log(results[0]);
+        if (err) {
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
+          });
+        } else if (results == undefined) {
+          console.log(results[0]);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal server error!"
+          });
+        } else {
+          return res.status(200).json({
+            success: "1",
+            data: results[0]["Total Unit"]
+          });
+        }
+      });
+    }
   }
 };

@@ -2,8 +2,11 @@ var dns = require("dns");
 const {
   getUserByUserEmail,
   createCompany_User,
-  resetPassword
+  resetPassword,
+  getCompanyById,
+  EditCompanyProfile
 } = require("./CompanyUser.service");
+const _ = require("lodash");
 
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
@@ -121,6 +124,73 @@ module.exports = {
               data: result
             });
           }
+        });
+      }
+    });
+  },
+
+  // Function to Get Company Details By Id ----------------------------------------->
+
+  GetCompanybyId: (req, res) => {
+    let CompanyId = "";
+    if (typeof req.query.CompanyId != "undefined") {
+      CompanyId = req.query.CompanyId;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..CompanyId  is missing "
+      });
+    }
+    getCompanyById(CompanyId, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: "0",
+          message: "Internal Server Error",
+          error: err
+        });
+      }
+      if (!results.length) {
+        return res
+          .status(404)
+          .json({ success: "0", message: " Resource does not exist." });
+      } else {
+        for (var i in results) {
+          results[i].Image =
+            "http://18.218.124.225:3000/uploads/" + results[i].Image;
+        }
+        return res.status(200).json({
+          success: "1",
+          data: results
+        });
+      }
+    });
+  },
+
+  //Function to  Edit Company Profile ---------------------------------------->
+  editCompanyProfile: (req, res) => {
+    EditCompanyProfile(req, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error! Please try again",
+          data: err
+        });
+      } else if (results[12][0]["status"] == null) {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      } else if (results[12][0]["status"] == "0") {
+        return res.status(400).json({
+          success: "0",
+          message: results[13][0]["Err_msg"]
+        });
+      } else {
+        return res.status(200).json({
+          success: "1",
+          message: "Company Profile updated Successfully"
         });
       }
     });
