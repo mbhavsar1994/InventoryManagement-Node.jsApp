@@ -79,7 +79,7 @@ module.exports = {
 
         if (typeof req.query.DeliveryId != "undefined") {
           results.filter(function(result) {
-            if (result.DeliveryId.toString() == req.DeliveryId.City) {
+            if (result.DeliveryId.toString() == req.query.DeliveryId) {
               response.push(result);
             }
           });
