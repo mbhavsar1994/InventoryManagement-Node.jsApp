@@ -4,8 +4,10 @@ const passport = require("passport");
 const { upload } = require("../../index");
 const {
   authcompanyuser,
+  editcompanyuser,
   createCompany,
-  forgetPasswordCompany
+  forgetPasswordCompany,
+  getUserDetailsById
 } = require("./CompanyUser.controller");
 
 /**
@@ -162,5 +164,6 @@ router.post("/createCompany", upload.single("Logo"), createCompany);
  *         description: Internal server error! SQL error
  */
 router.post("/forgetPasswordCompany", forgetPasswordCompany);
-
+router.post("/edituser",editcompanyuser);
+router.get("/getuserdetailsbyid",getUserDetailsById)
 module.exports = router;

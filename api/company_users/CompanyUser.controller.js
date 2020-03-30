@@ -2,7 +2,9 @@ var dns = require("dns");
 const {
   getUserByUserEmail,
   createCompany_User,
-  resetPassword
+  resetPassword,
+  editUser,
+  getUserById
 } = require("./CompanyUser.service");
 
 //const { hashSync, genSaltSync, compareSync } = require("bcrypt");
@@ -124,5 +126,74 @@ module.exports = {
         });
       }
     });
-  }
+  },
+  //update company customer
+  editcompanyuser: (req, res) => {
+    editUser(req, (err, results) => {
+      console.log(results[1]);
+      if(err)
+      {
+        return res.status(500).json({
+          success: "0",
+          data: "Internal Server error!"
+        });
+      }
+      else if(!results.length)
+      {
+        return res.status(500).json({
+          success: "0",
+          data: "Internal Server error!"
+        });
+      }
+      else if(results[1]["affectedRows"]==1){
+        return res.status(200).json({
+          success: "1",
+          message: "Update Sucessfully!"
+        }); 
+      }
+      else
+      {
+        return res.status(200).json({
+          success: "1",
+          message: "need to change something to update!"
+        }); 
+      }
+      
+    });
+  },
+  //get user by id
+  getUserDetailsById: (req, res) => {
+    let userid=0;
+    if(req.query.userid==undefined) {
+      return res.status(400).json({
+        success: "0",
+        message: "user id needed!"
+      });
+    }else{
+      userid=req.query.userid;
+      console.log(userid);
+      getUserById(userid, (err, results) => {
+        console.log(results[0]);
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal Server Error",
+            error: err
+          });
+        }
+        if (!results.length) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
+        else{
+          return res.status(200).json({
+            success: "1",
+            data: results
+          });
+        }
+      });
+    }
+  }   
 };

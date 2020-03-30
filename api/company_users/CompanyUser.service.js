@@ -74,5 +74,45 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+  editUser: (req, callBack) => {
+    //console.log("hi")
+   // console.log(req);
+    let user=req.body;
+    pool.query(
+      `SET @status=1;Update IMS.user_master_company SET Fname=?,Lname=?,Email=?,Password=?,PhoneNumber=? where UserId=?;select @status;`,
+      [
+        user.fname,
+        user.lname,
+        user.email,
+        user.password,
+        user.phonenumber,
+        user.userid
+      ],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+       // console.log(results);
+        return callBack(null, results);
+      }
+    );
+  },
+  //get user by id
+  getUserById: (userid, callBack) => {
+   // let user=req.body;
+    pool.query(
+      `select * from IMS.user_master_company where UserId=? `,
+      [
+        userid
+      ],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+       // console.log(results);
+        return callBack(null, results);
+      }
+    );
   }
 };
