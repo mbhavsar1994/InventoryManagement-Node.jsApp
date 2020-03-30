@@ -166,8 +166,8 @@ router.post("/createCompany", upload.single("Logo"), createCompany);
  *         description: Internal server error! SQL error
  */
 router.post("/forgetPasswordCompany", forgetPasswordCompany);
-router.post("/edituser",editcompanyuser);
-router.get("/getuserdetailsbyid",getUserDetailsById);
+router.post("/edituser",passport.authenticate("jwt", { session: false }),editcompanyuser);
+router.get("/getuserdetailsbyid",passport.authenticate("jwt", { session: false }),getUserDetailsById);
 
 router.get("/getCompanyById", GetCompanybyId);
 router.put("/editCompanyProfile", upload.single("Logo"), editCompanyProfile);

@@ -19,5 +19,5 @@ router.post(
 );
 
 router.get("/forgetPasswordCustomer", forgetPasswordCustomer);
-router.get("/getuserdetailsbyid",getUserDetailsById)
+router.get("/getuserdetailsbyid",passport.authenticate("jwt", { session: false }),getUserDetailsById)
 module.exports = router;
