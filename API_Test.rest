@@ -305,7 +305,7 @@ content-type: application/json
            "Total":6000
         },
         {
-           "ProductId":35,
+           "ProductId":5,
            "Price": 190,
            "Quantity":100,
            "Total":17000 
@@ -360,7 +360,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-    "PurchaseOrderId":"9"
+    "PurchaseOrderId":"1"
 }
 
 ####
