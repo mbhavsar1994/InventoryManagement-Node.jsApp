@@ -66,6 +66,15 @@ module.exports = {
   },
   //Method to edit purchase order api
   editPurchaseOrder: (req, res) => {
+    let purchase_ord_id = "";
+    if (typeof req.body.purchase_ord_id != "undefined") {
+      purchase_ord_id = req.body.purchase_ord_id;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Purchase Order Id is missing!"
+      });
+    }
     EditPurchaseOrder(req, (err, results) => {
       if (err) {
         console.log(err);
