@@ -1,4 +1,4 @@
-POST http://18.216.15.198:3000/api/companyuser/authcompanyuser HTTP/1.1
+POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
@@ -152,13 +152,13 @@ content-type: application/json
 
 //fetching countries
 ###
-GET http://localhost:3000/api/countries/country HTTP/1.1
+GET http://18.216.15.198:3000/api/countries/country HTTP/1.1
 content-type: application/json
 
 
 //for fetching provinces by passing country id
 ###
-POST http://18.218.124.225:3000/api/provinces/province HTTP/1.1
+POST http://18.216.15.198:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {
@@ -289,7 +289,7 @@ content-type: application/json
 // Create Puchase Order -------------------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1Njk5OH0.6_TJadF8SNGIKm3cX_nXjbePRIN5TG3Eeaz1S-Ab5TM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDM5ODl9.AefSXcZNYx_aFlr-MSEs0YjaRmnHVSVyfKq-Q2tlhFg
 content-type: application/json
 
 {
@@ -299,13 +299,13 @@ content-type: application/json
     "PurchaseOrderTotal":1000,
     "products":[
          {
-           "ProductId":3,
+           "ProductId":1,
            "Price": 180,
            "Quantity":50,
            "Total":6000
         },
         {
-           "ProductId":5,
+           "ProductId":2,
            "Price": 190,
            "Quantity":100,
            "Total":17000 
@@ -444,7 +444,7 @@ content-type: application/json
 // Get sales---by filter---------------------->
 ###
 POST http://localhost:3000/api/sales/getsales?CustomerOrderId=1&Date=2020-03-24 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUxNDN9.Akh__Xik0sEB6hRjJkythwRcCTWTZZCb8usVtd5lsYM
 content-type: application/json
 
 {
@@ -453,7 +453,7 @@ content-type: application/json
 // Get all sales----------------------->
 ###
 POST http://localhost:3000/api/sales/getsales HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUxNDN9.Akh__Xik0sEB6hRjJkythwRcCTWTZZCb8usVtd5lsYM
 content-type: application/json
 
 {
