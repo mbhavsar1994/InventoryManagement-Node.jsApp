@@ -173,6 +173,6 @@ app.get("/", function(req, res) {
   res.json({ message: "Inventory Management API is up!" });
 });
 
-var server = app.listen(process.env.APP_PORT, () => {
+var server = app.listen(process.env.APP_PORT || process.env.PORT, () => {
   console.log("Listening on port " + process.env.APP_PORT + "...");
 });
