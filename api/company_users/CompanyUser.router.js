@@ -7,7 +7,9 @@ const {
   editcompanyuser,
   createCompany,
   forgetPasswordCompany,
-  getUserDetailsById
+  getUserDetailsById,
+  GetCompanybyId,
+  editCompanyProfile
 } = require("./CompanyUser.controller");
 
 /**
@@ -165,5 +167,9 @@ router.post("/createCompany", upload.single("Logo"), createCompany);
  */
 router.post("/forgetPasswordCompany", forgetPasswordCompany);
 router.post("/edituser",editcompanyuser);
-router.get("/getuserdetailsbyid",getUserDetailsById)
+router.get("/getuserdetailsbyid",getUserDetailsById);
+
+router.get("/getCompanyById", GetCompanybyId);
+router.put("/editCompanyProfile", upload.single("Logo"), editCompanyProfile);
+
 module.exports = router;

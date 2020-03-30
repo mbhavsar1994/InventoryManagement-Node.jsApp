@@ -149,5 +149,41 @@ module.exports = {
       }
       return callBack(null, results);
     });
+  },
+
+  // Get Recenet Sales By this Week ----------------------------------------->
+  getRecentSalesByWeek: (CompanyId, callBack) => {
+    let sql = `Select Sales_Order_Products.CustomerOrderId , SUM(Sales_Order_Products.Quantity) as 'Total Unit' ,Customer_OrderDetails.Total as 'Total',user_master_customer.Fname  as 'customer'
+    from Sales_Order_Products inner join Customer_OrderDetails on Sales_Order_Products.CustomerOrderId=Customer_OrderDetails.CustomerOrderId 
+    inner join user_master_customer on Customer_OrderDetails.CustomerId=user_master_customer.CustomerId 
+    where Customer_OrderDetails.Date>=DATE_SUB(now(),INTERVAL 1 week) AND Customer_OrderDetails.Status=1
+    group by  Sales_Order_Products.CustomerOrderId;`;
+    pool.query(sql, [CompanyId], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
+      }
+      return callBack(null, results);
+    });
+  },
+
+  getSalesPerCategory: (companyid, callBack) => {
+    let sql = `select c.Category_name as 'CategoryName' , sum(sop.Quantity) as 'Quantity_Per_Category',
+     sum(sop.SubTotal) as 'Total' , 
+    (sum(sop.SubTotal)-sum(sop.Quantity*p.PurchasePrice))/sum(sop.SubTotal) as 'Profit Margin' 
+    from category as c 
+    inner join product as p on c.CategoryId=p.CategoryId 
+    inner join Sales_Order_Products as sop on p.ProductId=sop.ProductId inner join 
+    Customer_OrderDetails as cod
+    on sop.CustomerOrderId=cod.CustomerOrderId
+     where c.CompanyId=? and  cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH)
+     group by c.CategoryId`;
+    pool.query(sql, [companyid], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        return callBack(error);
+      }
+      return callBack(null, results);
+    });
   }
 };

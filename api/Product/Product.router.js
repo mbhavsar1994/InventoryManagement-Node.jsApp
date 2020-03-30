@@ -9,7 +9,8 @@ const {
   editProduct,
   featureProduct,
   totalvaluation,
-  totalarticle
+  totalarticle,
+  Incoming_Products
 } = require("./Product.controller");
 
 /**
@@ -237,14 +238,15 @@ router.put(
 );
 
 //featureProduct
-router.get(
-  "/featureproduct",
-  featureProduct
-);
+router.get("/featureproduct", featureProduct);
 
 //total valuation
-router.get("/total_value",totalvaluation);
+router.get("/total_value", totalvaluation);
 
 //total article
-router.get("/total_articles",totalarticle);
+router.get("/total_articles", totalarticle);
+
+// Total Of Current Incoming Products --------------------->
+router.get("/incoming_products", Incoming_Products);
+
 module.exports = router;

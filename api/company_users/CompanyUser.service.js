@@ -32,6 +32,7 @@ module.exports = {
         user.Website,
         req.file.filename,
         user.Address1,
+        req.file.filename,
         user.Address2,
         user.City,
         user.CountryId,
@@ -75,6 +76,7 @@ module.exports = {
       }
     );
   },
+//edit usser
   editUser: (req, callBack) => {
     //console.log("hi")
    // console.log(req);
@@ -112,6 +114,60 @@ module.exports = {
         }
        // console.log(results);
         return callBack(null, results);
+      }
+    );
+  },
+   // Service to Get Company Details By Id ------------------------------->
+
+   getCompanyById: (CompanyId, _callBack) => {
+    pool.query(
+      "Select * from company_details where CompanyId=?;",
+      [CompanyId],
+
+      (error, results, fields) => {
+        if (error) {
+          return _callBack(error);
+        }
+
+        console.log(results);
+        return _callBack(null, results);
+      }
+    );
+  },
+
+  // Servide to Edit Company Profile ----------------------------------->
+
+  EditCompanyProfile: (req, callBack) => {
+    let logo = "";
+    if (typeof req.file == "undefined") {
+      logo = null;
+    } else {
+      logo = req.file.filename;
+    }
+    let company = req.body;
+    let sql = `SET @CompanyId=?;SET @CompanyName=?;SET @Website=?;SET @Logo=?;SET @Address1=?;SET @Address2=?;SET @City=?;SET @CountryId=?;SET @ProvinceId=?; SET @PostalCode=?;SET @CurrencyId=?;CALL EditCompanyProfile(@CompanyId,@CompanyName,@Website,@Logo,@Address1,@Address2,@City,@CountryId,@ProvinceId,@PostalCode,@CurrencyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
+
+    pool.query(
+      sql,
+      [
+        company.CompanyId,
+        company.CompanyName,
+        company.Website,
+        logo,
+        company.Address1,
+        company.Address2,
+        company.City,
+        company.CountryId,
+        company.ProvinceId,
+        company.PostalCode,
+        company.CurrencyId
+      ],(error, results, fields) => {
+        if (error) {
+          return _callBack(error);
+        }
+
+        console.log(results);
+        return _callBack(null, results);
       }
     );
   }

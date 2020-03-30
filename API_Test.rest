@@ -146,7 +146,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 content-type: application/json
 
 {
-   "CompanyId":50
+   "CompanyId":10
 }
 
 
@@ -158,7 +158,7 @@ content-type: application/json
 
 //for fetching provinces by passing country id
 ###
-POST http://localhost:3000/api/provinces/province HTTP/1.1
+POST http://18.218.124.225:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {
@@ -299,13 +299,13 @@ content-type: application/json
     "PurchaseOrderTotal":1000,
     "products":[
          {
-           "ProductId":1,
+           "ProductId":3,
            "Price": 180,
            "Quantity":50,
            "Total":6000
         },
         {
-           "ProductId":2,
+           "ProductId":35,
            "Price": 190,
            "Quantity":100,
            "Total":17000 
@@ -509,6 +509,49 @@ content-type: application/json
 //get customer by id
 ###
 GET http://localhost:3000/api/customeruser/getuserdetailsbyid?userid=1 HTTP/1.1
+####
+
+
+//Incoming Purchase Report
+###
+GET http://localhost:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
 content-type: application/json
 
 
+// Current Incoming Products ----------------------------------------->
+
+###
+GET http://localhost:3000/api/product/incoming_products?CompanyId=1 HTTP/1.1
+content-type: application/json
+
+// Get Recent Sales By Week ------------------------------------------>
+
+###
+GET http://localhost:3000/api/sales/getrecentsalesbyweek?CompanyId=1 HTTP/1.1
+content-type: application/json
+
+// Get Company Details By CompanyId ------------------------->
+
+###
+GET http://localhost:3000/api/companyuser/getCompanyById?CompanyId=1 HTTP/1.1
+content-type: application/json
+
+// Edit Company profile --------------------------------------->
+
+###
+PUT  http://localhost:3000/api/companyuser/editCompanyProfile HTTP/1.1
+Content-Type: application/json
+
+{   
+    "CompanyId":1,
+    "CompanyName":"Shreeji Inc.",
+    "Website":"shreejico@gmail.com",
+    "Logo":"D:\\IMS\\InventoryManagement-Node.jsApp\\uploads\\e85d09b2-39b8-427c-b2ad-824bfc4b5508.jpg",
+    "Address1":"8,3320",
+    "Address2":"Rue Goyer",
+    "City":"Montreal",
+    "CountryId":1,
+    "ProvinceId":2,
+    "PostalCode":"H4S7K5",
+    "CurrencyId":1
+}
