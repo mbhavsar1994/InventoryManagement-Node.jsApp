@@ -453,7 +453,11 @@ content-type: application/json
 // Get all sales----------------------->
 ###
 POST http://localhost:3000/api/sales/getsales HTTP/1.1
+<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUxNDN9.Akh__Xik0sEB6hRjJkythwRcCTWTZZCb8usVtd5lsYM
+=======
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUzNzh9.kzSisyNWWk9onYrIoAnpu4kc1d8WyrjyiSnRNR33EgQ
+>>>>>>> 2c20c9448cc7560894d657d004ac60dc223b3b7a
 content-type: application/json
 
 {
