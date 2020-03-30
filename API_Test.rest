@@ -11,8 +11,8 @@ POST http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "mpbh@gmail.com",
-    "password": "123"
+    "email": "rajwinder123@gmail.com",
+    "password": "rajwinder123"
 }
 
 // For Creating Company User and Company Details ---------------->

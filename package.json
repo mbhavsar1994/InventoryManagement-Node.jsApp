@@ -4,7 +4,7 @@
   "description": "IMS_API",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "jasmine-node spec"
   },
   "repository": {

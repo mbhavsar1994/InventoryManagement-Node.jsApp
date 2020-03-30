@@ -38,7 +38,7 @@ module.exports = {
         results.Password = undefined;
         let payload = { email: results.Email };
         let token = sign(payload, process.env.JWT_KEY);
-        results.Logo = "http://18.218.124.225:3000/uploads/" + results.Logo;
+        results.Logo = "http://18.216.15.198:3000/uploads/" + results.Logo;
         return res.status(200).json({
           success: "1",
           message: "login successfully",
@@ -134,46 +134,39 @@ module.exports = {
   editcompanyuser: (req, res) => {
     editUser(req, (err, results) => {
       console.log(results[1]);
-      if(err)
-      {
+      if (err) {
         return res.status(500).json({
           success: "0",
           data: "Internal Server error!"
         });
-      }
-      else if(!results.length)
-      {
+      } else if (!results.length) {
         return res.status(500).json({
           success: "0",
           data: "Internal Server error!"
         });
-      }
-      else if(results[1]["affectedRows"]==1){
+      } else if (results[1]["affectedRows"] == 1) {
         return res.status(200).json({
           success: "1",
           message: "Update Sucessfully!"
-        }); 
-      }
-      else
-      {
+        });
+      } else {
         return res.status(200).json({
           success: "1",
           message: "need to change something to update!"
-        }); 
+        });
       }
-      
     });
   },
   //get user by id
   getUserDetailsById: (req, res) => {
-    let userid=0;
-    if(req.query.userid==undefined) {
+    let userid = 0;
+    if (req.query.userid == undefined) {
       return res.status(400).json({
         success: "0",
         message: "user id needed!"
       });
-    }else{
-      userid=req.query.userid;
+    } else {
+      userid = req.query.userid;
       console.log(userid);
       getUserById(userid, (err, results) => {
         console.log(results[0]);
@@ -189,8 +182,7 @@ module.exports = {
           return res
             .status(404)
             .json({ success: "0", message: " Resource does not exist." });
-        }
-        else{
+        } else {
           return res.status(200).json({
             success: "1",
             data: results
@@ -198,7 +190,7 @@ module.exports = {
         }
       });
     }
-  } , 
+  },
 
   // Function to Get Company Details By Id ----------------------------------------->
 
@@ -227,7 +219,7 @@ module.exports = {
           .json({ success: "0", message: " Resource does not exist." });
       } else {
         results[0].Logo =
-          "http://18.218.124.225:3000/uploads/" + results[0].Logo;
+          "http://18.216.15.198:3000/uploads/" + results[0].Logo;
         let result = results[0];
 
         return res.status(200).json({
