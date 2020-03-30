@@ -337,19 +337,21 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":3,
+    "purchase_ord_id":1,
     "SupplierId":1,
-    "PurchaseOrderTotal":10000,
+    "PurchaseOrderTotal":7000,
     "products":[
         {
-           "PurchaseOrder_ProductId":2,
+           "ProductId":3,
+           "PurchaseOrder_ProductId":41,
            "Quantity":40,
-           "Total":3000 
+           "Total":4000 
         },
         {
-           "PurchaseOrder_ProductId":5,
+           "ProductId":5,
+           "PurchaseOrder_ProductId":42,
            "Quantity":15,
-           "Total":10000 
+           "Total":3000 
         }
     ]
 }
@@ -486,10 +488,38 @@ content-type: application/json
 GET http://localhost:3000/api/purchaseorder/getincomingpurchaseorder?companyid=1 HTTP/1.1
 content-type: application/json
 
+//edit company user
+###
+POST http://localhost:3000/api/companyuser/edituser HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+content-type: application/json
+
+{
+    "userid":1,
+    "fname":"minhas",
+    "lname":"kaur",
+    "email":"kaur08@gmail.com",
+    "password":"123",
+    "phonenumber":"1234567890"
+}
+
+//get company customer by id
+###
+GET http://localhost:3000/api/companyuser/getuserdetailsbyid?userid=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+content-type: application/json
+
+
+//get customer by id
+###
+GET http://localhost:3000/api/customeruser/getuserdetailsbyid?userid=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+content-type: application/json
 ####
+
+
 //Incoming Purchase Report
 ###
-
 GET http://localhost:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
 content-type: application/json
 
@@ -520,7 +550,7 @@ Content-Type: application/json
 
 {   
     "CompanyId":1,
-    "CompanyName":"Shreeji Co.",
+    "CompanyName":"Shreeji Inc.",
     "Website":"shreejico@gmail.com",
     "Logo":"D:\\IMS\\InventoryManagement-Node.jsApp\\uploads\\e85d09b2-39b8-427c-b2ad-824bfc4b5508.jpg",
     "Address1":"8,3320",

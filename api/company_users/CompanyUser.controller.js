@@ -3,6 +3,8 @@ const {
   getUserByUserEmail,
   createCompany_User,
   resetPassword,
+  editUser,
+  getUserById,
   getCompanyById,
   EditCompanyProfile
 } = require("./CompanyUser.service");
@@ -128,6 +130,75 @@ module.exports = {
       }
     });
   },
+  //update company customer
+  editcompanyuser: (req, res) => {
+    editUser(req, (err, results) => {
+      console.log(results[1]);
+      if(err)
+      {
+        return res.status(500).json({
+          success: "0",
+          data: "Internal Server error!"
+        });
+      }
+      else if(!results.length)
+      {
+        return res.status(500).json({
+          success: "0",
+          data: "Internal Server error!"
+        });
+      }
+      else if(results[1]["affectedRows"]==1){
+        return res.status(200).json({
+          success: "1",
+          message: "Update Sucessfully!"
+        }); 
+      }
+      else
+      {
+        return res.status(200).json({
+          success: "1",
+          message: "need to change something to update!"
+        }); 
+      }
+      
+    });
+  },
+  //get user by id
+  getUserDetailsById: (req, res) => {
+    let userid=0;
+    if(req.query.userid==undefined) {
+      return res.status(400).json({
+        success: "0",
+        message: "user id needed!"
+      });
+    }else{
+      userid=req.query.userid;
+      console.log(userid);
+      getUserById(userid, (err, results) => {
+        console.log(results[0]);
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal Server Error",
+            error: err
+          });
+        }
+        if (!results.length) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
+        else{
+          return res.status(200).json({
+            success: "1",
+            data: results
+          });
+        }
+      });
+    }
+  } , 
 
   // Function to Get Company Details By Id ----------------------------------------->
 
@@ -155,13 +226,13 @@ module.exports = {
           .status(404)
           .json({ success: "0", message: " Resource does not exist." });
       } else {
-        for (var i in results) {
-          results[i].Image =
-            "http://18.218.124.225:3000/uploads/" + results[i].Image;
-        }
+        results[0].Logo =
+          "http://18.218.124.225:3000/uploads/" + results[0].Logo;
+        let result = results[0];
+
         return res.status(200).json({
           success: "1",
-          data: results
+          data: result
         });
       }
     });

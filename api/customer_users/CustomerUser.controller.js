@@ -2,7 +2,8 @@ const {
   getUserByUserEmail,
   createCustomer,
   resetPassword,
-  edituser
+  edituser,
+  getUserById
 } = require("./CustomerUser.service");
 
 const { sign } = require("jsonwebtoken");
@@ -131,5 +132,40 @@ module.exports = {
         });
       }
     });
+  },
+  //get user by id
+  getUserDetailsById: (req, res) => {
+    let userid=0;
+    if(req.query.userid==undefined) {
+      return res.status(400).json({
+        success: "0",
+        message: "user id needed!"
+      });
+    }else{
+      userid=req.query.userid;
+      console.log(userid);
+      getUserById(userid, (err, results) => {
+        console.log(results[0]);
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal Server Error",
+            error: err
+          });
+        }
+        if (!results.length) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
+        else{
+          return res.status(200).json({
+            success: "1",
+            data: results
+          });
+        }
+      });
+    }
   }
 };

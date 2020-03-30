@@ -4,7 +4,8 @@ const {
   authcustomeruser,
   createcustomeruser,
   forgetPasswordCustomer,
-  editcustomeruser
+  editcustomeruser,
+  getUserDetailsById
 } = require("./CustomerUser.controller");
 
 router.post("/authcustomeruser", authcustomeruser);
@@ -18,5 +19,5 @@ router.post(
 );
 
 router.get("/forgetPasswordCustomer", forgetPasswordCustomer);
-
+router.get("/getuserdetailsbyid",passport.authenticate("jwt", { session: false }),getUserDetailsById)
 module.exports = router;

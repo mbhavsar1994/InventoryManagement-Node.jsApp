@@ -86,5 +86,22 @@ module.exports = {
         return callBack(null, results);
       }
     );
-  }
+  },
+  //get user by id
+  getUserById: (userid, callBack) => {
+    // let user=req.body;
+     pool.query(
+       `select * from IMS.user_master_customer where CustomerId=? `,
+       [
+         userid
+       ],
+       (error, results, fields) => {
+         if (error) {
+           return callBack(error);
+         }
+        // console.log(results);
+         return callBack(null, results);
+       }
+     );
+   }
 };
