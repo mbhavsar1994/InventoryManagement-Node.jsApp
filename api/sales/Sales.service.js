@@ -50,19 +50,8 @@ module.exports = {
   },
   //getting order of particular company and of particular order id
   getSalesById: (orderid, companyid, callBack) => {
-    let sql = `select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
-    inner join 
-    Sales_Order_Products as b
-    on
-    a.CustomerOrderId=b.CustomerOrderId
-    inner join 
-    user_master_customer as c
-    on
-    c.CustomerId=a.CustomerId
-    where CompanyId=0
-    group by CustomerOrderId
-    ;
-    select a.CustomerOrderId, c.Fname ,a.Date,Sum(Quantity),a.Total  from Customer_OrderDetails as a 
+    let sql = `
+    select a.CustomerOrderId, c.Fname ,a.Date,Sum(Quantity) as 'sum',a.Total  from Customer_OrderDetails as a 
     inner join 
     Sales_Order_Products as b
     on
@@ -89,7 +78,7 @@ module.exports = {
   //getting all the orders of particular company
   getAllSales: (companyid, callBack) => {
     let sql = `
-    select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity),Total  from Customer_OrderDetails as a 
+    select a.CustomerOrderId, c.Fname ,a.Date,sum(Quantity) as sum,Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
         on
