@@ -203,7 +203,7 @@ module.exports = {
       } else {
         for (var i in results) {
           results[i].Image =
-            "http://18.216.15.198/:3000/uploads/" + results[i].Image;
+            "http://18.216.15.198:3000/uploads/" + results[i].Image;
         }
         return res.status(200).json({
           success: "1",

@@ -50,7 +50,7 @@ typings/
 # Optional npm cache directory
 .npm
 
-# Optional eslint cache
+# Optional eslint cachene
 .eslintcache
 
 # Microbundle cache
