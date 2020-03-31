@@ -1,4 +1,4 @@
-POST http://18.216.15.198:3000/api/companyuser/authcompanyuser HTTP/1.1
+POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
@@ -57,21 +57,21 @@ content-type: application/json
 }
 //creating new customer on app
 ###
-POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
+POST   http://18.216.15.198:3000/api/customeruser/createcustomeruser HTTP/1.1
 content-type: application/json
 
 {
-        "Fname": "raj",
-        "Lname": "kaur",
-        "email":"raj@gmail.com",
+        "Fname": "Neha",
+        "Lname": "Bhavsar",
+        "email":"neh21@gmail.com",
         "phonenumber":"1234567898",
         "countryid":1,
         "provinceid":2,
         "city":"montreal",
         "postal":"asdff",
         "address":"bvjdnks",
-        "password":"lovellen1234",
-        "companyid":1  
+        "password":"neha1234",
+        "companyid":"1"  
 }
 
 
@@ -134,15 +134,15 @@ content-type: application/json
 // Get Supplier By Id ------------------------->
 ###
 
-GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=9&CompanyId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTI2OH0.GggcHDYu0f3rA1zsmA1SvChfxtPHmxXk6fnAxhLvB7k
+GET http://localhost:3000/api/supplier/getsupplierbyId?SupplierId=1&CompanyId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2Nzk3NTd9.0ItQQeLA2iIAawSxdeGx6zD16Q9P9nrSmCdWI9psCqE
 content-type: application/json
 
 
 ###
 
 POST http://localhost:3000/api/supplier/getsuppliers HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTI2OH0.GggcHDYu0f3rA1zsmA1SvChfxtPHmxXk6fnAxhLvB7k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2Nzk3NTd9.0ItQQeLA2iIAawSxdeGx6zD16Q9P9nrSmCdWI9psCqE
 content-type: application/json
 
 {
@@ -152,13 +152,13 @@ content-type: application/json
 
 //fetching countries
 ###
-GET http://localhost:3000/api/countries/country HTTP/1.1
+GET http://18.216.15.198:3000/api/countries/country HTTP/1.1
 content-type: application/json
 
 
 //for fetching provinces by passing country id
 ###
-POST http://18.218.124.225:3000/api/provinces/province HTTP/1.1
+POST http://18.216.15.198:3000/api/provinces/province HTTP/1.1
 content-type: application/json
 
 {
@@ -289,26 +289,25 @@ content-type: application/json
 // Create Puchase Order -------------------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1Njk5OH0.6_TJadF8SNGIKm3cX_nXjbePRIN5TG3Eeaz1S-Ab5TM
 content-type: application/json
 
 {
     "SupplierId":1,
     "CurrencyId":1,
-    "DiscountRate":10,
-    "PurchaseOrderTotal":1000,
+    "DiscountRate":5,
+    "PurchaseOrderTotal":17000,
     "products":[
          {
-           "ProductId":3,
-           "Price": 180,
-           "Quantity":50,
-           "Total":6000
+           "ProductId":7,
+           "Price": 100,
+           "Quantity":30,
+           "Total":3000
         },
         {
-           "ProductId":5,
-           "Price": 190,
-           "Quantity":100,
-           "Total":17000 
+           "ProductId":8,
+           "Price": 200,
+           "Quantity":70,
+           "Total":14000 
         }
     ]
 }
@@ -378,13 +377,21 @@ content-type: application/json
 
 ####
 
-POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
+POST  http://localhost:3000/api/delivery/getdeliveries?DeliveryId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
 
 {
-    "CompanyId":"4"
+    "CompanyId":"1"
 }
+
+####
+
+// get Delivery details by id
+GET  http://localhost:3000/api/delivery/getdeliverybyid?CompanyId=1&DeliveryId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+content-type: application/json
+
 
 // Cancel Purchase Order ------------------------------>
 ### 
@@ -393,18 +400,27 @@ PUT http://localhost:3000/api/purchaseorder/cancel HTTP/1.1
 content-type: application/json
 
 {
-    "Purchase_OrderId":2
+    "CompanyId":1 ,
+    "Purchase_OrderId":4
 }
 
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
-
 content-type: application/json
 
 {
     "CompanyId":1
 }
+
+
+###
+//get purchase order details by id
+GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+content-type: application/json
+
+
 
 
 
@@ -453,7 +469,7 @@ content-type: application/json
 // Get all sales----------------------->
 ###
 POST http://localhost:3000/api/sales/getsales HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUzNzh9.kzSisyNWWk9onYrIoAnpu4kc1d8WyrjyiSnRNR33EgQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUxNDN9.Akh__Xik0sEB6hRjJkythwRcCTWTZZCb8usVtd5lsYM
 content-type: application/json
 
 {

@@ -5,7 +5,8 @@ const {
   EditPurchaseOrder_Products1,
   Cancelpurchase_Order,
   getAllPurchaseOrders,
-  getIncomingPurchaseOrder_report
+  getIncomingPurchaseOrder_report,
+  getPurchase_OrderbyId
 } = require("./PurchaseOrder.service");
 
 const _ = require("lodash");
@@ -229,6 +230,39 @@ module.exports = {
         return res.status(200).json({
           success: "1",
           data: results
+        });
+      }
+    });
+  },
+  GetPurchase_Orders_ProductsbyId: (req, res) => {
+    if (typeof req.query.CompanyId == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Company Id is missing!"
+      });
+    }
+    if (typeof req.query.PurchaseOrderId == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..PurchaseOrder Id is missing!"
+      });
+    }
+    let CompanyId = req.query.CompanyId;
+    let PurchaseOrderId = req.query.PurchaseOrderId;
+
+    getPurchase_OrderbyId(CompanyId, PurchaseOrderId, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error! Please check request body"
+        });
+      } else {
+        let purchaseOrder_details = results[0][0];
+        let products = results[1];
+        return res.status(200).json({
+          success: "1",
+          data: { purchaseOrder_details, products }
         });
       }
     });

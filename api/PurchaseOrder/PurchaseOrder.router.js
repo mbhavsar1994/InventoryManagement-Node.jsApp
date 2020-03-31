@@ -6,14 +6,11 @@ const {
   editPurchaseOrder,
   cancelPurchaseOrder,
   getPurchaseOrders,
-  getPurchaseOrderReport
+  getPurchaseOrderReport,
+  GetPurchase_Orders_ProductsbyId
 } = require("./PurchaseOrder.controller");
 
-router.post(
-  "/create",
-  passport.authenticate("jwt", { session: false }),
-  createPurchaseOrder
-);
+router.post("/create", createPurchaseOrder);
 
 router.put("/edit", editPurchaseOrder);
 
@@ -52,5 +49,7 @@ router.put("/cancel", cancelPurchaseOrder);
 router.post("/getpurchaseorders", getPurchaseOrders);
 
 router.get("/getincomingpurchaseorder", getPurchaseOrderReport);
+
+router.get("/getpurchaseorderbyid", GetPurchase_Orders_ProductsbyId);
 
 module.exports = router;
