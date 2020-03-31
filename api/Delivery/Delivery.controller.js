@@ -1,6 +1,7 @@
 const {
   receiveDelivery,
-  getAllDeliverydetails
+  getAllDeliverydetails,
+  getDeliverybyId
 } = require("./Delivery.service");
 
 const _ = require("lodash");
@@ -104,6 +105,39 @@ module.exports = {
         return res.status(200).json({
           success: "1",
           data: response
+        });
+      }
+    });
+  },
+  GetDelivery_ProductsbyId: (req, res) => {
+    if (typeof req.query.CompanyId == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Company Id is missing!"
+      });
+    }
+    if (typeof req.query.DeliveryId == "undefined") {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Delivery  Id is missing!"
+      });
+    }
+    let CompanyId = req.query.CompanyId;
+    let DeliveryId = req.query.DeliveryId;
+
+    getDeliverybyId(CompanyId, DeliveryId, (err, results) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error! Please check request body"
+        });
+      } else {
+        let delivery_details = results[0][0];
+        let products = results[1];
+        return res.status(200).json({
+          success: "1",
+          data: { delivery_details, products }
         });
       }
     });

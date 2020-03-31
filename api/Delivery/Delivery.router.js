@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const passport = require("passport");
-const { ReceivedDelivery, GetAllDelivery } = require("./Delivery.controller");
+const {
+  ReceivedDelivery,
+  GetAllDelivery,
+  GetDelivery_ProductsbyId
+} = require("./Delivery.controller");
 
 router.post(
   "/create",
@@ -13,5 +17,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   GetAllDelivery
 );
+
+router.get("/getdeliverybyid", GetDelivery_ProductsbyId);
 
 module.exports = router;

@@ -6,7 +6,8 @@ const {
   editPurchaseOrder,
   cancelPurchaseOrder,
   getPurchaseOrders,
-  getPurchaseOrderReport
+  getPurchaseOrderReport,
+  GetPurchase_Orders_ProductsbyId
 } = require("./PurchaseOrder.controller");
 
 router.post(
@@ -52,5 +53,7 @@ router.put("/cancel", cancelPurchaseOrder);
 router.post("/getpurchaseorders", getPurchaseOrders);
 
 router.get("/getincomingpurchaseorder", getPurchaseOrderReport);
+
+router.get("/getpurchaseorderbyid", GetPurchase_Orders_ProductsbyId);
 
 module.exports = router;
