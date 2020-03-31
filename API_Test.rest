@@ -289,26 +289,25 @@ content-type: application/json
 // Create Puchase Order -------------------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDM5ODl9.AefSXcZNYx_aFlr-MSEs0YjaRmnHVSVyfKq-Q2tlhFg
 content-type: application/json
 
 {
-    "SupplierId":2,
+    "SupplierId":1,
     "CurrencyId":1,
-    "DiscountRate":10,
-    "PurchaseOrderTotal":1000,
+    "DiscountRate":5,
+    "PurchaseOrderTotal":17000,
     "products":[
          {
-           "ProductId":2,
-           "Price": 180,
-           "Quantity":50,
-           "Total":6000
+           "ProductId":7,
+           "Price": 100,
+           "Quantity":30,
+           "Total":3000
         },
         {
-           "ProductId":4,
-           "Price": 190,
-           "Quantity":100,
-           "Total":17000 
+           "ProductId":8,
+           "Price": 200,
+           "Quantity":70,
+           "Total":14000 
         }
     ]
 }
@@ -398,17 +397,16 @@ content-type: application/json
 ### 
 
 PUT http://localhost:3000/api/purchaseorder/cancel HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
 
 {
-    "Purchase_OrderId":2
+    "CompanyId":1 ,
+    "Purchase_OrderId":4
 }
 
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
 
 {
