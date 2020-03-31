@@ -125,7 +125,8 @@ module.exports = {
 
         if (typeof req.query.Date != "undefined") {
           results.filter(function(result) {
-            if (result.Date.toString() == req.query.Date) {
+            var str=result.Date.toString();
+            if (_.includes(str,req.query.Date)) {
               response.push(result);
             }
           });

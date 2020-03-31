@@ -71,7 +71,7 @@ content-type: application/json
         "postal":"asdff",
         "address":"bvjdnks",
         "password":"lovellen1234",
-        "companyid":"1"  
+        "companyid":1  
 }
 
 
@@ -379,7 +379,7 @@ content-type: application/json
 ####
 
 POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NTI2OH0.GggcHDYu0f3rA1zsmA1SvChfxtPHmxXk6fnAxhLvB7k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
 
 {
@@ -443,8 +443,8 @@ content-type: application/json
 
 // Get sales---by filter---------------------->
 ###
-POST http://localhost:3000/api/sales/getsales?CustomerOrderId=1&Date=2020-03-24 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+POST http://localhost:3000/api/sales/getsales?Date=Mar 25 2020 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
 
 {
