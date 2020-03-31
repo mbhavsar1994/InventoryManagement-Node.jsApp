@@ -47,7 +47,7 @@ on IMS.Delivery.DeliveryId= IMS.Delivery_Order_Products.DeliveryId inner join Pu
 Delivery.Purchase_OrderId=Purchase_orders.Purchase_OrderId where Delivery_Order_Products.DeliveryId=?
 group by Delivery_Order_Products.DeliveryId,Delivery_Order_Products.DeliveryDate;
 
-select p.SKU,p.Product_name,p.Description,p.RetailPrice,dop.Quantity,dop.Total from product as p inner join
+select p.SKU,p.Product_name,p.Description,p.PurchasePrice,dop.Quantity,dop.Total from product as p inner join
  Delivery_Order_Products as dop
 on p.ProductId= dop.ProductId  where dop.DeliveryId=?;
       `,
