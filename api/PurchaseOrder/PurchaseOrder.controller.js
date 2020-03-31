@@ -116,12 +116,21 @@ module.exports = {
   // Cancel Purchase Order --------------------------------------------->
   cancelPurchaseOrder: (req, res) => {
     let CompanyId = "";
+    let Purchase_OrderId = "";
     if (typeof req.body.CompanyId != "undefined") {
       CompanyId = req.body.CompanyId;
     } else {
       return res.status(400).json({
         success: "0",
         message: "Invalid request..Company Id is missing!"
+      });
+    }
+    if (typeof req.body.Purchase_OrderId != "undefined") {
+      Purchase_OrderId = req.body.Purchase_OrderId;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Purchase Order Id is missing!"
       });
     }
     Cancelpurchase_Order(req, (err, results) => {

@@ -401,7 +401,7 @@ content-type: application/json
 
 {
     "CompanyId":1 ,
-    "Purchase_OrderId":4
+    "Purchase_OrderId":2
 }
 
 // Get all Purchase orders  ------------------------------->
