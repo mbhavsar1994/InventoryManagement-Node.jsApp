@@ -232,14 +232,14 @@ module.exports = {
   getPurchase_OrderbyId: (CompanyId, PurchaseOrderId, callBack) => {
     pool.query(
       `
-      select a.Purchase_OrderId,a.SupplierId,a.Date,a.Status,b.SupplierName,b.DiscountRate,cm.CurrencyType from 
+      select a.Purchase_OrderId,a.SupplierId,a.Date,a.Status,b.SupplierName,b.DiscountRate,cm.Currency_Code from 
       Purchase_orders as a inner join Suppliers as b 
       on a.SupplierId=b.SupplierId inner join Purchase_Order_Products
       as c on c.Purchase_OrderId=a.Purchase_OrderId  inner join company_details as cd on b.CompanyId= cd.CompanyId 
       inner join Currency_master as cm on cd.CurrencyId=cm.CurrencyId
        where b.CompanyId=? and a.Purchase_OrderId=? group by c.Purchase_OrderId;
        
-      select p.SKU,p.Product_name,p.Description,p.RetailPrice,pop.Quantity,pop.Total from product as p inner join
+      select p.SKU,p.Product_name,p.Description,p.PurchasePrice,pop.Quantity,pop.Total from product as p inner join
       Purchase_Order_Products  as pop
       on p.ProductId= pop.ProductId  where pop.Purchase_OrderId=?
       `,

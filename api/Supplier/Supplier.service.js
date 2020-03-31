@@ -84,7 +84,7 @@ module.exports = {
     pool.query(
       `SELECT Suppliers.SupplierId,Suppliers.SupplierName,Suppliers.SupplierEmail,Suppliers.SupplierPhone,
       Suppliers.DiscountRate,Suppliers.CountryId,
-      Suppliers.ProvinceId,Suppliers.City,Suppliers.Address1,Suppliers.Address2,Suppliers.PostalCode , cm.CurrencyType
+      Suppliers.ProvinceId,Suppliers.City,Suppliers.Address1,Suppliers.Address2,Suppliers.PostalCode , cm.Currency_Code
       FROM IMS.Suppliers as Suppliers inner join company_details as cd 
       on Suppliers.CompanyId= cd.CompanyId inner join Currency_master as cm on cd.CurrencyId= cm.CurrencyId where  Suppliers.CompanyId= ? and 
       Suppliers.SupplierId= ?`,
