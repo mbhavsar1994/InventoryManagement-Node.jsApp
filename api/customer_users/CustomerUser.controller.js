@@ -53,34 +53,52 @@ module.exports = {
 
   //-- Function to create customer user profile
   createcustomeruser: (req, res) => {
-    createCustomer(req, (err, results) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({
-          success: "0",
-          message: "Internal Server error! Please try again",
-          data: err
-        });
-      } else if (results[13][0].Err_msg != null) {
-        return res.status(400).json({
-          success: "0",
-          message: results[13][0].Err_msg
-        });
-      } else {
-        return res.status(200).json({
-          success: "1",
-          message: "User Profile created Successfully"
-        });
-      }
-    });
+    var regex = /\S+@\S+\.\S+/;
+    if(req.body.email==null)
+    {
+      return res.status(400).json({
+        success: "0",
+        message: "email is require"
+      });
+    }
+    else if(req.body.email == req.body.email .match(regex))
+    {
+      createCustomer(req, (err, results) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal Server error! Please try again",
+            data: err
+          });
+        } else if (results[13][0].Err_msg != null) {
+          return res.status(400).json({
+            success: "0",
+            message: results[13][0].Err_msg
+          });
+        } else {
+          return res.status(200).json({
+            success: "1",
+            message: "User Profile created Successfully"
+          });
+        }
+      });
+    }
+    else{
+      return res.status(400).json({
+        success: "0",
+        message: "email  should be in example@gmail.com"
+      });
+    }
+    
   },
 
   // Forget Password for APP (Customer )------------------------------->
   forgetPasswordCustomer: (req, res) => {
     const body = req.body;
-    console.log(body);
+   // console.log(body);
     resetPassword(req, (err, results) => {
-      //console.log(results);
+      console.log(results);
       if (err) {
         console.log(err);
       }
@@ -111,27 +129,44 @@ module.exports = {
   },
   //edit user
   editcustomeruser: (req, res) => {
-    edituser(req, (err, results) => {
-      console.log(results);
-      if (err) {
-        console.log(err);
-        return res.status(500).json({
-          success: "0",
-          message: "Internal Server error! Please try again",
-          data: err
-        });
-      } else if (results[13][0].Err_msg != null) {
-        return res.status(400).json({
-          success: "0",
-          message: results[13][0].Err_msg
-        });
-      } else {
-        return res.status(200).json({
-          success: "1",
-          message: "User Profile updated Successfully"
-        });
-      }
-    });
+    var regex = /\S+@\S+\.\S+/;
+    if(req.body.email==null)
+    {
+      return res.status(400).json({
+        success: "0",
+        message: "email is require"
+      });
+    }
+    else if(req.body.email == req.body.email .match(regex))
+    {
+      edituser(req, (err, results) => {
+        console.log(results);
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal Server error! Please try again",
+            data: err
+          });
+        } else if (results[14][0].Err_msg != null) {
+          return res.status(400).json({
+            success: "0",
+            message: results[14][0].Err_msg
+          });
+        } else {
+          return res.status(200).json({
+            success: "1",
+            message: "User Profile updated Successfully"
+          });
+        }
+      });
+    }
+    else{
+      return res.status(400).json({
+        success: "0",
+        message: "email  should be in example@gmail.com"
+      });
+    }
   },
   //get user by id
   getUserDetailsById: (req, res) => {

@@ -78,7 +78,7 @@ module.exports = {
   //getting all the orders of particular company
   getAllSales: (companyid, callBack) => {
     let sql = `  
-    select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as sum,Total  from Customer_OrderDetails as a 
+    select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
         on

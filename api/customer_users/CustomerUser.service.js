@@ -61,7 +61,7 @@ module.exports = {
   edituser: (req, callBack) => {
     //let sql = `SET @Fname=?;SET @Lname=?;SET @Email=?;SET @PhoneNumber=?;SET @CountryID=?;SET @ProvinceId=?;  SET @city = ?;SET @PostalCode =? ; SET @Address=? ;SET @Password=?; SET @CompanyId=?; CALL CreateCustomerUser(@Fname,@Lname,@Email,@PhoneNumber,@CountryID,@ProvinceId,@city,@PostalCode,@Address,@Password,@ComapanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
     let user = req.body;
-    let sql = `SET @Customerid=?; SET @Fname=?;SET @Lname=?;SET @Email=?;SET @PhoneNumber=?;SET @CountryID=?;SET @ProvinceId=?;  SET @city = ?;SET @PostalCode =? ; SET @Address=? ;SET @Password=?; SET @CompanyId=?; CALL EditCustomerUser(@Customerid,@Fname,@Lname,@Email,@PhoneNumber,@CountryID,@ProvinceId,@city,@PostalCode,@Address,@Password,@ComapanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
+    let sql = `SET @Customerid=?; SET @Fname=?;SET @Lname=?;SET @Email=?;SET @PhoneNumber=?;SET @CountryID=?;SET @ProvinceId=?;  SET @city = ?;SET @PostalCode =? ; SET @Address=? ;SET @Password=?; SET @CompanyId=?; CALL EditCustomerUser(@Customerid,@Fname,@Lname,@Email,@PhoneNumber,@CountryID,@ProvinceId,@city,@PostalCode,@Address,@Password,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
     pool.query(
       sql,
       [
