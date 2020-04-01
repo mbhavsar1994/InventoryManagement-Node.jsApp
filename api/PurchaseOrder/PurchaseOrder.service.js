@@ -123,6 +123,7 @@ module.exports = {
 
   EditPurchaseOrder_Products1: (req, callBack) => {
     let product_jason = req.body.products;
+    let purchase_ord_id = req.body.purchase_ord_id;
     var products = [];
     var delivery_products = [];
 
@@ -135,34 +136,44 @@ module.exports = {
       ]);
 
       delivery_products.push([
+        purchase_ord_id,
         product_jason[i].ProductId,
         product_jason[i].Quantity,
-        product_jason[i].Total,
-        product_jason[i].PurchaseOrder_ProductId
+        product_jason[i].Total
       ]);
     }
-    let sql = `Drop table if exists TempProduct ;
-      CREATE TEMPORARY TABLE TempProduct(
-          ProductId INT,
-          Quantity INT ,
-          Total double,
-          PurchaseOrder_ProductId int
-      );
+    let sql = `
 
-      Insert into TempProduct (ProductId,Quantity,Total, PurchaseOrder_ProductId) VALUES ?;
+    Drop table if exists Temp_Puch_ord_Prod ;
+    CREATE TEMPORARY TABLE Temp_Puch_ord_Prod(
+      ProductId INT,
+      Quantity INT ,
+      Total double,
+      PurchaseOrder_ProductId INT,
+      isProcessed bit Default 0
+    );
 
-      UPDATE IMS.Purchase_Order_Products as pop inner join TempProduct as temp on pop.PurchaseOrder_ProductId= temp.PurchaseOrder_ProductId SET pop.Quantity = temp.Quantity,pop.Total=temp.Total WHERE pop.ProductId =temp.ProductId ;
+    insert into Temp_Puch_ord_Prod (ProductId,Quantity,Total,PurchaseOrder_ProductId) VALUES ? ;
 
+    Drop table if exists Temp_Deli_ord_Prod ;
+    CREATE TEMPORARY TABLE Temp_Deli_ord_Prod(
+      DeliveryId INT,
+      ProductId INT,
+      Quantity INT ,
+      Total double
+    );
 
-
-      UPDATE IMS.Delivery_Order_Products as dop inner join IMS.Delivery on dop.DeliveryId=Delivery.DeliveryId inner join IMS.Purchase_orders on Delivery.Purchase_OrderId=Purchase_orders.Purchase_OrderId inner join TempProduct as temp on Purchase_orders.Purchase_OrderId= temp.PurchaseOrder_ProductId
-      SET dop.Quantity = temp.Quantity,dop.Total=temp.Total WHERE dop.ProductId =temp.ProductId ;
-
-      `;
+    
+    insert into Temp_Deli_ord_Prod (DeliveryId,ProductId,Quantity,Total) VALUES ? ;
+    set @purchase_ord_id=?;
+    CALL EditPurchaseProdcuts(@purchase_ord_id,@status,@Err_msg);
+    select @status as status; 
+    select @Err_msg as Err_msg;
+  `;
 
     pool.query(
       sql,
-      [products, delivery_products],
+      [products, delivery_products, purchase_ord_id],
 
       (error, results, _fields) => {
         if (error) {
@@ -239,7 +250,7 @@ module.exports = {
       inner join Currency_master as cm on cd.CurrencyId=cm.CurrencyId
        where b.CompanyId=? and a.Purchase_OrderId=? group by c.Purchase_OrderId;
        
-      select p.SKU,p.Product_name,p.Description,p.PurchasePrice,pop.Quantity,pop.Total from product as p inner join
+      select p.SKU,p.Product_name,p.Description,p.PurchasePrice,pop.PurchaseOrder_ProductId,pop.Quantity,pop.Total from product as p inner join
       Purchase_Order_Products  as pop
       on p.ProductId= pop.ProductId  where pop.Purchase_OrderId=?
       `,
