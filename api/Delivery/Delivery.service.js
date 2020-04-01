@@ -38,7 +38,7 @@ module.exports = {
   },
 
   // Service to get  delivery by id
-  getDeliverybyId: (CompanyId, DeliveryId, callBack) => {
+  getDeliverybyId: (DeliveryId, callBack) => {
     pool.query(
       `
 SELECT Delivery_Order_Products.DeliveryId, Delivery_Order_Products.DeliveryDate, Delivery.Status,

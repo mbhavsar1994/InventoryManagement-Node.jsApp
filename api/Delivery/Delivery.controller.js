@@ -110,12 +110,6 @@ module.exports = {
     });
   },
   GetDelivery_ProductsbyId: (req, res) => {
-    if (typeof req.query.CompanyId == "undefined") {
-      return res.status(400).json({
-        success: "0",
-        message: "Invalid request..Company Id is missing!"
-      });
-    }
     if (typeof req.query.DeliveryId == "undefined") {
       return res.status(400).json({
         success: "0",
@@ -125,7 +119,7 @@ module.exports = {
     let CompanyId = req.query.CompanyId;
     let DeliveryId = req.query.DeliveryId;
 
-    getDeliverybyId(CompanyId, DeliveryId, (err, results) => {
+    getDeliverybyId(DeliveryId, (err, results) => {
       if (err) {
         console.log(err);
         return res.status(500).json({
