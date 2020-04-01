@@ -1,4 +1,5 @@
 var dns = require("dns");
+var validator = require("email-validator");
 const {
   getUserByUserEmail,
   createCompany_User,
@@ -62,6 +63,12 @@ module.exports = {
       return res.status(400).json({
         success: "0",
         message: "Invalid request..Logo is missing!"
+      });
+    }
+    if (!validator.validate(req.body.Email)) {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Enter valid email address!"
       });
     }
     createCompany_User(req, (err, results) => {

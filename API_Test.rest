@@ -416,11 +416,10 @@ content-type: application/json
 
 ###
 //get purchase order details by id
+
 GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=5 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NjY4NDN9.IfUJHftfDQYd0rKMa4VU7DebMMJUIWWbKqC35YauKAA
 content-type: application/json
-
-
 
 
 
