@@ -10,11 +10,7 @@ const {
   GetPurchase_Orders_ProductsbyId
 } = require("./PurchaseOrder.controller");
 
-router.post(
-  "/create",
-  passport.authenticate("jwt", { session: false }),
-  createPurchaseOrder
-);
+router.post("/create", createPurchaseOrder);
 
 router.put(
   "/edit",

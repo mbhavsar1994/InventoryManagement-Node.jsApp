@@ -292,7 +292,7 @@ POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
 content-type: application/json
 
 {
-    "SupplierId":1,
+    "SupplierId":2,
     "CurrencyId":1,
     "DiscountRate":5,
     "PurchaseOrderTotal":17000,
@@ -416,8 +416,8 @@ content-type: application/json
 
 ###
 //get purchase order details by id
-GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=5 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NjY4NDN9.IfUJHftfDQYd0rKMa4VU7DebMMJUIWWbKqC35YauKAA
 content-type: application/json
 
 
