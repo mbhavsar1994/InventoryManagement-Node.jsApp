@@ -133,7 +133,7 @@ module.exports = {
   //update company customer
   editcompanyuser: (req, res) => {
     editUser(req, (err, results) => {
-      console.log(results[1]);
+      console.log(results);
       if (err) {
         return res.status(500).json({
           success: "0",

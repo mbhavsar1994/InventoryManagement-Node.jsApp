@@ -32,7 +32,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
     "Address1":"12,4000",
     "Address2":"Rue Barclay",
     "City":"Montreal",
-    "CountryId":"1",
+    "CountryId":1,
     "ProvinceId":"1",
     "PostalCode":"H3S1K3"
 }
@@ -57,20 +57,20 @@ content-type: application/json
 }
 //creating new customer on app
 ###
-POST   http://18.216.15.198:3000/api/customeruser/createcustomeruser HTTP/1.1
+POST   http://localhost:3000/api/customeruser/createcustomeruser HTTP/1.1
 content-type: application/json
 
 {
         "Fname": "Neha",
         "Lname": "Bhavsar",
-        "email":"neh21@gmail.com",
+        "email":"nehlk21kxkkxkn@gmail.com",
         "phonenumber":"1234567898",
         "countryid":1,
-        "provinceid":2,
+        "provinceid":26,
         "city":"montreal",
         "postal":"asdff",
         "address":"bvjdnks",
-        "password":"neha1234",
+        "password":"dkkkkkk",
         "companyid":"1"  
 }
 
@@ -190,12 +190,12 @@ content-type: application/json
 //creating new  category
 ###
 POST http://localhost:3000/api/category/createCategory HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1NDQ5Mn0.jOB1IvYq32FPElKHlRotyDolQBBSntfRZHAeacrq98Q 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2OTM4MDl9.4tOZte2yJnh96RS0cf0znnR6uz1_P-40UdO5LnGCXJQ
 content-type: application/json
 
 {
-    "categoryname": "Cosmatics",
-    "SKU": "shi-1000-01",
+    "categoryname": "kkkkjll",
+    "SKU": "jnsl-9900-01",
     "tags": "Cosmatics",
     "companyid":1
 }
@@ -266,7 +266,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 
 // Get All Products ----------------------------> 
 ###
-POST  http://localhost:3000/api/product/getproducts HTTP/1.1
+POST  http://localhost:3000/api/product/getproducts?ProductName=shirt&SupplierName=1 HTTP/1.1
 content-type: application/json
 
 {
@@ -432,21 +432,21 @@ content-type: application/json
 //edit user customer 
 ###
 POST   http://localhost:3000/api/customeruser/editcustomeruser HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
 
 {
     "id":"5",
     "Fname": "loveleen11",
     "Lname": "minhas",
-    "email":"minhas@gmail.com",
+    "email":"minhasloveleen@gmail.com",
     "phonenumber":"1234567898",
     "countryid":1,
     "provinceid":2,
     "city":"jalan",
     "postal":"asdff",
     "address":"bvjdnks",
-    "password":"123",
+    "password":"123456789",
     "companyid":"1"
 }
 
@@ -454,7 +454,7 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/api/sales/getsalesorderbyid?orderid=1&companyid=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
 
 // Get sales---by filter---------------------->
@@ -507,7 +507,7 @@ content-type: application/json
 //edit company user
 ###
 POST http://localhost:3000/api/companyuser/edituser HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NTc1MjB9.-LRzeAwed8rwMKPhZZ6aH6FLF8JN4DPQWkKTaJRI0aw
 content-type: application/json
 
 {
