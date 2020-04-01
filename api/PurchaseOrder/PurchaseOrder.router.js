@@ -12,7 +12,11 @@ const {
 
 router.post("/create", createPurchaseOrder);
 
-router.put("/edit", editPurchaseOrder);
+router.put(
+  "/edit",
+  passport.authenticate("jwt", { session: false }),
+  editPurchaseOrder
+);
 
 /**
  * @swagger
@@ -44,12 +48,28 @@ router.put("/edit", editPurchaseOrder);
  *         description: Internal server error! SQL error
  */
 // Route to cancel the purchase order ------------------------>
-router.put("/cancel", cancelPurchaseOrder);
+router.put(
+  "/cancel",
+  passport.authenticate("jwt", { session: false }),
+  cancelPurchaseOrder
+);
 
-router.post("/getpurchaseorders", getPurchaseOrders);
+router.post(
+  "/getpurchaseorders",
+  passport.authenticate("jwt", { session: false }),
+  getPurchaseOrders
+);
 
-router.get("/getincomingpurchaseorder", getPurchaseOrderReport);
+router.get(
+  "/getincomingpurchaseorder",
+  passport.authenticate("jwt", { session: false }),
+  getPurchaseOrderReport
+);
 
-router.get("/getpurchaseorderbyid", GetPurchase_Orders_ProductsbyId);
+router.get(
+  "/getpurchaseorderbyid",
+  passport.authenticate("jwt", { session: false }),
+  GetPurchase_Orders_ProductsbyId
+);
 
 module.exports = router;

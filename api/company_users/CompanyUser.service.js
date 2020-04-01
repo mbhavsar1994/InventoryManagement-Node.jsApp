@@ -78,17 +78,20 @@ module.exports = {
   //edit usser
   editUser: (req, callBack) => {
     //console.log("hi")
-    // console.log(req);
-    let user = req.body;
+   // console.log(req);
+    let user=req.body;
+    //let user = req.body;
+    let sql = `SET @Customerid=?; SET @Fname=?;SET @Lname=?;SET @Email=?;SET @PhoneNumber=?;SET @Password=?;  CALL EditCompanyUserProfile(@Customerid,@Fname,@Lname,@Email,@PhoneNumber,@Password,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
+    
     pool.query(
-      `SET @status=1;Update IMS.user_master_company SET Fname=?,Lname=?,Email=?,Password=?,PhoneNumber=? where UserId=?;select @status;`,
+      sql,
       [
+        user.userid,
         user.fname,
         user.lname,
         user.email,
-        user.password,
         user.phonenumber,
-        user.userid
+        user.password
       ],
       (error, results, fields) => {
         if (error) {
