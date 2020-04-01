@@ -292,19 +292,19 @@ POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
 content-type: application/json
 
 {
-    "SupplierId":2,
+    "SupplierId":1,
     "CurrencyId":1,
     "DiscountRate":5,
     "PurchaseOrderTotal":17000,
     "products":[
          {
-           "ProductId":7,
+           "ProductId":33,
            "Price": 100,
            "Quantity":30,
            "Total":3000
         },
         {
-           "ProductId":8,
+           "ProductId":1,
            "Price": 200,
            "Quantity":70,
            "Total":14000 
@@ -378,7 +378,6 @@ content-type: application/json
 ####
 
 POST  http://localhost:3000/api/delivery/getdeliveries?DeliveryId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
 
 {
@@ -417,7 +416,7 @@ content-type: application/json
 ###
 //get purchase order details by id
 
-GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=5 HTTP/1.1
+GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=20 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NjY4NDN9.IfUJHftfDQYd0rKMa4VU7DebMMJUIWWbKqC35YauKAA
 content-type: application/json
 
@@ -567,7 +566,7 @@ Content-Type: application/json
 
 {   
     "CompanyId":1,
-    "CompanyName":"Shreeji Inc.",
+    "CompanyName":"Hari Om",
     "Website":"shreejico@gmail.com",
     "Logo":"D:\\IMS\\InventoryManagement-Node.jsApp\\uploads\\e85d09b2-39b8-427c-b2ad-824bfc4b5508.jpg",
     "Address1":"8,3320",
