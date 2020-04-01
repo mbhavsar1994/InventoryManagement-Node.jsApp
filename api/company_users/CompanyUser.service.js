@@ -32,7 +32,6 @@ module.exports = {
         user.Website,
         req.file.filename,
         user.Address1,
-        req.file.filename,
         user.Address2,
         user.City,
         user.CountryId,
@@ -76,7 +75,7 @@ module.exports = {
       }
     );
   },
-//edit usser
+  //edit usser
   editUser: (req, callBack) => {
     //console.log("hi")
    // console.log(req);
@@ -98,31 +97,29 @@ module.exports = {
         if (error) {
           return callBack(error);
         }
-       // console.log(results);
+        // console.log(results);
         return callBack(null, results);
       }
     );
   },
   //get user by id
   getUserById: (userid, callBack) => {
-   // let user=req.body;
+    // let user=req.body;
     pool.query(
       `select * from IMS.user_master_company where UserId=? `,
-      [
-        userid
-      ],
+      [userid],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
         }
-       // console.log(results);
+        // console.log(results);
         return callBack(null, results);
       }
     );
   },
-   // Service to Get Company Details By Id ------------------------------->
+  // Service to Get Company Details By Id ------------------------------->
 
-   getCompanyById: (CompanyId, _callBack) => {
+  getCompanyById: (CompanyId, _callBack) => {
     pool.query(
       "Select * from company_details where CompanyId=?;",
       [CompanyId],
@@ -164,7 +161,8 @@ module.exports = {
         company.ProvinceId,
         company.PostalCode,
         company.CurrencyId
-      ],(error, results, fields) => {
+      ],
+      (error, results, fields) => {
         if (error) {
           return _callBack(error);
         }

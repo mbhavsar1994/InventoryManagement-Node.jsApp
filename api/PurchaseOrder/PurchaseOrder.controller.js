@@ -103,6 +103,16 @@ module.exports = {
               message: "Internal server error! please try again later",
               data: err
             });
+          } else if (results[8][0]["status"] == null) {
+            return res.status(500).json({
+              success: "0",
+              message: "Internal server error!"
+            });
+          } else if (results[8][0]["status"] == "0") {
+            return res.status(400).json({
+              success: "0",
+              message: results[9][0]["Err_msg"]
+            });
           } else {
             return res.status(200).json({
               success: "1",
@@ -145,6 +155,11 @@ module.exports = {
         return res.status(400).json({
           success: "0",
           message: "Bad request"
+        });
+      } else if (results.affectedRows < 1) {
+        return res.status(400).json({
+          success: "0",
+          message: "Invalid Purchase Order Id"
         });
       } else {
         return res.status(200).json({

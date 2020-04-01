@@ -336,21 +336,21 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":1000,
+    "purchase_ord_id":3,
     "SupplierId":1,
-    "PurchaseOrderTotal":7000,
+    "PurchaseOrderTotal":15000,
     "products":[
         {
-           "ProductId":3,
-           "PurchaseOrder_ProductId":41,
-           "Quantity":40,
-           "Total":4000 
+           "ProductId":2,
+           "PurchaseOrder_ProductId":46,
+           "Quantity":5,
+           "Total":8000 
         },
         {
-           "ProductId":5,
-           "PurchaseOrder_ProductId":42,
-           "Quantity":15,
-           "Total":3000 
+           "ProductId":4,
+           "PurchaseOrder_ProductId":47,
+           "Quantity":5,
+           "Total":7000 
         }
     ]
 }
@@ -401,7 +401,7 @@ content-type: application/json
 
 {
     "CompanyId":1 ,
-    "Purchase_OrderId":2
+    "Purchase_OrderId":6
 }
 
 // Get all Purchase orders  ------------------------------->
