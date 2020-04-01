@@ -241,10 +241,13 @@ router.put(
 router.get("/featureproduct", featureProduct);
 
 //total valuation
-router.get("/total_value", totalvaluation);
+router.get("/total_value",
+passport.authenticate("jwt", { session: false }),
+ totalvaluation);
 
 //total article
-router.get("/total_articles", totalarticle);
+router.get("/total_articles",passport.authenticate("jwt", { session: false }),
+ totalarticle);
 
 // Total Of Current Incoming Products --------------------->
 router.get("/incoming_products", Incoming_Products);
