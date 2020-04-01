@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/companyuser/authcompanyuser HTTP/1.1
+POST http://18.216.15.198:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
@@ -7,7 +7,7 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:3000/api/customeruser/authcustomeruser HTTP/1.1
+POST http://18.216.15.198:3000/api/customeruser/authcustomeruser HTTP/1.1
 content-type: application/json
 
 {
@@ -336,7 +336,7 @@ PUT  http://localhost:3000/api/purchaseorder/edit HTTP/1.1
 content-type: application/json
 
 {
-    "purchase_ord_id":1,
+    "purchase_ord_id":1000,
     "SupplierId":1,
     "PurchaseOrderTotal":7000,
     "products":[
@@ -507,15 +507,15 @@ content-type: application/json
 //edit company user
 ###
 POST http://localhost:3000/api/companyuser/edituser HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NTc1MjB9.-LRzeAwed8rwMKPhZZ6aH6FLF8JN4DPQWkKTaJRI0aw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NjUwODR9.EJJ0sfB6oIsvE7ENfMe_BGZeHI_nLBudSSruMS1rIr0
 content-type: application/json
 
 {
-    "userid":1,
-    "fname":"minhas",
+    "userid":4,
+    "fname":"minhasjoti",
     "lname":"kaur",
     "email":"kaur08@gmail.com",
-    "password":"123",
+    "password":"12121212",
     "phonenumber":"1234567890"
 }
 

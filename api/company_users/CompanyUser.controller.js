@@ -132,30 +132,47 @@ module.exports = {
   },
   //update company customer
   editcompanyuser: (req, res) => {
-    editUser(req, (err, results) => {
-      console.log(results);
-      if (err) {
-        return res.status(500).json({
-          success: "0",
-          data: "Internal Server error!"
-        });
-      } else if (!results.length) {
-        return res.status(500).json({
-          success: "0",
-          data: "Internal Server error!"
-        });
-      } else if (results[1]["affectedRows"] == 1) {
-        return res.status(200).json({
-          success: "1",
-          message: "Update Sucessfully!"
-        });
-      } else {
-        return res.status(200).json({
-          success: "1",
-          message: "need to change something to update!"
-        });
-      }
-    });
+    var regex = /\S+@\S+\.\S+/;
+    if(req.body.email==null)
+    {
+      return res.status(400).json({
+        success: "0",
+        message: "email is require"
+      });
+    }
+    else if(req.body.email == req.body.email .match(regex))
+    {
+      editUser(req, (err, results) => {
+        console.log(results);
+        if (err) {
+          return res.status(500).json({
+            success: "0",
+            data: "Internal Server error!"
+          });
+        } else if (!results.length) {
+          return res.status(500).json({
+            success: "0",
+            data: "Internal Server error!"
+          });
+        } else if (results[7][0]["status"] == 0) {
+          return res.status(400).json({
+            success: "0",
+            message: results[8][0]["Err_msg"]
+          });
+        } else {
+          return res.status(200).json({
+            success: "1",
+            message: "Update Sucessfully!"
+          });
+        }
+      });
+    }
+    else{
+      return res.status(400).json({
+        success: "0",
+        message: "email  should be in example@gmail.com"
+      });
+    }
   },
   //get user by id
   getUserDetailsById: (req, res) => {
