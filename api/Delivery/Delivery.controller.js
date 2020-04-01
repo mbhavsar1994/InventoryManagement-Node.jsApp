@@ -133,6 +133,16 @@ module.exports = {
           message: "Internal server error! Please check request body"
         });
       } else {
+        if (results[0][0] == null) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
+        if (results[1] == null) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
         let delivery_details = results[0][0];
         let products = results[1];
         return res.status(200).json({
