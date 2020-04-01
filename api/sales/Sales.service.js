@@ -104,15 +104,17 @@ module.exports = {
   },
 
   getMaxSoldsItems: (companyid, callBack) => {
-    let sql = `select  ProductId, max(count) as Quantity from (SELECT  sop.ProductId, 
-    count(ProductId) as count FROM IMS.Sales_Order_Products as sop
-     inner join Customer_OrderDetails as cod 
-     on sop.CustomerOrderId=cod.CustomerOrderId  
+    let sql = `   select  ProductId, count as Quantity from( SELECT  sop.ProductId, 
+      count(ProductId) as count FROM IMS.Sales_Order_Products as
+       sop inner join Customer_OrderDetails as cod 
+    on sop.CustomerOrderId=cod.CustomerOrderId 
      inner join user_master_customer
-    as cm on cod.CustomerId= cm.CustomerId 
-    where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
-    and cm.CompanyId=?  group by sop.ProductId  ) as 
-    TotalSoldProduct group by  ProductId limit 1;`;
+     as cm on cod.CustomerId= cm.CustomerId 
+     where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
+     and cm.CompanyId=?  group by sop.ProductId 
+     )   as TotalSoldProduct 
+     group by  ProductId  order by Quantity desc limit 1 ;     
+  `;
     pool.query(sql, [companyid], (error, results, fields) => {
       if (error) {
         console.log(error);
@@ -122,15 +124,16 @@ module.exports = {
     });
   },
   getMinSoldsItems: (companyid, callBack) => {
-    let sql = `select  ProductId, min(count) as Quantity from (SELECT  sop.ProductId, 
-    count(ProductId) as count FROM IMS.Sales_Order_Products as
-     sop inner join Customer_OrderDetails as cod 
-  on sop.CustomerOrderId=cod.CustomerOrderId 
-   inner join user_master_customer
-   as cm on cod.CustomerId= cm.CustomerId 
-   where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
-   and cm.CompanyId=?  group by sop.ProductId  ) as TotalSoldProduct 
-   group by  ProductId limit 1;`;
+    let sql = `select  ProductId, count as Quantity from( SELECT  sop.ProductId, 
+      count(ProductId) as count FROM IMS.Sales_Order_Products as
+       sop inner join Customer_OrderDetails as cod 
+    on sop.CustomerOrderId=cod.CustomerOrderId 
+     inner join user_master_customer
+     as cm on cod.CustomerId= cm.CustomerId 
+     where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
+     and cm.CompanyId=?  group by sop.ProductId 
+     )   as TotalSoldProduct 
+     group by  ProductId  order by Quantity asc limit 1 ;`;
     pool.query(sql, [companyid], (error, results, fields) => {
       if (error) {
         console.log(error);

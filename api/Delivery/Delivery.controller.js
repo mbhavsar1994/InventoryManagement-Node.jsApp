@@ -110,12 +110,6 @@ module.exports = {
     });
   },
   GetDelivery_ProductsbyId: (req, res) => {
-    if (typeof req.query.CompanyId == "undefined") {
-      return res.status(400).json({
-        success: "0",
-        message: "Invalid request..Company Id is missing!"
-      });
-    }
     if (typeof req.query.DeliveryId == "undefined") {
       return res.status(400).json({
         success: "0",
@@ -125,7 +119,7 @@ module.exports = {
     let CompanyId = req.query.CompanyId;
     let DeliveryId = req.query.DeliveryId;
 
-    getDeliverybyId(CompanyId, DeliveryId, (err, results) => {
+    getDeliverybyId(DeliveryId, (err, results) => {
       if (err) {
         console.log(err);
         return res.status(500).json({
@@ -133,6 +127,16 @@ module.exports = {
           message: "Internal server error! Please check request body"
         });
       } else {
+        if (results[0][0] == null) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
+        if (results[1] == null) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
         let delivery_details = results[0][0];
         let products = results[1];
         return res.status(200).json({
