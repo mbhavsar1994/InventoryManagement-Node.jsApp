@@ -127,12 +127,12 @@ module.exports = {
           message: "Internal server error! Please check request body"
         });
       } else {
-        if (results[0][0] == null) {
+        if (results[0].length == 0) {
           return res
             .status(404)
             .json({ success: "0", message: " Resource does not exist." });
         }
-        if (results[1] == null) {
+        if (results[1].length == 0) {
           return res
             .status(404)
             .json({ success: "0", message: " Resource does not exist." });

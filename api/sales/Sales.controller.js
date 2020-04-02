@@ -125,8 +125,8 @@ module.exports = {
 
         if (typeof req.query.Date != "undefined") {
           results.filter(function(result) {
-            var str=result.Date.toString();
-            if (_.includes(str,req.query.Date)) {
+            var str = result.Date.toString();
+            if (_.includes(str, req.query.Date)) {
               response.push(result);
             }
           });
@@ -165,6 +165,11 @@ module.exports = {
           message: "Internal server error!"
         });
       } else {
+        if (results == null) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
         return res.status(200).json({
           success: "1",
           data: results
@@ -192,6 +197,11 @@ module.exports = {
           message: "Internal server error!"
         });
       } else {
+        if (results == null) {
+          return res
+            .status(404)
+            .json({ success: "0", message: " Resource does not exist." });
+        }
         return res.status(200).json({
           success: "1",
           data: results

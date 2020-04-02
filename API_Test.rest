@@ -385,12 +385,7 @@ content-type: application/json
     "CompanyId":"1"
 }
 
-####
 
-// get Delivery details by id
-GET  http://localhost:3000/api/delivery/getdeliverybyid?DeliveryId=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
-content-type: application/json
 
 
 // Cancel Purchase Order ------------------------------>
@@ -412,14 +407,6 @@ content-type: application/json
 {
     "CompanyId":1
 }
-
-
-###
-//get purchase order details by id
-GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=5 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
-content-type: application/json
-
 
 
 
@@ -505,10 +492,35 @@ GET http://localhost:3000/api/sales/getlowestsoldproduct?companyid=1 HTTP/1.1
 content-type: application/json
 
 
+
+//getsalespercategory
+###
+GET http://localhost:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
+content-type: application/json
+
+
+
 //Incoming Purchase Report
 ###
 GET http://localhost:3000/api/purchaseorder/getincomingpurchaseorder?companyid=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
+
+
+
+###
+//get purchase order details by id
+GET  http://localhost:3000/api/purchaseorder/getpurchaseorderbyid?CompanyId=1&PurchaseOrderId=5 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
+content-type: application/json
+
+####
+
+// get Delivery details by id
+GET  http://localhost:3000/api/delivery/getdeliverybyid?DeliveryId=85 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+content-type: application/json
+
 
 //edit company user
 ###
@@ -540,10 +552,6 @@ content-type: application/json
 ####
 
 
-//getsalespercategory
-###
-GET http://localhost:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
-content-type: application/json
 
 
 // Current Incoming Products ----------------------------------------->

@@ -99,7 +99,7 @@ module.exports = {
   },
 
   //Function to provide Forget Password for  (Company ) user if valid email add------------------------------->
-  // Send email for valid user with re-login details
+  // Send email for validp user with re-login details
   forgetPasswordCompany: (req, res) => {
     const body = req.body;
 
@@ -140,15 +140,12 @@ module.exports = {
   //update company customer
   editcompanyuser: (req, res) => {
     var regex = /\S+@\S+\.\S+/;
-    if(req.body.email==null)
-    {
+    if (req.body.email == null) {
       return res.status(400).json({
         success: "0",
         message: "email is require"
       });
-    }
-    else if(req.body.email == req.body.email .match(regex))
-    {
+    } else if (req.body.email == req.body.email.match(regex)) {
       editUser(req, (err, results) => {
         console.log(results);
         if (err) {
@@ -173,8 +170,7 @@ module.exports = {
           });
         }
       });
-    }
-    else{
+    } else {
       return res.status(400).json({
         success: "0",
         message: "email  should be in example@gmail.com"
