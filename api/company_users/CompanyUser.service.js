@@ -78,11 +78,11 @@ module.exports = {
   //edit usser
   editUser: (req, callBack) => {
     //console.log("hi")
-   // console.log(req);
-    let user=req.body;
+    // console.log(req);
+    let user = req.body;
     //let user = req.body;
     let sql = `SET @Customerid=?; SET @Fname=?;SET @Lname=?;SET @Email=?;SET @PhoneNumber=?;SET @Password=?;  CALL EditCompanyUserProfile(@Customerid,@Fname,@Lname,@Email,@PhoneNumber,@Password,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
-    
+
     pool.query(
       sql,
       [
@@ -137,7 +137,7 @@ module.exports = {
 
   // Servide to Edit Company Profile ----------------------------------->
 
-  EditCompanyProfile: (req, callBack) => {
+  EditCompanyProfile: (req, _callBack) => {
     let logo = "";
     if (typeof req.file == "undefined") {
       logo = null;
