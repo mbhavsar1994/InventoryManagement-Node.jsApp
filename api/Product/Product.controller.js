@@ -124,6 +124,12 @@ module.exports = {
           response = results;
         }
 
+        if (response.length == 0) {
+          return res.status(200).json({
+            success: "1",
+            data: "No Products available to display"
+          });
+        }
         return res.status(200).json({
           success: "1",
           data: response

@@ -255,9 +255,7 @@ module.exports = {
         });
       }
       if (results.length == 0) {
-        return res
-          .status(200)
-          .json({ success: "1", data: "No Products available to display" });
+        return res.status(200).json({ success: "1", data: "0" });
       } else {
         return res.status(200).json({
           success: "1",
