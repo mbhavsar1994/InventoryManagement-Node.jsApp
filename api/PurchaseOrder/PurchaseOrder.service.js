@@ -223,7 +223,7 @@ module.exports = {
 
   getIncomingPurchaseOrder_report: (companyid, callBack) => {
     let sql = `select pop.Purchase_OrderId, su.SupplierName as 'Supplier',Date,
-     sum(pop.Quantity) as 'Total unit'
+     sum(pop.Quantity) as 'Total_Unit'
     ,Purchase_order_Totat_IncTax as Total
      from Purchase_orders as po  inner join Purchase_Order_Products as pop
     on po.Purchase_OrderId=pop.Purchase_OrderId inner join Suppliers as su

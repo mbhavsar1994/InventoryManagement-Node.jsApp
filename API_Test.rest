@@ -134,7 +134,7 @@ content-type: application/json
 // Get Supplier By Id ------------------------->
 ###
 
-GET http://18.216.15.198:3000/api/supplier/getsupplierbyId?SupplierId=1&CompanyId=1 HTTP/1.1
+GET http://18.216.15.198:3000/api/supplier/getsupplierbyId?SupplierId=3&CompanyId=10 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2Nzk3NTd9.0ItQQeLA2iIAawSxdeGx6zD16Q9P9nrSmCdWI9psCqE
 content-type: application/json
 
@@ -266,7 +266,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 
 // Get All Products ----------------------------> 
 ###
-POST  http://localhost:3000/api/product/getproducts?ProductName=shirt&SupplierName=1 HTTP/1.1
+POST  http://localhost:3000/api/product/getproducts?ProductName=te HTTP/1.1
 content-type: application/json
 
 {
