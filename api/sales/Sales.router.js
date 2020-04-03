@@ -28,11 +28,27 @@ router.post(
   GetSales
 );
 
-router.get("/getmostsoldproduct", GetHighestSoldProduct);
-router.get("/getlowestsoldproduct", GetLeastSoldProduct);
+router.get(
+  "/getmostsoldproduct",
+  passport.authenticate("jwt", { session: false }),
+  GetHighestSoldProduct
+);
+router.get(
+  "/getlowestsoldproduct",
+  passport.authenticate("jwt", { session: false }),
+  GetLeastSoldProduct
+);
 
-router.get("/getrecentsalesbyweek", GetRecentSalesByWeek);
+router.get(
+  "/getrecentsalesbyweek",
+  passport.authenticate("jwt", { session: false }),
+  GetRecentSalesByWeek
+);
 
-router.get("/getsalespercategory", GetSalsePerCategory);
+router.get(
+  "/getsalespercategory",
+  passport.authenticate("jwt", { session: false }),
+  GetSalsePerCategory
+);
 
 module.exports = router;

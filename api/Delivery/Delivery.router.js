@@ -18,6 +18,10 @@ router.post(
   GetAllDelivery
 );
 
-router.get("/getdeliverybyid", GetDelivery_ProductsbyId);
+router.get(
+  "/getdeliverybyid",
+  passport.authenticate("jwt", { session: false }),
+  GetDelivery_ProductsbyId
+);
 
 module.exports = router;
