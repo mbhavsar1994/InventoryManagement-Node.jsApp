@@ -166,9 +166,7 @@ module.exports = {
         });
       } else {
         if (results.length == 0) {
-          return res
-            .status(404)
-            .json({ success: "0", message: " Resource does not exist." });
+          return res.status(200).json({ success: "1", data: "0" });
         }
         return res.status(200).json({
           success: "1",
@@ -198,9 +196,7 @@ module.exports = {
         });
       } else {
         if (results.length == 0) {
-          return res
-            .status(404)
-            .json({ success: "0", message: " Resource does not exist." });
+          return res.status(200).json({ success: "1", data: "0" });
         }
         return res.status(200).json({
           success: "1",
@@ -228,6 +224,9 @@ module.exports = {
           success: "0",
           message: "Internal server error!"
         });
+      }
+      if (results.length == 0) {
+        return res.status(200).json({ success: "1", data: "0" });
       } else {
         return res.status(200).json({
           success: "1",
@@ -256,9 +255,7 @@ module.exports = {
         });
       }
       if (results.length == 0) {
-        return res
-          .status(404)
-          .json({ success: "0", message: " Resource does not exist." });
+        return res.status(200).json({ success: "1", data: "0" });
       } else {
         return res.status(200).json({
           success: "1",
