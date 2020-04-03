@@ -165,7 +165,7 @@ module.exports = {
           message: "Internal server error!"
         });
       } else {
-        if (results == null) {
+        if (results.length == null) {
           return res
             .status(404)
             .json({ success: "0", message: " Resource does not exist." });
@@ -197,7 +197,7 @@ module.exports = {
           message: "Internal server error!"
         });
       } else {
-        if (results == null) {
+        if (results.length == null) {
           return res
             .status(404)
             .json({ success: "0", message: " Resource does not exist." });
@@ -255,7 +255,7 @@ module.exports = {
           message: "Internal server error!"
         });
       }
-      if (results == null) {
+      if (results.length == null) {
         return res
           .status(404)
           .json({ success: "0", message: " Resource does not exist." });
