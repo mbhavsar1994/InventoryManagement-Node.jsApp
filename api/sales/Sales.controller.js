@@ -254,6 +254,11 @@ module.exports = {
           success: "0",
           message: "Internal server error!"
         });
+      }
+      if (results == null) {
+        return res
+          .status(404)
+          .json({ success: "0", message: " Resource does not exist." });
       } else {
         return res.status(200).json({
           success: "1",
