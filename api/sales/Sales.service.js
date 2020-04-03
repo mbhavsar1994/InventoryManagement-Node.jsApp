@@ -145,7 +145,7 @@ module.exports = {
 
   // Get Recenet Sales By this Week ----------------------------------------->
   getRecentSalesByWeek: (CompanyId, callBack) => {
-    let sql = `Select Sales_Order_Products.CustomerOrderId , SUM(Sales_Order_Products.Quantity) as 'Total Unit' ,Customer_OrderDetails.Total as 'Total',user_master_customer.Fname  as 'customer'
+    let sql = `Select Sales_Order_Products.CustomerOrderId , SUM(Sales_Order_Products.Quantity) as 'Total_Unit' ,Customer_OrderDetails.Total as 'Total',user_master_customer.Fname  as 'customer'
     from Sales_Order_Products inner join Customer_OrderDetails on Sales_Order_Products.CustomerOrderId=Customer_OrderDetails.CustomerOrderId 
     inner join user_master_customer on Customer_OrderDetails.CustomerId=user_master_customer.CustomerId 
     where Customer_OrderDetails.Date>=DATE_SUB(now(),INTERVAL 1 week) AND Customer_OrderDetails.Status=1
