@@ -84,7 +84,9 @@ module.exports = {
 
         if (typeof req.query.ProductName != "undefined") {
           results.filter(function(result) {
-            if (result.ProductName.toString() == req.query.ProductName) {
+            if (
+              _.includes(result.ProductName.toString(), req.query.ProductName)
+            ) {
               response.push(result);
             }
           });

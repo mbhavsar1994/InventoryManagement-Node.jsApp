@@ -432,10 +432,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpb
 content-type: application/json
 
 {
-    "id":"5",
+    "id":"500",
     "Fname": "loveleen11",
     "Lname": "minhas",
-    "email":"minhasloveleen@gmail.com",
+    "email":"minhasloveln@gmail.com",
     "phonenumber":"1234567898",
     "countryid":1,
     "provinceid":2,
@@ -504,7 +504,8 @@ content-type: application/json
 
 //getsalespercategory
 ###
-GET http://localhost:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
+GET http://18.216.15.198:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU4ODUwNTB9.yy68brqMxsUUe-Al0RC1rN4sXcRXLCnBgcTeDORhGXY
 content-type: application/json
 
 
@@ -541,7 +542,7 @@ content-type: application/json
     "userid":4,
     "fname":"minhasjoti",
     "lname":"kaur",
-    "email":"kaur08@gmail.com",
+    "email":"j@gmail.com",
     "password":"12121212",
     "phonenumber":"1234567890"
 }
