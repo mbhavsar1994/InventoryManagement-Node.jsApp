@@ -6,7 +6,8 @@ const {
   Cancelpurchase_Order,
   getAllPurchaseOrders,
   getIncomingPurchaseOrder_report,
-  getPurchase_OrderbyId
+  getPurchase_OrderbyId,
+  disablePurchaseOrder
 } = require("./PurchaseOrder.service");
 
 const _ = require("lodash");
@@ -297,6 +298,42 @@ module.exports = {
         return res.status(200).json({
           success: "1",
           data: { purchaseOrder_details, products }
+        });
+      }
+    });
+  },
+  DeletePurchaseOrder: (req, res) => {
+    let purchase_orderId = "";
+
+    if (typeof req.query.purchase_orderid != "undefined") {
+      purchase_orderId = req.query.purchase_orderid;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Purchase Order id is missing "
+      });
+    }
+    disablePurchaseOrder(purchase_orderId, (err, results) => {
+      console.log(results);
+      if (err) {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      } else if (!results) {
+        return res.status(400).json({
+          success: "0",
+          message: "Bad request"
+        });
+      } else if (results.affectedRows < 1) {
+        return res.status(400).json({
+          success: "0",
+          message: "Invalid Purchase Order Id"
+        });
+      } else {
+        return res.status(200).json({
+          success: "1",
+          data: "Purchase Order Deleted Successfully."
         });
       }
     });

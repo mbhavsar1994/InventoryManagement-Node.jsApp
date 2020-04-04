@@ -207,7 +207,7 @@ module.exports = {
   // Service to get all purchase orders information
   getAllPurchaseOrders: (CompanyId, callBack) => {
     pool.query(
-      "select a.Purchase_OrderId,a.SupplierId,a.Date,a.Status,b.SupplierName,b.CompanyId,Sum(c.Quantity) as 'Quantity',Sum(c.Total) as  'Total' from Purchase_orders as a inner join Suppliers as b on a.SupplierId=b.SupplierId inner join Purchase_Order_Products as c on c.Purchase_OrderId=a.Purchase_OrderId  where b.CompanyId=? group by c.Purchase_OrderId",
+      "select a.Purchase_OrderId,a.SupplierId,a.Date,a.Status,b.SupplierName,b.CompanyId,Sum(c.Quantity) as 'Quantity',Sum(c.Total) as  'Total' from Purchase_orders as a inner join Suppliers as b on a.SupplierId=b.SupplierId inner join Purchase_Order_Products as c on c.Purchase_OrderId=a.Purchase_OrderId  where b.CompanyId=? and a.IsActive=1 group by c.Purchase_OrderId",
       [CompanyId],
 
       (error, results, fields) => {
@@ -228,7 +228,7 @@ module.exports = {
      from Purchase_orders as po  inner join Purchase_Order_Products as pop
     on po.Purchase_OrderId=pop.Purchase_OrderId inner join Suppliers as su
      on po.SupplierId= su.SupplierId
-     where po.Status=1 and po.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) and su.CompanyId=?
+     where po.Status=1 and po.IsActive=1 and po.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) and su.CompanyId=?
      group by pop.Purchase_OrderId `;
     pool.query(sql, [companyid], (error, results, fields) => {
       if (error) {
@@ -248,7 +248,7 @@ module.exports = {
       on a.SupplierId=b.SupplierId inner join Purchase_Order_Products
       as c on c.Purchase_OrderId=a.Purchase_OrderId  inner join company_details as cd on b.CompanyId= cd.CompanyId 
       inner join Currency_master as cm on cd.CurrencyId=cm.CurrencyId
-       where b.CompanyId=? and a.Purchase_OrderId=? group by c.Purchase_OrderId;
+       where b.CompanyId=? and a.Purchase_OrderId=? and a.IsActive=1 group by c.Purchase_OrderId;
        
       select p.SKU,p.Product_name,p.Description,p.PurchasePrice,pop.PurchaseOrder_ProductId,pop.Quantity,pop.Total from product as p inner join
       Purchase_Order_Products  as pop
@@ -262,6 +262,22 @@ module.exports = {
         }
         console.log(results);
 
+        return callBack(null, results);
+      }
+    );
+  },
+  //Disable Purchase Order by id
+  disablePurchaseOrder: (purchase_orderId, callBack) => {
+    pool.query(
+      "UPDATE Purchase_orders SET IsActive=0 WHERE Purchase_OrderId=?;",
+      [purchase_orderId],
+
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        console.log(results);
         return callBack(null, results);
       }
     );

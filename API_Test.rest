@@ -399,6 +399,13 @@ content-type: application/json
     "Purchase_OrderId":80
 }
 
+####
+// Delete Purchase Order by purchase_orderid
+DELETE  http://localhost:3000/api/purchaseorder/deletepurchaseorder?purchase_orderid=25 HTTP/1.1
+content-type: application/json
+
+
+
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
