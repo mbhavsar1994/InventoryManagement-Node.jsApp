@@ -51,10 +51,6 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   GetSalsePerCategory
 );
-router.post(
-  "/getsalesbycustomerid",
-  passport.authenticate("jwt", { session: false }),
-  GetSalesByCustomerId
-);
+router.post("/getsalesbycustomerid", GetSalesByCustomerId);
 
 module.exports = router;

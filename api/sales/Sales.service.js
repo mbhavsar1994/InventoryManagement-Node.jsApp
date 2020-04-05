@@ -28,7 +28,7 @@ module.exports = {
         product[i].productid,
         product[i].price,
         product[i].qty,
-        product[i].subtotal,
+        product[i].subtotal
       ]);
     }
 
@@ -106,7 +106,7 @@ module.exports = {
   //getting all the orders of particular Customer
   getSalesByCustomerId: (CustomerId, callBack) => {
     let sql = `  
-    select distinct  user_master_customer.CustomerId,user_master_customer.Fname,Customer_OrderDetails.CustomerOrderId,Customer_OrderDetails.date ,sum(Sales_Order_Products.Quantity) as 'Quantity',Sum(Sales_Order_Products.SubTotal) as 'Total' , product.Image 
+    select distinct  user_master_customer.CustomerId,user_master_customer.Fname,Customer_OrderDetails.CustomerOrderId,Customer_OrderDetails.date ,sum(Sales_Order_Products.Quantity) as 'Quantity',Customer_OrderDetails.Total as 'Total' , product.Image 
 from user_master_customer inner join Customer_OrderDetails on user_master_customer.CustomerId = Customer_OrderDetails.CustomerId 
 inner join Sales_Order_Products on  Customer_OrderDetails.CustomerOrderId= Sales_Order_Products.CustomerOrderId 
 inner join product on Sales_Order_Products.ProductId = product.ProductId
@@ -199,5 +199,5 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
       }
       return callBack(null, results);
     });
-  },
+  }
 };
