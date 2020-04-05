@@ -439,17 +439,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpb
 content-type: application/json
 
 {
-<<<<<<< HEAD
-    "id":"1000",
-    "Fname": "loveleen11",
-    "Lname": "minhas",
-    "email":"minhaslovelkkkkeekkn@gmail.com",
-=======
     "id":"500",
     "Fname": "loveleen11",
     "Lname": "minhas",
     "email":"minhasloveln@gmail.com",
->>>>>>> 6a1c421ca39a1558c90cb45c5ebe5b809fdf7d57
     "phonenumber":"1234567898",
     "countryid":1,
     "provinceid":2,
