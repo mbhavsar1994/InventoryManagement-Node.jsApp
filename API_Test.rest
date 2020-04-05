@@ -401,7 +401,7 @@ content-type: application/json
 
 ####
 // Delete Purchase Order by purchase_orderid
-DELETE  http://localhost:3000/api/purchaseorder/deletepurchaseorder?purchase_orderid=25 HTTP/1.1
+DELETE  http://localhost:3000/api/purchaseorder/deletepurchaseorder?purchase_orderid=80 HTTP/1.1
 content-type: application/json
 
 
@@ -409,6 +409,7 @@ content-type: application/json
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
 
 {

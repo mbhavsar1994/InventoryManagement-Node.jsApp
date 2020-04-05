@@ -8,7 +8,7 @@ const {
   getPurchaseOrders,
   getPurchaseOrderReport,
   GetPurchase_Orders_ProductsbyId,
-  DeletePurchaseOrder
+  DeletePurchaseOrder,
 } = require("./PurchaseOrder.controller");
 
 router.post("/create", createPurchaseOrder);

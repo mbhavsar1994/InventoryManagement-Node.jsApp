@@ -28,7 +28,7 @@ module.exports = {
         product[i].productid,
         product[i].price,
         product[i].qty,
-        product[i].subtotal
+        product[i].subtotal,
       ]);
     }
 
@@ -111,7 +111,7 @@ module.exports = {
      inner join user_master_customer
      as cm on cod.CustomerId= cm.CustomerId 
      where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
-     and cm.CompanyId= 1 group by sop.ProductId 
+     and cm.CompanyId= ? group by sop.ProductId 
      )   as TotalSoldProduct   inner join product as p on TotalSoldProduct.ProductId=p.ProductId
      group by  ProductId  order by Quantity desc limit 1 ;     
   `;
@@ -177,5 +177,5 @@ module.exports = {
       }
       return callBack(null, results);
     });
-  }
+  },
 };

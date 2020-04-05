@@ -7,7 +7,7 @@ const {
   getAllPurchaseOrders,
   getIncomingPurchaseOrder_report,
   getPurchase_OrderbyId,
-  disablePurchaseOrder
+  disablePurchaseOrder,
 } = require("./PurchaseOrder.service");
 
 const _ = require("lodash");
@@ -20,17 +20,17 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal server error! please try again later",
-          data: err
+          data: err,
         });
       } else if (results[5][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[5][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[6][0]["Err_msg"]
+          message: results[6][0]["Err_msg"],
         });
       } else {
         AddPurchaseOrder_Products(
@@ -43,22 +43,22 @@ module.exports = {
               return res.status(500).json({
                 success: "0",
                 message: "Internal server error! please try again later",
-                data: err
+                data: err,
               });
             } else if (results[7][0]["status"] == null) {
               return res.status(500).json({
                 success: "0",
-                message: "Internal server error!"
+                message: "Internal server error!",
               });
             } else if (results[7][0]["status"] == "0") {
               return res.status(400).json({
                 success: "0",
-                message: results[8][0]["Err_msg"]
+                message: results[8][0]["Err_msg"],
               });
             } else {
               return res.status(201).json({
                 success: "1",
-                message: "Purchase Order created Successfully"
+                message: "Purchase Order created Successfully",
               });
             }
           }
@@ -74,7 +74,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Purchase Order Id is missing!"
+        message: "Invalid request..Purchase Order Id is missing!",
       });
     }
     EditPurchaseOrder(req, (err, results) => {
@@ -83,17 +83,17 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal server error! please try again later",
-          data: err
+          data: err,
         });
       } else if (results[4][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[4][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[5][0]["Err_msg"]
+          message: results[5][0]["Err_msg"],
         });
       } else {
         EditPurchaseOrder_Products1(req, (err, results) => {
@@ -102,22 +102,22 @@ module.exports = {
             return res.status(500).json({
               success: "0",
               message: "Internal server error! please try again later",
-              data: err
+              data: err,
             });
           } else if (results[8][0]["status"] == null) {
             return res.status(500).json({
               success: "0",
-              message: "Internal server error!"
+              message: "Internal server error!",
             });
           } else if (results[8][0]["status"] == "0") {
             return res.status(400).json({
               success: "0",
-              message: results[9][0]["Err_msg"]
+              message: results[9][0]["Err_msg"],
             });
           } else {
             return res.status(200).json({
               success: "1",
-              message: "Purchase Order updated Successfully"
+              message: "Purchase Order updated Successfully",
             });
           }
         });
@@ -133,7 +133,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Company Id is missing!"
+        message: "Invalid request..Company Id is missing!",
       });
     }
     if (typeof req.body.Purchase_OrderId != "undefined") {
@@ -141,7 +141,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Purchase Order Id is missing!"
+        message: "Invalid request..Purchase Order Id is missing!",
       });
     }
     Cancelpurchase_Order(req, (err, results) => {
@@ -150,22 +150,22 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal Server error!",
-          data: err
+          data: err,
         });
       } else if (!results) {
         return res.status(400).json({
           success: "0",
-          message: "Bad request"
+          message: "Bad request",
         });
       } else if (results.affectedRows < 1) {
         return res.status(400).json({
           success: "0",
-          message: "Invalid Purchase Order Id"
+          message: "Invalid Purchase Order Id",
         });
       } else {
         return res.status(200).json({
           success: "1",
-          message: "Purchase Order Cancelled Successfully"
+          message: "Purchase Order Cancelled Successfully",
         });
       }
     });
@@ -182,7 +182,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Company Id is missing!"
+        message: "Invalid request..Company Id is missing!",
       });
     }
 
@@ -192,7 +192,7 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal Server Error",
-          error: err
+          error: err,
         });
       }
       if (!results.length) {
@@ -201,7 +201,7 @@ module.exports = {
           .json({ success: "0", message: " Resource does not exist." });
       } else {
         if (typeof req.query.PurchaseOrderId != "undefined") {
-          results.filter(function(result) {
+          results.filter(function (result) {
             if (
               result.Purchase_OrderId.toString() == req.query.PurchaseOrderId
             ) {
@@ -211,7 +211,7 @@ module.exports = {
         }
 
         if (typeof req.query.SupplierId != "undefined") {
-          results.filter(function(result) {
+          results.filter(function (result) {
             if (result.SupplierId.toString() == req.query.SupplierId) {
               response.push(result);
             }
@@ -228,11 +228,13 @@ module.exports = {
 
         return res.status(200).json({
           success: "1",
-          data: response
+          data: response,
         });
       }
     });
   },
+
+  // Function to get Incoming Purchase Orders report
   getPurchaseOrderReport: (req, res) => {
     let companyid = "";
     if (typeof req.query.companyid != "undefined") {
@@ -240,7 +242,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
 
@@ -249,27 +251,30 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
   },
+
+  //****************************************************************************************** */
+  // Function to get Purchase Order details by id
   GetPurchase_Orders_ProductsbyId: (req, res) => {
     if (typeof req.query.CompanyId == "undefined") {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Company Id is missing!"
+        message: "Invalid request..Company Id is missing!",
       });
     }
     if (typeof req.query.PurchaseOrderId == "undefined") {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..PurchaseOrder Id is missing!"
+        message: "Invalid request..PurchaseOrder Id is missing!",
       });
     }
     let CompanyId = req.query.CompanyId;
@@ -280,7 +285,7 @@ module.exports = {
         console.log(err);
         return res.status(500).json({
           success: "0",
-          message: "Internal server error! Please check request body"
+          message: "Internal server error! Please check request body",
         });
       } else {
         if (results[0][0] == null) {
@@ -297,11 +302,14 @@ module.exports = {
         let products = results[1];
         return res.status(200).json({
           success: "1",
-          data: { purchaseOrder_details, products }
+          data: { purchaseOrder_details, products },
         });
       }
     });
   },
+
+  //************************************************************************************************ */
+  //Function to delete purchase Order
   DeletePurchaseOrder: (req, res) => {
     let purchase_orderId = "";
 
@@ -310,7 +318,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Purchase Order id is missing "
+        message: "Invalid request..Purchase Order id is missing ",
       });
     }
     disablePurchaseOrder(purchase_orderId, (err, results) => {
@@ -318,24 +326,35 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (!results) {
         return res.status(400).json({
           success: "0",
-          message: "Bad request"
+          message: "Bad request",
         });
       } else if (results.affectedRows < 1) {
         return res.status(400).json({
           success: "0",
-          message: "Invalid Purchase Order Id"
+          message: "Invalid Purchase Order Id",
         });
       } else {
         return res.status(200).json({
           success: "1",
-          data: "Purchase Order Deleted Successfully."
+          data: "Purchase Order Deleted Successfully!",
         });
       }
     });
-  }
+  },
+
+  ReOrderInventory: (req, res) => {
+    if (typeof req.query.purchase_orderid != "undefined") {
+      purchase_orderId = req.query.purchase_orderid;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..Purchase Order id is missing ",
+      });
+    }
+  },
 };
