@@ -7,7 +7,8 @@ const {
   GetHighestSoldProduct,
   GetLeastSoldProduct,
   GetRecentSalesByWeek,
-  GetSalsePerCategory
+  GetSalsePerCategory,
+  GetSalesByCustomerId
 } = require("./Sales.controller");
 
 router.post(
@@ -49,6 +50,11 @@ router.get(
   "/getsalespercategory",
   passport.authenticate("jwt", { session: false }),
   GetSalsePerCategory
+);
+router.post(
+  "/getsalesbycustomerid",
+  passport.authenticate("jwt", { session: false }),
+  GetSalesByCustomerId
 );
 
 module.exports = router;

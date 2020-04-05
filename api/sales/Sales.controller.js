@@ -6,7 +6,8 @@ const {
   getMaxSoldsItems,
   getMinSoldsItems,
   getRecentSalesByWeek,
-  getSalesPerCategory
+  getSalesPerCategory,
+  getSalesByCustomerId
 } = require("./Sales.service");
 const _ = require("lodash");
 
@@ -71,6 +72,32 @@ module.exports = {
       });
     }
     getSalesById(orderid, companyid, (err, results) => {
+      console.log(results);
+      if (err) {
+        return res.status(500).json({
+          success: "0",
+          message: "Internal server error!"
+        });
+      } else {
+        return res.status(200).json({
+          success: "1",
+          data: results
+        });
+      }
+    });
+  },
+  //Getting all the order by passing Customer id
+  GetSalesByCustomerId: (req, res) => {
+    let CustomerId = "";
+    if (typeof req.body.CustomerId != "undefined") {
+      CustomerId = req.body.CustomerId;
+    } else {
+      return res.status(400).json({
+        success: "0",
+        message: "Invalid request..CustomerId id is missing "
+      });
+    }
+    getSalesByCustomerId(CustomerId, (err, results) => {
       console.log(results);
       if (err) {
         return res.status(500).json({

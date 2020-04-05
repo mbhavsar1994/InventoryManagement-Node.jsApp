@@ -465,11 +465,19 @@ content-type: application/json
 // Get all sales----------------------->
 ###
 POST http://localhost:3000/api/sales/getsales HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUxNDN9.Akh__Xik0sEB6hRjJkythwRcCTWTZZCb8usVtd5lsYM
 content-type: application/json
 
 {
     "companyid":"1"
+}
+
+// Get all sales By CustomerId----------------------->
+###
+POST http://localhost:3000/api/sales/getsalesbycustomerid HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDUxNDN9.Akh__Xik0sEB6hRjJkythwRcCTWTZZCb8usVtd5lsYM
+{
+    "CustomerId":"1"
 }
 
 //total 
