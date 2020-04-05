@@ -20,7 +20,7 @@ module.exports = {
     {
       return res.status(400).json({
         success: "0",
-        message: "SKU length must be 6"
+        message: "SKU length must be 13 and in a xxxx-0000-00 where x(letters)and 0(digits)"
       });
     }
     else if(req.body.SKU == req.body.SKU .match(regex))
