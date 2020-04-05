@@ -84,7 +84,9 @@ module.exports = {
 
         if (typeof req.query.ProductName != "undefined") {
           results.filter(function(result) {
-            if (result.ProductName.toString() == req.query.ProductName) {
+            if (
+              _.includes(result.ProductName.toString(), req.query.ProductName)
+            ) {
               response.push(result);
             }
           });
@@ -122,6 +124,12 @@ module.exports = {
           response = results;
         }
 
+        if (response.length == 0) {
+          return res.status(200).json({
+            success: "1",
+            data: "No Products available to display"
+          });
+        }
         return res.status(200).json({
           success: "1",
           data: response

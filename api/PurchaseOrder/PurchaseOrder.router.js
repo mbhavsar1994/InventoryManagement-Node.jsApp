@@ -7,7 +7,8 @@ const {
   cancelPurchaseOrder,
   getPurchaseOrders,
   getPurchaseOrderReport,
-  GetPurchase_Orders_ProductsbyId
+  GetPurchase_Orders_ProductsbyId,
+  DeletePurchaseOrder,
 } = require("./PurchaseOrder.controller");
 
 router.post("/create", createPurchaseOrder);
@@ -70,6 +71,12 @@ router.get(
   "/getpurchaseorderbyid",
   passport.authenticate("jwt", { session: false }),
   GetPurchase_Orders_ProductsbyId
+);
+
+router.delete(
+  "/deletepurchaseorder",
+  passport.authenticate("jwt", { session: false }),
+  DeletePurchaseOrder
 );
 
 module.exports = router;
