@@ -153,7 +153,14 @@ module.exports = {
             success: "0",
             message: results[14][0].Err_msg
           });
-        } else {
+        } else if(results[12].affectedRows==0)
+        {
+          return res.status(400).json({
+            success: "1",
+            message: "need to update something"
+          });
+        }
+        else {
           return res.status(200).json({
             success: "1",
             message: "User Profile updated Successfully"

@@ -1,6 +1,7 @@
 require("dotenv").config();
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const cron = require("node-cron");
 const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -19,11 +20,11 @@ jwtOptions.secretOrKey = process.env.JWT_KEY;
 
 const {
   getUserByUserEmail,
-  getUserByid
+  getUserByid,
 } = require("./api/company_users/CompanyUser.service");
 
 // lets create our strategy for web token
-let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
   console.log("payload received", jwt_payload);
 
   getUserByUserEmail(jwt_payload.email, (err, results) => {
@@ -31,7 +32,7 @@ let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
       next(null, results);
     } else {
       let {
-        getUserByUserEmail
+        getUserByUserEmail,
       } = require("./api/customer_users/CustomerUser.service");
       getUserByUserEmail(jwt_payload.email, (err, results) => {
         if (results) {
@@ -62,6 +63,11 @@ const storage = multer.diskStorage({
     cb(null, "./uploads");
   },
   filename: (req, file, cb) => {
+    // Accept images only
+    if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+      req.fileValidationError = "Only image files are allowed!";
+      return cb(new Error("Only image files are allowed!"), false);
+    }
     /*
       uuidv4() will generate a random ID that we'll use for the
       new filename. We use path.extname() to get
@@ -70,9 +76,10 @@ const storage = multer.diskStorage({
       to save the file on the server and will be available as
       req.file.pathname in the router handler.
     */
+
     const newFilename = `${uuidv4()}${path.extname(file.originalname)}`;
     cb(null, newFilename);
-  }
+  },
 });
 
 // create the multer instance that will be used to upload/save the file
@@ -90,31 +97,31 @@ const options = {
       version: "1.0.0",
       description: "End Points to test Inventory management routes",
       contact: {
-        name: "API Support"
-      }
+        name: "API Support",
+      },
     },
     servers: [
       {
-        url: "http://18.218.124.225:3000"
+        url: "http://18.218.124.225:3000",
       },
       {
-        url: "http://localhost:3000"
-      }
+        url: "http://localhost:3000",
+      },
     ],
     components: {
       securitySchemes: {
         BearerAuth: {
           type: "http",
-          scheme: "bearer"
-        }
-      }
-    }
+          scheme: "bearer",
+        },
+      },
+    },
   },
   apis: [
     "./api/company_users/CompanyUser.router.js",
     "./api/Category/Category.router.js",
-    "./api/product/Product.router.js"
-  ]
+    "./api/product/Product.router.js",
+  ],
 };
 const specs = swaggerJsdoc(options);
 app.use("/api-docs", swaggerUi.serve);
@@ -122,12 +129,12 @@ app.use("/api-docs", swaggerUi.serve);
 app.get(
   "/api-docs",
   swaggerUi.setup(specs, {
-    explorer: true
+    explorer: true,
   })
 );
 
 //full swagger.json schema that gets created by the swaggerSpec.
-app.get("/swagger.json", function(req, res) {
+app.get("/swagger.json", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   res.send(specs);
 });
@@ -169,7 +176,7 @@ app.use("/api/delivery", DeliveryRouter);
 
 app.use("/api/sales", salesRouter);
 // Main Root
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.json({ message: "Inventory Management API is up!" });
 });
 

@@ -28,7 +28,7 @@ module.exports = {
         product[i].productid,
         product[i].price,
         product[i].qty,
-        product[i].subtotal
+        product[i].subtotal,
       ]);
     }
 
@@ -126,15 +126,15 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
   },
 
   getMaxSoldsItems: (companyid, callBack) => {
-    let sql = `   select  ProductId, count as Quantity from( SELECT  sop.ProductId, 
-      count(ProductId) as count FROM IMS.Sales_Order_Products as
+    let sql = `   select  TotalSoldProduct.ProductId, count as Quantity, p.Product_name from( SELECT  sop.ProductId, 
+      count(sop.ProductId) as count  FROM IMS.Sales_Order_Products as
        sop inner join Customer_OrderDetails as cod 
     on sop.CustomerOrderId=cod.CustomerOrderId 
      inner join user_master_customer
      as cm on cod.CustomerId= cm.CustomerId 
      where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
-     and cm.CompanyId=?  group by sop.ProductId 
-     )   as TotalSoldProduct 
+     and cm.CompanyId= ? group by sop.ProductId 
+     )   as TotalSoldProduct   inner join product as p on TotalSoldProduct.ProductId=p.ProductId
      group by  ProductId  order by Quantity desc limit 1 ;     
   `;
     pool.query(sql, [companyid], (error, results, fields) => {
@@ -146,7 +146,7 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
     });
   },
   getMinSoldsItems: (companyid, callBack) => {
-    let sql = `select  ProductId, count as Quantity from( SELECT  sop.ProductId, 
+    let sql = `select  TotalSoldProduct.ProductId, count as Quantity, p.Product_name from( SELECT  sop.ProductId, 
       count(ProductId) as count FROM IMS.Sales_Order_Products as
        sop inner join Customer_OrderDetails as cod 
     on sop.CustomerOrderId=cod.CustomerOrderId 
@@ -154,7 +154,7 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
      as cm on cod.CustomerId= cm.CustomerId 
      where cod.Date>=DATE_SUB(now(),INTERVAL 1 MONTH) 
      and cm.CompanyId=?  group by sop.ProductId 
-     )   as TotalSoldProduct 
+     )   as TotalSoldProduct  inner join product as p on TotalSoldProduct.ProductId=p.ProductId
      group by  ProductId  order by Quantity asc limit 1 ;`;
     pool.query(sql, [companyid], (error, results, fields) => {
       if (error) {
@@ -167,7 +167,7 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
 
   // Get Recenet Sales By this Week ----------------------------------------->
   getRecentSalesByWeek: (CompanyId, callBack) => {
-    let sql = `Select Sales_Order_Products.CustomerOrderId , SUM(Sales_Order_Products.Quantity) as 'Total Unit' ,Customer_OrderDetails.Total as 'Total',user_master_customer.Fname  as 'customer'
+    let sql = `Select Sales_Order_Products.CustomerOrderId , SUM(Sales_Order_Products.Quantity) as 'Total_Unit' ,Customer_OrderDetails.Total as 'Total',user_master_customer.Fname  as 'customer'
     from Sales_Order_Products inner join Customer_OrderDetails on Sales_Order_Products.CustomerOrderId=Customer_OrderDetails.CustomerOrderId 
     inner join user_master_customer on Customer_OrderDetails.CustomerId=user_master_customer.CustomerId 
     where Customer_OrderDetails.Date>=DATE_SUB(now(),INTERVAL 1 week) AND Customer_OrderDetails.Status=1
@@ -184,7 +184,7 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
   getSalesPerCategory: (companyid, callBack) => {
     let sql = `select c.Category_name as 'CategoryName' , sum(sop.Quantity) as 'Quantity_Per_Category',
      sum(sop.SubTotal) as 'Total' , 
-    (sum(sop.SubTotal)-sum(sop.Quantity*p.PurchasePrice))/sum(sop.SubTotal) as 'Profit Margin' 
+    (sum(sop.SubTotal)-sum(sop.Quantity*p.PurchasePrice))/sum(sop.SubTotal) as 'Profit_Margin' 
     from category as c 
     inner join product as p on c.CategoryId=p.CategoryId 
     inner join Sales_Order_Products as sop on p.ProductId=sop.ProductId inner join 
@@ -199,5 +199,5 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
       }
       return callBack(null, results);
     });
-  }
+  },
 };

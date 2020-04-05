@@ -134,7 +134,7 @@ content-type: application/json
 // Get Supplier By Id ------------------------->
 ###
 
-GET http://18.216.15.198:3000/api/supplier/getsupplierbyId?SupplierId=1&CompanyId=1 HTTP/1.1
+GET http://18.216.15.198:3000/api/supplier/getsupplierbyId?SupplierId=3&CompanyId=1 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2Nzk3NTd9.0ItQQeLA2iIAawSxdeGx6zD16Q9P9nrSmCdWI9psCqE
 content-type: application/json
 
@@ -189,14 +189,14 @@ content-type: application/json
 
 //creating new  category
 ###
-POST http://18.216.15.198:3000/api/category/createCategory HTTP/1.1
+POST http://localhost:3000/api/category/createCategory HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2OTM4MDl9.4tOZte2yJnh96RS0cf0znnR6uz1_P-40UdO5LnGCXJQ
 content-type: application/json
 
 {
-    "categoryname":"Education",
-    "SKU": "edsl-9700-01",
-    "tags": "Book,Pencil",
+    "categoryname": "kkkkjll",
+    "SKU": "jnsl-9900-01",
+    "tags": "Cosmatics",
     "companyid":1
 }
 
@@ -266,7 +266,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 
 // Get All Products ----------------------------> 
 ###
-POST  http://localhost:3000/api/product/getproducts?ProductName=shirt&SupplierName=1 HTTP/1.1
+POST  http://localhost:3000/api/product/getproducts?ProductName=te HTTP/1.1
 content-type: application/json
 
 {
@@ -391,17 +391,24 @@ content-type: application/json
 ### 
 
 PUT http://localhost:3000/api/purchaseorder/cancel HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NjUwODR9.EJJ0sfB6oIsvE7ENfMe_BGZeHI_nLBudSSruMS1rIr0
 content-type: application/json
 
 {
-    "CompanyId":3 ,
-    "Purchase_OrderId":80
+    "CompanyId":1 ,
+    "Purchase_OrderId":6
 }
+
+####
+// Delete Purchase Order by purchase_orderid
+DELETE  http://localhost:3000/api/purchaseorder/deletepurchaseorder?purchase_orderid=80 HTTP/1.1
+content-type: application/json
+
+
 
 // Get all Purchase orders  ------------------------------->
 ###
 POST  http://localhost:3000/api/purchaseorder/getpurchaseorders HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
 
 {
@@ -432,10 +439,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpb
 content-type: application/json
 
 {
-    "id":"5",
+    "id":"500",
     "Fname": "loveleen11",
     "Lname": "minhas",
-    "email":"minhasloveleen@gmail.com",
+    "email":"minhasloveln@gmail.com",
     "phonenumber":"1234567898",
     "countryid":1,
     "provinceid":2,
@@ -505,14 +512,15 @@ content-type: application/json
 
 //Least Sold Product 
 ###
-GET http://localhost:3000/api/sales/getlowestsoldproduct?companyid=1 HTTP/1.1
+GET http://18.:3000/api/sales/getlowestsoldproduct?companyid=1 HTTP/1.1
 content-type: application/json
 
 
 
 //getsalespercategory
 ###
-GET http://localhost:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
+GET http://18.216.15.198:3000/api/sales/getsalespercategory?companyid=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU4ODUwNTB9.yy68brqMxsUUe-Al0RC1rN4sXcRXLCnBgcTeDORhGXY
 content-type: application/json
 
 
@@ -549,7 +557,7 @@ content-type: application/json
     "userid":4,
     "fname":"minhasjoti",
     "lname":"kaur",
-    "email":"kaur08@gmail.com",
+    "email":"j@gmail.com",
     "password":"12121212",
     "phonenumber":"1234567890"
 }
@@ -557,14 +565,14 @@ content-type: application/json
 //get company customer by id
 ###
 GET http://localhost:3000/api/companyuser/getuserdetailsbyid?userid=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU3NjUwODR9.EJJ0sfB6oIsvE7ENfMe_BGZeHI_nLBudSSruMS1rIr0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
-customer
+
 
 //get customer by id
 ###
 GET http://localhost:3000/api/customeruser/getuserdetailsbyid?userid=1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU4NjM1NzV9.mr8RpZTiMoBzhG0vEBmxFyOiXr9mKQCk3pmVju_LfbM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
 content-type: application/json
 ####
 
@@ -581,6 +589,7 @@ content-type: application/json
 
 ###
 GET http://localhost:3000/api/sales/getrecentsalesbyweek?CompanyId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU4NjM1NzV9.mr8RpZTiMoBzhG0vEBmxFyOiXr9mKQCk3pmVju_LfbM
 content-type: application/json
 
 // Get Company Details By CompanyId ------------------------->
@@ -597,8 +606,8 @@ Content-Type: application/json
 
 {   
     "CompanyId":1,
-    "CompanyName":"IS111I",
-    "Website":"www.abc.com",
+    "CompanyName":"Hari Om",
+    "Website":"shreejico@gmail.com",
     "Logo":"D:\\IMS\\InventoryManagement-Node.jsApp\\uploads\\e85d09b2-39b8-427c-b2ad-824bfc4b5508.jpg",
     "Address1":"8,3320",
     "Address2":"Rue Goyer",
