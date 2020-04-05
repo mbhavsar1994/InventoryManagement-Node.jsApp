@@ -63,6 +63,11 @@ const storage = multer.diskStorage({
     cb(null, "./uploads");
   },
   filename: (req, file, cb) => {
+    // Accept images only
+    if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+      req.fileValidationError = "Only image files are allowed!";
+      return cb(new Error("Only image files are allowed!"), false);
+    }
     /*
       uuidv4() will generate a random ID that we'll use for the
       new filename. We use path.extname() to get
@@ -71,6 +76,7 @@ const storage = multer.diskStorage({
       to save the file on the server and will be available as
       req.file.pathname in the router handler.
     */
+
     const newFilename = `${uuidv4()}${path.extname(file.originalname)}`;
     cb(null, newFilename);
   },
@@ -172,11 +178,6 @@ app.use("/api/sales", salesRouter);
 // Main Root
 app.get("/", function (req, res) {
   res.json({ message: "Inventory Management API is up!" });
-});
-
-// schedule tasks to be run on the server
-cron.schedule("* * * * *", function () {
-  console.log("running a task every minute", new Date());
 });
 
 var server = app.listen(process.env.APP_PORT, () => {
