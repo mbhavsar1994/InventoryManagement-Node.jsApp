@@ -105,10 +105,6 @@ module.exports = {
           message: "Internal server error!"
         });
       } else {
-        for (var i in results) {
-          results[i].Image =
-            "http://18.216.15.198:3000/uploads/" + results[i].Image;
-        }
         return res.status(200).json({
           success: "1",
           data: results
@@ -119,7 +115,6 @@ module.exports = {
   //get all the sales by passing country in body
   GetSales: (req, res) => {
     var response = [];
-    var resultset=[];
     console.log(req.body.companyid);
     let companyid = "";
     if (typeof req.body.companyid != "") {
@@ -130,7 +125,7 @@ module.exports = {
         message: "company id cannot be null!"
       });
     }
-    getAllSales(companyid, (err, results) => {
+    getAllSales(companyid,req.query.CustomerOrderId,req.query.Date, (err, results) => {
       //console.log(results);
       if (err) {
         console.log(err);
@@ -145,54 +140,11 @@ module.exports = {
           .status(404)
           .json({ success: "0", message: " Resource does not exist." });
       } else {
-        if (typeof req.query.CustomerOrderId != "undefined") {
-          results.filter(function(result) {
-            if (
-              result.CustomerOrderId.toString() == req.query.CustomerOrderId
-            ) {
-              resultset.push(result);
-            }
-          });
-        }
-
-        if (typeof req.query.Date != "undefined") {
-          results.filter(function(result) {
-            var str = result.Date.toString();
-            if (_.includes(str, req.query.Date)) {
-              resultset.push(result);
-            }
-          });
-        }
-        //to findout only duplicate data
-        for(var i=0;i<resultset.length;i++)
-        {
-          for(var j=0;j<resultset.length;j++)
-          {
-            if(i!=j && _.isEqual(resultset[i], resultset[j]))
-            {
-                response.push(resultset[i]);
-            }
-          }
-        }
-          
         
-        // de-duplication: by cutsomerorder id
-        response = _.uniqBy(response, "CustomerOrderId");
 
-        // in case no filtering has been applied, respond with all stores
-        if (Object.keys(req.query).length === 0) {
-          response = results;
-        }
-
-        if (response.length == 0) {
-          return res.status(200).json({
-            success: "1",
-            data: "No order available to display"
-          });
-        }
         return res.status(200).json({
           success: "1",
-          data: response
+          data: results
         });
       }
     });

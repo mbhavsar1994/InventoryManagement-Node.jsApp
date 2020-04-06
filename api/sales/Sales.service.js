@@ -76,9 +76,10 @@ module.exports = {
     );
   },
   //getting all the orders of particular company
-  getAllSales: (companyid, callBack) => {
-    let sql = `  
-    select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
+  getAllSales: (companyid,customerid,date, callBack) => {
+    if(customerid!=undefined && date!=undefined)
+    {
+      let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
         on
@@ -87,20 +88,100 @@ module.exports = {
         user_master_customer as c
         on
         c.CustomerId=a.CustomerId
-        where CompanyId=?
-        group by CustomerOrderId`;
-    pool.query(
-      sql,
-      [companyid],
-
-      (error, results, _fields) => {
-        if (error) {
-          return callBack(error);
-        }
-
-        return callBack(null, results);
-      }
-    );
+        where c.CompanyId=? and a.CustomerOrderId=? and a.Date=?
+        group by a.CustomerOrderId`;
+        pool.query(
+          sql,
+          [companyid,customerid,date],
+    
+          (error, results, _fields) => {
+            if (error) {
+              return callBack(error);
+            }
+    
+            return callBack(null, results);
+          }
+        );
+    }
+    else if(date!=undefined)
+    {
+      let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
+        inner join 
+        Sales_Order_Products as b
+        on
+        a.CustomerOrderId=b.CustomerOrderId
+        inner join 
+        user_master_customer as c
+        on
+        c.CustomerId=a.CustomerId
+        where c.CompanyId=? and a.Date=?
+        group by a.CustomerOrderId`;
+        pool.query(
+          sql,
+          [companyid,date],
+    
+          (error, results, _fields) => {
+            if (error) {
+              return callBack(error);
+            }
+    
+            return callBack(null, results);
+          }
+        );
+    }
+    else if(customerid!=undefined)
+    {
+      let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
+        inner join 
+        Sales_Order_Products as b
+        on
+        a.CustomerOrderId=b.CustomerOrderId
+        inner join 
+        user_master_customer as c
+        on
+        c.CustomerId=a.CustomerId
+        where c.CompanyId=? and a.CustomerOrderId=?
+        group by a.CustomerOrderId`;
+        pool.query(
+          sql,
+          [companyid,customerid],
+    
+          (error, results, _fields) => {
+            if (error) {
+              return callBack(error);
+            }
+    
+            return callBack(null, results);
+          }
+        );
+    }
+    else
+    {
+      let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
+        inner join 
+        Sales_Order_Products as b
+        on
+        a.CustomerOrderId=b.CustomerOrderId
+        inner join 
+        user_master_customer as c
+        on
+        c.CustomerId=a.CustomerId
+        where c.CompanyId=?
+        group by a.CustomerOrderId`;
+        pool.query(
+          sql,
+          [companyid],
+    
+          (error, results, _fields) => {
+            if (error) {
+              return callBack(error);
+            }
+    
+            return callBack(null, results);
+          }
+        );
+    }
+    
   },
 
   //getting all the orders of particular Customer
