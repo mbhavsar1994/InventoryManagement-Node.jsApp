@@ -96,7 +96,7 @@ module.exports = {
 
         if (typeof req.query.SKU != "undefined") {
           results.filter(function (result) {
-            if (result.SKU.toString() == req.query.SKU) {
+            if (_.includes(result.SKU.toString(), req.query.SKU)) {
               response.push(result);
             }
           });
