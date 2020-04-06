@@ -54,7 +54,7 @@ module.exports = {
   // Function to Get All product by company id , search by Param -ProductName,SKU,category,SupplierName
   getProducts: (req, res) => {
     var response = [];
-    var finalresultset=[];
+    var resultset=[];
     console.log(req.query);
 
     if (typeof req.body.CompanyId == "undefined") {
@@ -89,7 +89,7 @@ module.exports = {
             if (
               _.includes(result.ProductName.toString(), req.query.ProductName)
             ) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -97,7 +97,7 @@ module.exports = {
         if (typeof req.query.SKU != "undefined") {
           results.filter(function(result) {
             if (result.SKU.toString() == req.query.SKU) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -105,7 +105,7 @@ module.exports = {
         if (typeof req.query.category != "undefined") {
           results.filter(function(result) {
             if (result.category.toString() == req.query.category) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -113,39 +113,39 @@ module.exports = {
         if (typeof req.query.SupplierName != "undefined") {
           results.filter(function(result) {
             if (result.SupplierName.toString() == req.query.SupplierName) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
         if (typeof req.query.SupplierId != "undefined") {
           results.filter(function(result) {
             if (result.SupplierId.toString() == req.query.SupplierId) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
 
         //to findout only duplicate data
-        for(var i=0;i<response.length;i++)
+        for(var i=0;i<resultset.length;i++)
         {
-          for(var j=0;j<response.length;j++)
+          for(var j=0;j<resultset.length;j++)
           {
-            if(i!=j && _.isEqual(response[i], response[j]))
+            if(i!=j && _.isEqual(resultset[i], resultset[j]))
             {
-                finalresultset.push(response[i]);
+                response.push(resultset[i]);
             }
           }
         }
 
         // de-duplication: by product id
-        finalresultset = _.uniqBy(finalresultset, "ProductId");
+        response = _.uniqBy(response, "ProductId");
 
         // in case no filtering has been applied, respond with all stores
         if (Object.keys(req.query).length === 0) {
-          finalresultset = results;
+          response = results;
         }
 
-        if (finalresultset.length == 0) {
+        if (response.length == 0) {
           return res.status(200).json({
             success: "1",
             message: "No Products available to display",
@@ -154,7 +154,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: finalresultset
+          data: response
         });
       }
     });

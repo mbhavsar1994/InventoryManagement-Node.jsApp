@@ -119,7 +119,7 @@ module.exports = {
   //get all the sales by passing country in body
   GetSales: (req, res) => {
     var response = [];
-    var finalresultset=[];
+    var resultset=[];
     console.log(req.body.companyid);
     let companyid = "";
     if (typeof req.body.companyid != "") {
@@ -150,7 +150,7 @@ module.exports = {
             if (
               result.CustomerOrderId.toString() == req.query.CustomerOrderId
             ) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -159,32 +159,32 @@ module.exports = {
           results.filter(function(result) {
             var str = result.Date.toString();
             if (_.includes(str, req.query.Date)) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
         //to findout only duplicate data
-        for(var i=0;i<response.length;i++)
+        for(var i=0;i<resultset.length;i++)
         {
-          for(var j=0;j<response.length;j++)
+          for(var j=0;j<resultset.length;j++)
           {
-            if(i!=j && _.isEqual(response[i], response[j]))
+            if(i!=j && _.isEqual(resultset[i], resultset[j]))
             {
-                finalresultset.push(response[i]);
+                response.push(resultset[i]);
             }
           }
         }
           
         
         // de-duplication: by cutsomerorder id
-        finalresultset = _.uniqBy(finalresultset, "CustomerOrderId");
+        response = _.uniqBy(response, "CustomerOrderId");
 
         // in case no filtering has been applied, respond with all stores
         if (Object.keys(req.query).length === 0) {
-          finalresultset = results;
+          response = results;
         }
 
-        if (finalresultset.length == 0) {
+        if (response.length == 0) {
           return res.status(200).json({
             success: "1",
             data: "No order available to display"
@@ -192,7 +192,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: finalresultset
+          data: response
         });
       }
     });
