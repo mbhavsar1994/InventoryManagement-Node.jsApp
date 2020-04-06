@@ -54,6 +54,7 @@ module.exports = {
   // Function to Get All product by company id , search by Param -ProductName,SKU,category,SupplierName
   getProducts: (req, res) => {
     var response = [];
+    var finalresultset=[];
     console.log(req.query);
 
     if (typeof req.body.CompanyId == "undefined") {
@@ -64,6 +65,7 @@ module.exports = {
     }
 
     getAllProduct(req.body.CompanyId, (err, results) => {
+
       if (err) {
         console.log(err);
         return res.status(500).json({
@@ -123,15 +125,27 @@ module.exports = {
           });
         }
 
+        //to findout only duplicate data
+        for(var i=0;i<response.length;i++)
+        {
+          for(var j=0;j<response.length;j++)
+          {
+            if(i!=j && _.isEqual(response[i], response[j]))
+            {
+                finalresultset.push(response[i]);
+            }
+          }
+        }
+
         // de-duplication: by product id
-        response = _.uniqBy(response, "ProductId");
+        finalresultset = _.uniqBy(finalresultset, "ProductId");
 
         // in case no filtering has been applied, respond with all stores
         if (Object.keys(req.query).length === 0) {
-          response = results;
+          finalresultset = results;
         }
 
-        if (response.length == 0) {
+        if (finalresultset.length == 0) {
           return res.status(200).json({
             success: "1",
             data: "No Products available to display"
@@ -139,7 +153,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: response
+          data: finalresultset
         });
       }
     });

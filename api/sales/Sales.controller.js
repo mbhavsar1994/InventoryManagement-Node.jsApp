@@ -115,6 +115,7 @@ module.exports = {
   //get all the sales by passing country in body
   GetSales: (req, res) => {
     var response = [];
+    var finalresultset=[];
     console.log(req.body.companyid);
     let companyid = "";
     if (typeof req.body.companyid != "") {
@@ -158,17 +159,36 @@ module.exports = {
             }
           });
         }
-        // de-duplication: by product id
-        response = _.uniqBy(response, "CustomerOrderId");
+        //to findout only duplicate data
+        for(var i=0;i<response.length;i++)
+        {
+          for(var j=0;j<response.length;j++)
+          {
+            if(i!=j && _.isEqual(response[i], response[j]))
+            {
+                finalresultset.push(response[i]);
+            }
+          }
+        }
+          
+        
+        // de-duplication: by cutsomerorder id
+        finalresultset = _.uniqBy(finalresultset, "CustomerOrderId");
 
         // in case no filtering has been applied, respond with all stores
         if (Object.keys(req.query).length === 0) {
-          response = results;
+          finalresultset = results;
         }
 
+        if (finalresultset.length == 0) {
+          return res.status(200).json({
+            success: "1",
+            data: "No order available to display"
+          });
+        }
         return res.status(200).json({
           success: "1",
-          data: response
+          data: finalresultset
         });
       }
     });
