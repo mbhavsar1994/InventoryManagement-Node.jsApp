@@ -54,6 +54,7 @@ module.exports = {
   // Function to Get All product by company id , search by Param -ProductName,SKU,category,SupplierName
   getProducts: (req, res) => {
     var response = [];
+    var resultset=[];
     console.log(req.query);
 
     if (typeof req.body.CompanyId == "undefined") {
@@ -64,6 +65,7 @@ module.exports = {
     }
 
     getAllProduct(req.body.CompanyId, (err, results) => {
+
       if (err) {
         console.log(err);
         return res.status(500).json({
@@ -87,7 +89,7 @@ module.exports = {
             if (
               _.includes(result.ProductName.toString(), req.query.ProductName)
             ) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -95,7 +97,7 @@ module.exports = {
         if (typeof req.query.SKU != "undefined") {
           results.filter(function(result) {
             if (result.SKU.toString() == req.query.SKU) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -103,7 +105,7 @@ module.exports = {
         if (typeof req.query.category != "undefined") {
           results.filter(function(result) {
             if (result.category.toString() == req.query.category) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -111,16 +113,28 @@ module.exports = {
         if (typeof req.query.SupplierName != "undefined") {
           results.filter(function(result) {
             if (result.SupplierName.toString() == req.query.SupplierName) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
         if (typeof req.query.SupplierId != "undefined") {
           results.filter(function(result) {
             if (result.SupplierId.toString() == req.query.SupplierId) {
-              response.push(result);
+              resultset.push(result);
             }
           });
+        }
+
+        //to findout only duplicate data
+        for(var i=0;i<resultset.length;i++)
+        {
+          for(var j=0;j<resultset.length;j++)
+          {
+            if(i!=j && _.isEqual(resultset[i], resultset[j]))
+            {
+                response.push(resultset[i]);
+            }
+          }
         }
 
         // de-duplication: by product id

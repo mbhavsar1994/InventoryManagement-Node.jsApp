@@ -119,6 +119,7 @@ module.exports = {
   //get all the sales by passing country in body
   GetSales: (req, res) => {
     var response = [];
+    var resultset=[];
     console.log(req.body.companyid);
     let companyid = "";
     if (typeof req.body.companyid != "") {
@@ -149,7 +150,7 @@ module.exports = {
             if (
               result.CustomerOrderId.toString() == req.query.CustomerOrderId
             ) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
@@ -158,11 +159,24 @@ module.exports = {
           results.filter(function(result) {
             var str = result.Date.toString();
             if (_.includes(str, req.query.Date)) {
-              response.push(result);
+              resultset.push(result);
             }
           });
         }
-        // de-duplication: by product id
+        //to findout only duplicate data
+        for(var i=0;i<resultset.length;i++)
+        {
+          for(var j=0;j<resultset.length;j++)
+          {
+            if(i!=j && _.isEqual(resultset[i], resultset[j]))
+            {
+                response.push(resultset[i]);
+            }
+          }
+        }
+          
+        
+        // de-duplication: by cutsomerorder id
         response = _.uniqBy(response, "CustomerOrderId");
 
         // in case no filtering has been applied, respond with all stores
@@ -170,6 +184,12 @@ module.exports = {
           response = results;
         }
 
+        if (response.length == 0) {
+          return res.status(200).json({
+            success: "1",
+            data: "No order available to display"
+          });
+        }
         return res.status(200).json({
           success: "1",
           data: response
