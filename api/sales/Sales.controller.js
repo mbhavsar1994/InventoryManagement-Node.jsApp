@@ -140,9 +140,41 @@ module.exports = {
           .status(200)
           .json({ success: "1", message: " Resource does not exist.",data:[] });
       } else {
+<<<<<<< HEAD
         return res.status(200).json({
           success: "1",
           data: results
+=======
+        if (typeof req.query.CustomerOrderId != "undefined") {
+          results.filter(function(result) {
+            if (
+              result.CustomerOrderId.toString() == req.query.CustomerOrderId
+            ) {
+              response.push(result);
+            }
+          });
+        }
+
+        if (typeof req.query.Date != "undefined") {
+          results.filter(function(result) {
+            var str = result.Date.toString();
+            if (_.includes(str, req.query.Date)) {
+              response.push(result);
+            }
+          });
+        }
+        // de-duplication: by product id
+        response = _.uniqBy(response, "CustomerOrderId");
+
+        // in case no filtering has been applied, respond with all stores
+        if (Object.keys(req.query).length === 0) {
+          response = results;
+        }
+
+        return res.status(200).json({
+          success: "1",
+          data: response
+>>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
         });
       }
     });
