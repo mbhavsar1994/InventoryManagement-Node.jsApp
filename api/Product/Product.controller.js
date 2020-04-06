@@ -64,7 +64,10 @@ module.exports = {
     }
 
     getAllProduct(req.body.CompanyId,req.query.ProductName,req.query.SKU,req.query.category,req.query.SupplierName, (err, results) => {
-
+      console.log(req.query.ProductName);
+      console.log(req.query.SKU);
+      console.log(req.query.category);
+      console.log(req.query.SupplierName);
       if (err) {
         console.log(err);
         return res.status(500).json({

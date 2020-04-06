@@ -36,7 +36,7 @@ module.exports = {
 
   // Service to get all product information
   getAllProduct: (CompanyId,Product_name,sku,category,supplier_name, callBack) => {
-    if(Product_name!=undefined &&sku!=undefined &&category!=undefined&&supplier_name!=undefined )//when all filter have data
+    if(Product_name!="" &&sku!="" &&category!=null &&supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ? and ca.Category_name like ? and supplier.SupplierName like ? ",
@@ -51,7 +51,7 @@ module.exports = {
         }
       );
     }
-    else if(Product_name!=undefined &&sku!=undefined &&category!=undefined )
+    else if(Product_name!="" &&sku!="" &&category!=null )
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ? and ca.Category_name like ?  ",
@@ -66,7 +66,7 @@ module.exports = {
         }
       );
     }
-    else if(Product_name!=undefined &&sku!=undefined &&supplier_name!=undefined )//when all filter have data
+    else if(Product_name!="" &&sku!="" &&supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ? and supplier.SupplierName like ?  ",
@@ -81,7 +81,7 @@ module.exports = {
         }
       );
     }
-    else if(Product_name!=undefined &&category!=undefined&&supplier_name!=undefined )//when all filter have data
+    else if(Product_name!="" &&category!=""&&supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and ca.Category_name like ? and supplier.SupplierName like ?  ",
@@ -96,7 +96,7 @@ module.exports = {
         }
       );
     }
-    else if(sku!=undefined &&category!=undefined&&supplier_name!=undefined )//when all filter have data
+    else if(sku!="" &&category!=null&&supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?  and product.SKU like ? and ca.Category_name like ? and supplier.SupplierName like ? ",
@@ -111,7 +111,7 @@ module.exports = {
         }
       );
     }
-    else if(category!=undefined&&supplier_name!=undefined )//when all filter have data
+    else if(category!=null &&supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and ca.Category_name like ? and supplier.SupplierName like ? ",
@@ -126,7 +126,7 @@ module.exports = {
         }
       );
     }
-    else if(sku!=undefined &&supplier_name!=undefined )//when all filter have data
+    else if(sku!="" &&supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.SKU like ?  and supplier.SupplierName like ? ",
@@ -141,7 +141,7 @@ module.exports = {
         }
       );
     }
-    else if(Product_name!=undefined && supplier_name!=undefined )//when all filter have data
+    else if(Product_name!="" && supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and  supplier.SupplierName like ? ",
@@ -156,7 +156,7 @@ module.exports = {
         }
       );
     }
-    else if(sku!=undefined &&category!=undefined )//when all filter have data
+    else if(sku!="" &&category!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?  and product.SKU like ? and ca.Category_name like ?",
@@ -171,7 +171,7 @@ module.exports = {
         }
       );
     }
-    else if(Product_name!=undefined  &&category!=undefined)//when all filter have data
+    else if(Product_name!=""  &&category!=null)//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and ca.Category_name like ?",
@@ -186,7 +186,7 @@ module.exports = {
         }
       );
     }
-    else if(Product_name!=undefined &&sku!=undefined  )//when all filter have data
+    else if(Product_name!="" &&sku!=""  )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ?",
@@ -201,7 +201,7 @@ module.exports = {
         }
       );
     }
-    else if(Product_name!=undefined )//when all filter have data
+    else if(Product_name!="" )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ?",
@@ -216,7 +216,7 @@ module.exports = {
         }
       );
     }
-    else if(sku!=undefined )//when all filter have data
+    else if(sku!="" )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.SKU like ? ",
@@ -231,7 +231,7 @@ module.exports = {
         }
       );
     }
-    else if(category!=undefined )//when all filter have data
+    else if(category!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and ca.Category_name like ?  ",
@@ -246,7 +246,7 @@ module.exports = {
         }
       );
     }
-    else if(supplier_name!=undefined )//when all filter have data
+    else if(supplier_name!=null )//when all filter have data
     {
       pool.query(
         "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and supplier.SupplierName like ? ",
