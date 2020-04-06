@@ -87,6 +87,13 @@ module.exports = {
 
   //Service to  Edit Product ------------------------------------->
   EditProduct: (req, callBack) => {
+    let image = "";
+    if (typeof req.file == "undefined") {
+      image = null;
+    } else {
+      image = req.file.filename;
+    }
+
     let product = req.body;
     let sql = `SET @ProductId=?;SET @ProductName=?;SET @Description=?;SET @PurchasePrice=?;SET @RetailPrice=?;SET @CategoryId=?;SET @Country_Origin_id=?;SET @Image=?;SET @SupplierId=?; SET @QtyMinRequired=?;SET @CompanyId =?;CALL EditProduct(@ProductId,@ProductName,@Description,@PurchasePrice,@RetailPrice,@CategoryId,@Country_Origin_id,@Image,@SupplierId,@QtyMinRequired,@CompanyId,@status,@Err_msg);select @status as status; select @Err_msg as Err_msg;`;
 
@@ -100,7 +107,7 @@ module.exports = {
         product.RetailPrice,
         product.CategoryId,
         product.Country_Origin_id,
-        req.file.filename,
+        image,
         product.SupplierId,
         product.QtyMinRequired,
         product.CompanyId,
