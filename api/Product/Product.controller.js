@@ -63,7 +63,7 @@ module.exports = {
       });
     }
 
-    getAllProduct(req.body.CompanyId, (err, results) => {
+    getAllProduct(req.body.CompanyId,req.query.ProductName,req.query.SKU,req.query.category,req.query.SupplierName, (err, results) => {
 
       if (err) {
         console.log(err);
@@ -83,67 +83,10 @@ module.exports = {
             "http://18.216.15.198:3000/uploads/" + results[i].Image;
         }
 
-        if (typeof req.query.ProductName != "undefined") {
-          results.filter(function(result) {
-            if (
-              _.includes(result.ProductName.toString(), req.query.ProductName)
-            ) {
-              response.push(result);
-            }
-          });
-        }
-
-        if (typeof req.query.SKU != "undefined") {
-          results.filter(function(result) {
-            if (result.SKU.toString() == req.query.SKU) {
-              response.push(result);
-            }
-          });
-        }
-
-        if (typeof req.query.category != "undefined") {
-          results.filter(function(result) {
-            if (result.category.toString() == req.query.category) {
-              response.push(result);
-            }
-          });
-        }
-
-        if (typeof req.query.SupplierName != "undefined") {
-          results.filter(function(result) {
-            if (result.SupplierName.toString() == req.query.SupplierName) {
-              response.push(result);
-            }
-          });
-        }
-        if (typeof req.query.SupplierId != "undefined") {
-          results.filter(function(result) {
-            if (result.SupplierId.toString() == req.query.SupplierId) {
-              response.push(result);
-            }
-          });
-        }
-
-       
-
-        // de-duplication: by product id
-        response = _.uniqBy(response, "ProductId");
-
-        // in case no filtering has been applied, respond with all stores
-        if (Object.keys(req.query).length === 0) {
-          response = results;
-        }
-
-        if (response.length == 0) {
-          return res.status(200).json({
-            success: "1",
-            message: "No Products available to display",
-            data: null
-          });
-        }
+        
         return res.status(200).json({
           success: "1",
-          data: response
+          data: results
         });
       }
     });

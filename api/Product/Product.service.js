@@ -35,20 +35,248 @@ module.exports = {
   },
 
   // Service to get all product information
-  getAllProduct: (CompanyId, callBack) => {
-    pool.query(
-      "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?;",
-      [CompanyId],
-
-      (error, results, fields) => {
-        if (error) {
-          return callBack(error);
+  getAllProduct: (CompanyId,Product_name,sku,category,supplier_name, callBack) => {
+    if(Product_name!=undefined &&sku!=undefined &&category!=undefined&&supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ? and ca.Category_name like ? and supplier.SupplierName like ? ",
+        [CompanyId,'%'+Product_name+'%','%'+sku+'%','%'+category+'%','%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
         }
-
-        console.log(results);
-        return callBack(null, results);
-      }
-    );
+      );
+    }
+    else if(Product_name!=undefined &&sku!=undefined &&category!=undefined )
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ? and ca.Category_name like ?  ",
+        [CompanyId,'%'+Product_name+'%','%'+sku+'%','%'+category+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(Product_name!=undefined &&sku!=undefined &&supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ? and supplier.SupplierName like ?  ",
+        [CompanyId,'%'+Product_name+'%','%'+sku+'%','%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(Product_name!=undefined &&category!=undefined&&supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and ca.Category_name like ? and supplier.SupplierName like ?  ",
+        [CompanyId,'%'+Product_name+'%','%'+category+'%','%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(sku!=undefined &&category!=undefined&&supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?  and product.SKU like ? and ca.Category_name like ? and supplier.SupplierName like ? ",
+        [CompanyId,'%'+sku+'%','%'+category+'%','%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(category!=undefined&&supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and ca.Category_name like ? and supplier.SupplierName like ? ",
+        [CompanyId,'%'+category+'%','%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(sku!=undefined &&supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.SKU like ?  and supplier.SupplierName like ? ",
+        [CompanyId,'%'+sku+'%','%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(Product_name!=undefined && supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and  supplier.SupplierName like ? ",
+        [CompanyId,'%'+Product_name+'%','%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(sku!=undefined &&category!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?  and product.SKU like ? and ca.Category_name like ?",
+        [CompanyId,'%'+sku+'%','%'+category+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(Product_name!=undefined  &&category!=undefined)//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and ca.Category_name like ?",
+        [CompanyId,'%'+Product_name+'%','%'+category+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(Product_name!=undefined &&sku!=undefined  )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ?  ",
+        [CompanyId,'%'+Product_name+'%','%'+sku+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(Product_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ?",
+        [CompanyId,'%'+Product_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(sku!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.SKU like ? ",
+        [CompanyId,'%'+sku+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(category!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and ca.Category_name like ?  ",
+        [CompanyId,'%'+category+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else if(supplier_name!=undefined )//when all filter have data
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and supplier.SupplierName like ? ",
+        [CompanyId,'%'+supplier_name+'%'],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    else
+    {
+      pool.query(
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? ",
+        [CompanyId],
+        (error, results, fields) => {
+          if (error) {
+            return callBack(error);
+          }
+  
+          console.log(results);
+          return callBack(null, results);
+        }
+      );
+    }
+    
   },
 
   // Service to Delete Product by product id -------------------------------->
