@@ -275,7 +275,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 // Get All Products ----------------------------> 
 ###
 
-POST  http://localhost:3000/api/product/getproducts?ProductName=""&&SKU=""&&category=Books&&SupplierName=Meh33kkul HTTP/1.1
+POST  http://localhost:3000/api/product/getproducts?ProductName=&&SKU=&&category=&&SupplierName= HTTP/1.1
 content-type: application/json
 
 {
