@@ -250,7 +250,7 @@ module.exports = {
       inner join Currency_master as cm on cd.CurrencyId=cm.CurrencyId
        where b.CompanyId=? and a.Purchase_OrderId=? and a.IsActive=1 group by c.Purchase_OrderId;
        
-      select p.SKU,p.Product_name,p.Description,p.PurchasePrice,pop.PurchaseOrder_ProductId,pop.Quantity,pop.Total from product as p inner join
+      select p.ProductId, p.SKU,p.Product_name,p.Description,p.PurchasePrice,pop.PurchaseOrder_ProductId,pop.Quantity,pop.Total from product as p inner join
       Purchase_Order_Products  as pop
       on p.ProductId= pop.ProductId  where pop.Purchase_OrderId=?
       `,

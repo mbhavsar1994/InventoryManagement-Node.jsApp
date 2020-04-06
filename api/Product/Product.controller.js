@@ -148,7 +148,8 @@ module.exports = {
         if (finalresultset.length == 0) {
           return res.status(200).json({
             success: "1",
-            data: "No Products available to display"
+            message: "No Products available to display",
+            data: null
           });
         }
         return res.status(200).json({
