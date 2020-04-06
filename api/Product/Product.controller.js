@@ -115,6 +115,13 @@ module.exports = {
             }
           });
         }
+        if (typeof req.query.SupplierId != "undefined") {
+          results.filter(function(result) {
+            if (result.SupplierId.toString() == req.query.SupplierId) {
+              response.push(result);
+            }
+          });
+        }
 
         // de-duplication: by product id
         response = _.uniqBy(response, "ProductId");

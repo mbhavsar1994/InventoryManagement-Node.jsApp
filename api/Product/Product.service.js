@@ -37,7 +37,7 @@ module.exports = {
   // Service to get all product information
   getAllProduct: (CompanyId, callBack) => {
     pool.query(
-      "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?;",
+      "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ?;",
       [CompanyId],
 
       (error, results, fields) => {
