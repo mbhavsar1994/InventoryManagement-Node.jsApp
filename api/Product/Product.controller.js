@@ -7,7 +7,7 @@ const {
   getFeatureProduct,
   valuation,
   articles,
-  incoming_products
+  incoming_products,
 } = require("./Product.service");
 const _ = require("lodash");
 const IPConfig = require("../../Config/Server_IP");
@@ -18,7 +18,7 @@ module.exports = {
     if (typeof req.file.filename == "undefined") {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Product Image is missing!"
+        message: "Invalid request..Product Image is missing!",
       });
     }
 
@@ -29,22 +29,22 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal server error!",
-          data: err
+          data: err,
         });
       } else if (results[13][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[13][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[14][0]["Err_msg"]
+          message: results[14][0]["Err_msg"],
         });
       } else {
         return res.status(200).json({
           success: "1",
-          message: "Product created Successfully"
+          message: "Product created Successfully",
         });
       }
     });
@@ -59,48 +59,33 @@ module.exports = {
     if (typeof req.body.CompanyId == "undefined") {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..CompanyId id is missing!"
+        message: "Invalid request..CompanyId id is missing!",
       });
     }
 
-<<<<<<< HEAD
-    getAllProduct(req.body.CompanyId,req.query.ProductName,req.query.SKU,req.query.category,req.query.SupplierName, (err, results) => {
-      console.log(req.query.ProductName);
-      console.log(req.query.SKU);
-      console.log(req.query.category);
-      console.log(req.query.SupplierName);
-=======
     getAllProduct(req.body.CompanyId, (err, results) => {
-<<<<<<< HEAD
->>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
-=======
->>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
       if (err) {
         console.log(err);
         return res.status(500).json({
           success: "0",
           message: "Internal Server Error",
-          error: err
+          error: err,
         });
       }
       if (!results.length) {
-        return res
-          .status(200)
-          .json({ success: "1", message: " Resource does not exist." ,data:[] });
+        return res.status(200).json({
+          success: "1",
+          message: " Resource does not exist.",
+          data: [],
+        });
       } else {
         for (var i in results) {
           results[i].Image =
             "http://18.216.15.198:3000/uploads/" + results[i].Image;
         }
 
-<<<<<<< HEAD
-        
-        return res.status(200).json({
-          success: "1",
-          data: results
-=======
         if (typeof req.query.ProductName != "undefined") {
-          results.filter(function(result) {
+          results.filter(function (result) {
             if (
               _.includes(result.ProductName.toString(), req.query.ProductName)
             ) {
@@ -110,7 +95,7 @@ module.exports = {
         }
 
         if (typeof req.query.SKU != "undefined") {
-          results.filter(function(result) {
+          results.filter(function (result) {
             if (result.SKU.toString() == req.query.SKU) {
               response.push(result);
             }
@@ -118,7 +103,7 @@ module.exports = {
         }
 
         if (typeof req.query.category != "undefined") {
-          results.filter(function(result) {
+          results.filter(function (result) {
             if (result.category.toString() == req.query.category) {
               response.push(result);
             }
@@ -126,14 +111,14 @@ module.exports = {
         }
 
         if (typeof req.query.SupplierName != "undefined") {
-          results.filter(function(result) {
+          results.filter(function (result) {
             if (result.SupplierName.toString() == req.query.SupplierName) {
               response.push(result);
             }
           });
         }
         if (typeof req.query.SupplierId != "undefined") {
-          results.filter(function(result) {
+          results.filter(function (result) {
             if (result.SupplierId.toString() == req.query.SupplierId) {
               response.push(result);
             }
@@ -151,16 +136,12 @@ module.exports = {
         if (response.length == 0) {
           return res.status(200).json({
             success: "1",
-            data: "No Products available to display"
+            data: "No Products available to display",
           });
         }
         return res.status(200).json({
           success: "1",
-          data: response
-<<<<<<< HEAD
->>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
-=======
->>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
+          data: response,
         });
       }
     });
@@ -175,7 +156,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Product Id is missing!"
+        message: "Invalid request..Product Id is missing!",
       });
     }
 
@@ -185,17 +166,17 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal Server error!",
-          data: err
+          data: err,
         });
       } else if (!results) {
         return res.status(400).json({
           success: "0",
-          message: "Bad request"
+          message: "Bad request",
         });
       } else {
         return res.status(200).json({
           success: "1",
-          message: "Product deleted Successfully"
+          message: "Product deleted Successfully",
         });
       }
     });
@@ -212,7 +193,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Product Id is missing "
+        message: "Invalid request..Product Id is missing ",
       });
     }
     if (typeof req.query.CompanyId != "undefined") {
@@ -220,7 +201,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..CompanyId  is missing "
+        message: "Invalid request..CompanyId  is missing ",
       });
     }
     GetProductById(CompanyId, ProductId, (err, results) => {
@@ -229,7 +210,7 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal Server Error",
-          error: err
+          error: err,
         });
       }
       if (!results.length) {
@@ -243,7 +224,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -258,22 +239,22 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal server error! Please try again",
-          data: err
+          data: err,
         });
       } else if (results[12][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[12][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[13][0]["Err_msg"]
+          message: results[13][0]["Err_msg"],
         });
       } else {
         return res.status(200).json({
           success: "1",
-          message: "Product details updated Successfully"
+          message: "Product details updated Successfully",
         });
       }
     });
@@ -285,7 +266,7 @@ module.exports = {
     if (req.query.companyid == undefined) {
       return res.status(400).json({
         success: "0",
-        message: "company id needed!"
+        message: "company id needed!",
       });
     } else {
       companyid = req.query.companyid;
@@ -295,12 +276,12 @@ module.exports = {
         if (err) {
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else if (results == null) {
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else {
           for (var i in results[1]) {
@@ -309,7 +290,7 @@ module.exports = {
           }
           return res.status(200).json({
             success: "1",
-            data: results[1]
+            data: results[1],
           });
         }
       });
@@ -321,7 +302,7 @@ module.exports = {
     if (req.query.companyid == undefined) {
       return res.status(400).json({
         success: "0",
-        message: "company id needed!"
+        message: "company id needed!",
       });
     } else {
       companyid = req.query.companyid;
@@ -331,19 +312,19 @@ module.exports = {
         if (err) {
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else if (results == undefined) {
           console.log(results[0]);
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else {
           console.log("hi" + results[0]["sum"]);
           return res.status(200).json({
             success: "1",
-            data: results[0]["sum"]
+            data: results[0]["sum"],
           });
         }
       });
@@ -355,7 +336,7 @@ module.exports = {
     if (req.query.companyid == undefined) {
       return res.status(400).json({
         success: "0",
-        message: "company id needed!"
+        message: "company id needed!",
       });
     } else {
       companyid = req.query.companyid;
@@ -365,19 +346,19 @@ module.exports = {
         if (err) {
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else if (results == undefined) {
           console.log(results[0]);
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else {
           console.log("hi" + results[0]["sum"]);
           return res.status(200).json({
             success: "1",
-            data: results[0]["sum"]
+            data: results[0]["sum"],
           });
         }
       });
@@ -390,7 +371,7 @@ module.exports = {
     if (req.query.CompanyId == undefined) {
       return res.status(400).json({
         success: "0",
-        message: "CompanyId is Missing!"
+        message: "CompanyId is Missing!",
       });
     } else {
       CompanyId = req.query.CompanyId;
@@ -399,21 +380,21 @@ module.exports = {
         if (err) {
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else if (results == undefined) {
           console.log(results[0]);
           return res.status(500).json({
             success: "0",
-            message: "Internal server error!"
+            message: "Internal server error!",
           });
         } else {
           return res.status(200).json({
             success: "1",
-            data: results[0]["Total Unit"]
+            data: results[0]["Total Unit"],
           });
         }
       });
     }
-  }
+  },
 };

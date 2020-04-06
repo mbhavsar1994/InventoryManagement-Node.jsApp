@@ -7,7 +7,7 @@ const {
   getMinSoldsItems,
   getRecentSalesByWeek,
   getSalesPerCategory,
-  getSalesByCustomerId
+  getSalesByCustomerId,
 } = require("./Sales.service");
 const _ = require("lodash");
 
@@ -19,17 +19,17 @@ module.exports = {
       if (results == undefined) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[3][0].status == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[3][0].status == 0) {
         return res.status(400).json({
           success: "0",
-          message: "Bad request error!"
+          message: "Bad request error!",
         });
       } else {
         console.log(results[5][0]);
@@ -39,12 +39,12 @@ module.exports = {
           if (err) {
             return res.status(500).json({
               success: "0",
-              message: "Internal server error!"
+              message: "Internal server error!",
             });
           } else {
             return res.status(200).json({
               success: "1",
-              message: "order done successfully"
+              message: "order done successfully",
             });
           }
         });
@@ -60,7 +60,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..customer order id is missing "
+        message: "Invalid request..customer order id is missing ",
       });
     }
     if (typeof req.query.companyid != "undefined") {
@@ -68,7 +68,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
     getSalesById(orderid, companyid, (err, results) => {
@@ -76,12 +76,12 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -94,7 +94,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..CustomerId id is missing "
+        message: "Invalid request..CustomerId id is missing ",
       });
     }
     getSalesByCustomerId(CustomerId, (err, results) => {
@@ -102,12 +102,12 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -122,65 +122,63 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "company id cannot be null!"
+        message: "company id cannot be null!",
       });
     }
-    getAllSales(companyid,req.query.CustomerOrderId,req.query.Date, (err, results) => {
-      //console.log(results);
-      if (err) {
-        console.log(err);
-        return res.status(500).json({
-          success: "0",
-          message: "Internal Server Error",
-          error: err
-        });
-      }
-      if (results.length == 0) {
-        return res
-          .status(200)
-          .json({ success: "1", message: " Resource does not exist.",data:[] });
-      } else {
-<<<<<<< HEAD
-        return res.status(200).json({
-          success: "1",
-          data: results
-=======
-        if (typeof req.query.CustomerOrderId != "undefined") {
-          results.filter(function(result) {
-            if (
-              result.CustomerOrderId.toString() == req.query.CustomerOrderId
-            ) {
-              response.push(result);
-            }
+    getAllSales(
+      companyid,
+      req.query.CustomerOrderId,
+      req.query.Date,
+      (err, results) => {
+        //console.log(results);
+        if (err) {
+          console.log(err);
+          return res.status(500).json({
+            success: "0",
+            message: "Internal Server Error",
+            error: err,
           });
         }
+        if (results.length == 0) {
+          return res.status(200).json({
+            success: "1",
+            message: " Resource does not exist.",
+            data: [],
+          });
+        } else {
+          if (typeof req.query.CustomerOrderId != "undefined") {
+            results.filter(function (result) {
+              if (
+                result.CustomerOrderId.toString() == req.query.CustomerOrderId
+              ) {
+                response.push(result);
+              }
+            });
+          }
 
-        if (typeof req.query.Date != "undefined") {
-          results.filter(function(result) {
-            var str = result.Date.toString();
-            if (_.includes(str, req.query.Date)) {
-              response.push(result);
-            }
+          if (typeof req.query.Date != "undefined") {
+            results.filter(function (result) {
+              var str = result.Date.toString();
+              if (_.includes(str, req.query.Date)) {
+                response.push(result);
+              }
+            });
+          }
+          // de-duplication: by product id
+          response = _.uniqBy(response, "CustomerOrderId");
+
+          // in case no filtering has been applied, respond with all stores
+          if (Object.keys(req.query).length === 0) {
+            response = results;
+          }
+
+          return res.status(200).json({
+            success: "1",
+            data: response,
           });
         }
-        // de-duplication: by product id
-        response = _.uniqBy(response, "CustomerOrderId");
-
-        // in case no filtering has been applied, respond with all stores
-        if (Object.keys(req.query).length === 0) {
-          response = results;
-        }
-
-        return res.status(200).json({
-          success: "1",
-          data: response
-<<<<<<< HEAD
->>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
-=======
->>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
-        });
       }
-    });
+    );
   },
   GetHighestSoldProduct: (req, res) => {
     let companyid = "";
@@ -189,7 +187,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
 
@@ -198,7 +196,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         if (results.length == 0) {
@@ -206,7 +204,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -219,7 +217,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
 
@@ -228,7 +226,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         if (results.length == 0) {
@@ -236,7 +234,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -250,7 +248,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..CompanyId is missing "
+        message: "Invalid request..CompanyId is missing ",
       });
     }
 
@@ -258,7 +256,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       }
       if (results.length == 0) {
@@ -266,7 +264,7 @@ module.exports = {
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -278,7 +276,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
 
@@ -287,7 +285,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       }
       if (results.length == 0) {
@@ -295,9 +293,9 @@ module.exports = {
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
-  }
+  },
 };
