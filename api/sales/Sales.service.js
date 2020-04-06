@@ -28,7 +28,7 @@ module.exports = {
         product[i].productid,
         product[i].price,
         product[i].qty,
-        product[i].subtotal
+        product[i].subtotal,
       ]);
     }
 
@@ -76,9 +76,8 @@ module.exports = {
     );
   },
   //getting all the orders of particular company
-  getAllSales: (companyid,customerid,date, callBack) => {
-    if(customerid!=undefined && date!=undefined)
-    {
+  getAllSales: (companyid, customerid, date, callBack) => {
+    if (customerid != undefined && date != undefined) {
       let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
@@ -90,21 +89,19 @@ module.exports = {
         c.CustomerId=a.CustomerId
         where c.CompanyId=? and a.CustomerOrderId=? and a.Date=?
         group by a.CustomerOrderId`;
-        pool.query(
-          sql,
-          [companyid,customerid,date],
-    
-          (error, results, _fields) => {
-            if (error) {
-              return callBack(error);
-            }
-    
-            return callBack(null, results);
+      pool.query(
+        sql,
+        [companyid, customerid, date],
+
+        (error, results, _fields) => {
+          if (error) {
+            return callBack(error);
           }
-        );
-    }
-    else if(date!=undefined)
-    {
+
+          return callBack(null, results);
+        }
+      );
+    } else if (date != undefined) {
       let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
@@ -116,21 +113,19 @@ module.exports = {
         c.CustomerId=a.CustomerId
         where c.CompanyId=? and a.Date=?
         group by a.CustomerOrderId`;
-        pool.query(
-          sql,
-          [companyid,date],
-    
-          (error, results, _fields) => {
-            if (error) {
-              return callBack(error);
-            }
-    
-            return callBack(null, results);
+      pool.query(
+        sql,
+        [companyid, date],
+
+        (error, results, _fields) => {
+          if (error) {
+            return callBack(error);
           }
-        );
-    }
-    else if(customerid!=undefined)
-    {
+
+          return callBack(null, results);
+        }
+      );
+    } else if (customerid != undefined) {
       let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
@@ -142,21 +137,19 @@ module.exports = {
         c.CustomerId=a.CustomerId
         where c.CompanyId=? and a.CustomerOrderId=?
         group by a.CustomerOrderId`;
-        pool.query(
-          sql,
-          [companyid,customerid],
-    
-          (error, results, _fields) => {
-            if (error) {
-              return callBack(error);
-            }
-    
-            return callBack(null, results);
+      pool.query(
+        sql,
+        [companyid, customerid],
+
+        (error, results, _fields) => {
+          if (error) {
+            return callBack(error);
           }
-        );
-    }
-    else
-    {
+
+          return callBack(null, results);
+        }
+      );
+    } else {
       let sql = `select a.CustomerOrderId, c.Fname ,Date_format(a.Date,'%Y-%m-%d')as 'Date',sum(Quantity) as SumofQuantity,Total  from Customer_OrderDetails as a 
         inner join 
         Sales_Order_Products as b
@@ -168,20 +161,19 @@ module.exports = {
         c.CustomerId=a.CustomerId
         where c.CompanyId=?
         group by a.CustomerOrderId`;
-        pool.query(
-          sql,
-          [companyid],
-    
-          (error, results, _fields) => {
-            if (error) {
-              return callBack(error);
-            }
-    
-            return callBack(null, results);
+      pool.query(
+        sql,
+        [companyid],
+
+        (error, results, _fields) => {
+          if (error) {
+            return callBack(error);
           }
-        );
+
+          return callBack(null, results);
+        }
+      );
     }
-    
   },
 
   //getting all the orders of particular Customer
@@ -280,5 +272,5 @@ where user_master_customer.CustomerId=? group by Customer_OrderDetails.CustomerO
       }
       return callBack(null, results);
     });
-  }
+  },
 };
