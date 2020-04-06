@@ -3,7 +3,7 @@ const passport = require("passport");
 const {
   ReceivedDelivery,
   GetAllDelivery,
-  GetDelivery_ProductsbyId
+  GetDelivery_ProductsbyId,
 } = require("./Delivery.controller");
 
 router.post(

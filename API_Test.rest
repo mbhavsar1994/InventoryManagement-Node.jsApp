@@ -152,7 +152,7 @@ content-type: application/json
 
 //fetching countries
 ###
-GET http://18.216.15.198:3000/api/countries/country HTTP/1.1
+GET http://localhost:3000/api/countries/country HTTP/1.1
 content-type: application/json
 
 
@@ -202,8 +202,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpb
 content-type: application/json
 
 {
-    "categoryname": "kkkkjll",
-    "SKU": "jnsl-9900-01",
+    "categoryname": "test1111",
+    "SKU": "pnsl-9900-01",
     "tags": "Cosmatics",
     "companyid":1
 }
@@ -391,7 +391,8 @@ content-type: application/json
 
 ####
 
-POST  http://localhost:3000/api/delivery/getdeliveries?DeliveryId=1 HTTP/1.1
+POST  http://localhost:3000/api/delivery/getdeliveries HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTU4NjE3NjMzNX0.lxgdlerzOz2oE2_bIf1u9zUeKnTHPBrgIgu3SzG24u4
 content-type: application/json
 
 {
@@ -556,8 +557,8 @@ content-type: application/json
 ####
 
 // get Delivery details by id
-GET  http://localhost:3000/api/delivery/getdeliverybyid?DeliveryId=85 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhdjExZTgwQGdtYWlsLmNvbSIsImlhdCI6MTU4NTE1ODE2OH0.wYRhhLTZd4NMcj7sg95RF73_ivbfoUSU1B-VM2-RbJk
+GET  http://localhost:3000/api/delivery/getdeliverybyid?DeliveryId=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTU4NjE3NjMzNX0.lxgdlerzOz2oE2_bIf1u9zUeKnTHPBrgIgu3SzG24u4
 content-type: application/json
 
 
