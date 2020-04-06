@@ -189,7 +189,7 @@ module.exports = {
     else if(Product_name!=undefined &&sku!=undefined  )//when all filter have data
     {
       pool.query(
-        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ?  ",
+        "SELECT `product`.`ProductId`,`product`.`Product_name` as `ProductName`,`product`.AvailableQty as `Inventory`,`product`.`SKU`,`product`.`Description`, `ca`.`Category_name` as category, `product`.`Image`,`product`.`SupplierId`,supplier.SupplierName FROM `IMS`.`product` as `product`  inner join category as ca on product.CategoryId = ca.CategoryId  inner join Suppliers as supplier  on  product.SupplierId= supplier.SupplierId where product.IsActive=1 and product.CompanyId= ? and product.Product_name like ? and product.SKU like ?",
         [CompanyId,'%'+Product_name+'%','%'+sku+'%'],
         (error, results, fields) => {
           if (error) {

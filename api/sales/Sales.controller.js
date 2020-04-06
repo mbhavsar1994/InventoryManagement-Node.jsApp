@@ -137,8 +137,8 @@ module.exports = {
       }
       if (results.length == 0) {
         return res
-          .status(404)
-          .json({ success: "0", message: " Resource does not exist." });
+          .status(200)
+          .json({ success: "1", message: " Resource does not exist.",data:[] });
       } else {
         return res.status(200).json({
           success: "1",

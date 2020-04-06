@@ -275,7 +275,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFtaWRhd
 // Get All Products ----------------------------> 
 ###
 
-POST  http://localhost:3000/api/product/getproducts?ProductName=e&&SKU=0000 HTTP/1.1
+POST  http://localhost:3000/api/product/getproducts?ProductName=e&&SKU=000 HTTP/1.1
 content-type: application/json
 
 {

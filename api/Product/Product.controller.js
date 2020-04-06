@@ -75,8 +75,8 @@ module.exports = {
       }
       if (!results.length) {
         return res
-          .status(404)
-          .json({ success: "0", message: " Resource does not exist." });
+          .status(200)
+          .json({ success: "1", message: " Resource does not exist." ,data:[] });
       } else {
         for (var i in results) {
           results[i].Image =
