@@ -140,8 +140,6 @@ module.exports = {
           .status(404)
           .json({ success: "0", message: " Resource does not exist." });
       } else {
-        
-
         return res.status(200).json({
           success: "1",
           data: results
