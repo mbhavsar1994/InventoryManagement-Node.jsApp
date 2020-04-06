@@ -292,24 +292,30 @@ POST  http://localhost:3000/api/purchaseorder/create HTTP/1.1
 content-type: application/json
 
 {
-    "SupplierId":1,
-    "CurrencyId":1,
-    "DiscountRate":5,
-    "PurchaseOrderTotal":17000,
-    "products":[
-         {
-           "ProductId":33,
-           "Price": 100,
-           "Quantity":30,
-           "Total":3000
-        },
+	"SupplierId": "2", 
+	"CurrencyId": 1, 
+	"DiscountRate": 10, 
+	"PurchaseOrderTotal": 400,
+	"products": [
+		{
+			"ProductId":7,
+			"Price": 200, 
+			"Quantity": 2,
+			"Total": 800
+		},
         {
-           "ProductId":1,
-           "Price": 200,
-           "Quantity":70,
-           "Total":14000 
-        }
-    ]
+			"ProductId":6,
+			"Price": 100, 
+			"Quantity": 2,
+			"Total": 200
+		},
+        {
+			"ProductId":1,
+			"Price": 50, 
+			"Quantity": 4,
+			"Total": 200
+		}
+	]
 }
 //create sales api
 ###
