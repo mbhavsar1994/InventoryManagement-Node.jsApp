@@ -71,6 +71,9 @@ module.exports = {
       console.log(req.query.SupplierName);
 =======
     getAllProduct(req.body.CompanyId, (err, results) => {
+<<<<<<< HEAD
+>>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
+=======
 >>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
       if (err) {
         console.log(err);
@@ -154,6 +157,9 @@ module.exports = {
         return res.status(200).json({
           success: "1",
           data: response
+<<<<<<< HEAD
+>>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
+=======
 >>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
         });
       }

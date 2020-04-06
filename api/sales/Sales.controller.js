@@ -174,6 +174,9 @@ module.exports = {
         return res.status(200).json({
           success: "1",
           data: response
+<<<<<<< HEAD
+>>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
+=======
 >>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
         });
       }

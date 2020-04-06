@@ -2,7 +2,7 @@ POST http://18.216.15.198:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "rajwinder12345@gmail.com",
+    "email": "rajwinder123@gmail.com",
     "password": "rajwinder123"
 }
 
@@ -478,8 +478,13 @@ content-type: application/json
 
 // Get sales---by filter---------------------->
 ###
+<<<<<<< HEAD
 POST http://18.216.15.198:3000/api/sales/getsales?Date=2020-03-11 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTU4NjE3NDMxN30.H-4D9xKICZkAQWjKL92_ufe9VIDkzHvrPAA0fqh2Hz8
+=======
+POST http://localhost:3000/api/sales/getsales?Date=2020-03-31 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
+>>>>>>> parent of 0439684... resolve 29 and 24 defect from backend
 content-type: application/json
 
 {
