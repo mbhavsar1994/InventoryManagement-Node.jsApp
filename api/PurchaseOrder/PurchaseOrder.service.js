@@ -12,7 +12,7 @@ module.exports = {
         Purchase_order.SupplierId,
         Purchase_order.CurrencyId,
         Purchase_order.DiscountRate,
-        Purchase_order.PurchaseOrderTotal,
+        Purchase_order.PurchaseOrderTotal
       ],
 
       (error, results, _fields) => {
@@ -40,7 +40,7 @@ module.exports = {
         product_jason[i].ProductId,
         product_jason[i].Price,
         product_jason[i].Quantity,
-        product_jason[i].Total,
+        product_jason[i].Total
       ]);
 
       Delivery_Products.push([
@@ -48,7 +48,7 @@ module.exports = {
         product_jason[i].ProductId,
         product_jason[i].Price,
         product_jason[i].Quantity,
-        product_jason[i].Total,
+        product_jason[i].Total
       ]);
     }
 
@@ -106,7 +106,7 @@ module.exports = {
       [
         Purchase_order.purchase_ord_id,
         Purchase_order.SupplierId,
-        Purchase_order.PurchaseOrderTotal,
+        Purchase_order.PurchaseOrderTotal
       ],
 
       (error, results, _fields) => {
@@ -132,14 +132,14 @@ module.exports = {
         product_jason[i].ProductId,
         product_jason[i].Quantity,
         product_jason[i].Total,
-        product_jason[i].PurchaseOrder_ProductId,
+        product_jason[i].PurchaseOrder_ProductId
       ]);
 
       delivery_products.push([
         purchase_ord_id,
         product_jason[i].ProductId,
         product_jason[i].Quantity,
-        product_jason[i].Total,
+        product_jason[i].Total
       ]);
     }
     let sql = `
@@ -281,5 +281,5 @@ module.exports = {
         return callBack(null, results);
       }
     );
-  },
+  }
 };
