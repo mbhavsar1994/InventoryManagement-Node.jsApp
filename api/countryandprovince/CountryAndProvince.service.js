@@ -24,5 +24,18 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+  getProvinceName: (country_name, callBack) => {
+    pool.query(
+      "SELECT a.ProvinceId,a.name as Province_name ,b.name as country_name FROM IMS.province_master as a join  country_master as b on a.CountryId=b.CountryId where b.name=?",
+      [country_name],
+      (error, results) => {
+        if (error) {
+          return callBack(error);
+        }
+
+        return callBack(null, results);
+      }
+    );
   }
 };
