@@ -165,6 +165,14 @@ content-type: application/json
     "country_id": 1
 }
 
+//for fetching provinces by passing country name
+###
+POST http://localhost:3000/api/getprovinces/getprovince HTTP/1.1
+content-type: application/json
+
+{
+    "country_name": "canada"
+}
 // Add new Product -------------------------------->
 ###
 
@@ -189,7 +197,7 @@ content-type: application/json
 
 //creating new  category
 ###
-POST http://localhost:3000/api/category/createCategory HTTP/1.1
+POST http://18.216.15.198:3000/api/category/createCategory HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2OTM4MDl9.4tOZte2yJnh96RS0cf0znnR6uz1_P-40UdO5LnGCXJQ
 content-type: application/json
 
@@ -434,7 +442,7 @@ content-type: application/json
 
 //edit user customer 
 ###
-POST   http://localhost:3000/api/customeruser/editcustomeruser HTTP/1.1
+POST   http://18.216.15.198:3000/api/customeruser/editcustomeruser HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyM0BnbWFpbC5jb20iLCJpYXQiOjE1ODU2MDQ4OTl9.7vaQOr6Hm9Nnm8cV-Vio_5pe5RbR3gUwqZ8CNl4Siiw
 content-type: application/json
 

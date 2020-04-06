@@ -161,6 +161,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use("/api/companyuser", companyuserRouter);
 app.use("/api/customeruser", customeruserRouter);
 app.use("/api/countries", countriesRouter);
+app.use("/api/getprovinces", countriesRouter);
 app.use("/api/provinces", countriesRouter);
 app.use("/api/supplier", supplierRouter);
 app.use("/api/category", categoryRouter);
