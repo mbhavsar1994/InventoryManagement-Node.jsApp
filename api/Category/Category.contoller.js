@@ -90,7 +90,8 @@ module.exports = {
       } else {
         if (typeof req.query.CategoryName != "undefined") {
           results.filter(function(result) {
-            if (result.categoryname.toString() == req.query.CategoryName) {
+            
+            if (_.includes(result.categoryname.toString(),req.query.CategoryName)) {
               response.push(result);
             }
           });

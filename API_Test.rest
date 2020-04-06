@@ -224,7 +224,7 @@ content-type: application/json
 
 // Get all Categories ------------------------------->
 ###
-POST  http://localhost:3000/api/category/getcategories HTTP/1.1
+POST  http://localhost:3000/api/category/getcategories?CategoryName=love HTTP/1.1
 content-type: application/json
 
 {
@@ -478,7 +478,7 @@ content-type: application/json
 
 // Get sales---by filter---------------------->
 ###
-POST http://18.216.15.198:3000/api/sales/getsales?Date=2020-03-11 HTTP/1.1
+POST http://18.216.15.198:3000/api/sales/getsales?Date=2020-03-31 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhandpbmRlcjEyMzQ1QGdtYWlsLmNvbSIsImlhdCI6MTU4NjE3NDMxN30.H-4D9xKICZkAQWjKL92_ufe9VIDkzHvrPAA0fqh2Hz8
 content-type: application/json
 
