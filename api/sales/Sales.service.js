@@ -33,11 +33,11 @@ module.exports = {
     }
 
     let sql = `INSERT INTO Sales_Order_Products (CustomerOrderId, ProductId,Price,Quantity,SubTotal) VALUES ?; 
-    Update product as a inner join Sales_Order_Products as b on a.ProductId=b.ProductId Set a.AvailableQty=(a.AvailableQty-b.Quantity) where a.ProductId=b.ProductId;`;
+    Update product as a inner join Sales_Order_Products as b on a.ProductId=b.ProductId Set a.AvailableQty=(a.AvailableQty-b.Quantity) where a.ProductId=b.ProductId and b.CustomerOrderId=?;`;
 
     pool.query(
       sql,
-      [products],
+      [products, orderid],
 
       (error, resultss, _fields) => {
         if (error) {
