@@ -180,7 +180,7 @@ app.use("/api/sales", salesRouter);
 app.get("/", function (req, res) {
   res.json({ message: "Inventory Management API is up!" });
 });
-
-var server = app.listen(process.env.APP_PORT, () => {
-  console.log("Listening on port " + process.env.APP_PORT + "...");
+var port = process.env.PORT || 3000;
+var server = app.listen(port, () => {
+  console.log("Listening on port " + port + "...");
 });

@@ -2,8 +2,8 @@ POST http://18.216.15.198:3000/api/companyuser/authcompanyuser HTTP/1.1
 content-type: application/json
 
 {
-    "email": "rajwinder123@gmail.com",
-    "password": "rajwinder123"
+    "email": "admin@gmail.com",
+    "password": "admin123"
 }
 
 ###
