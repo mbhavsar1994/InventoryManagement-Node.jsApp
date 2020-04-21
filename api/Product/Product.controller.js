@@ -81,7 +81,7 @@ module.exports = {
       } else {
         for (var i in results) {
           results[i].Image =
-            "http://18.216.15.198:3000/uploads/" + results[i].Image;
+            "https://api-tradego.herokuapp.com/uploads/" + results[i].Image;
         }
 
         if (typeof req.query.ProductName != "undefined") {
@@ -220,7 +220,7 @@ module.exports = {
       } else {
         for (var i in results) {
           results[i].Image =
-            "http://18.216.15.198:3000/uploads/" + results[i].Image;
+            "https://api-tradego.herokuapp.com/uploads/" + results[i].Image;
         }
         return res.status(200).json({
           success: "1",
@@ -286,7 +286,8 @@ module.exports = {
         } else {
           for (var i in results[1]) {
             results[1][i].image =
-              "http://18.216.15.198:3000/uploads/" + results[1][i].image;
+              "https://api-tradego.herokuapp.com/uploads/" +
+              results[1][i].image;
           }
           return res.status(200).json({
             success: "1",

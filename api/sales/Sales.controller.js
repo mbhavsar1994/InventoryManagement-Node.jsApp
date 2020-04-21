@@ -7,7 +7,7 @@ const {
   getMinSoldsItems,
   getRecentSalesByWeek,
   getSalesPerCategory,
-  getSalesByCustomerId
+  getSalesByCustomerId,
 } = require("./Sales.service");
 const _ = require("lodash");
 
@@ -19,17 +19,17 @@ module.exports = {
       if (results == undefined) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[3][0].status == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[3][0].status == 0) {
         return res.status(400).json({
           success: "0",
-          message: "Bad request error!"
+          message: "Bad request error!",
         });
       } else {
         console.log(results[5][0]);
@@ -39,12 +39,12 @@ module.exports = {
           if (err) {
             return res.status(500).json({
               success: "0",
-              message: "Internal server error!"
+              message: "Internal server error!",
             });
           } else {
             return res.status(200).json({
               success: "1",
-              message: "order done successfully"
+              message: "order done successfully",
             });
           }
         });
@@ -60,7 +60,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..customer order id is missing "
+        message: "Invalid request..customer order id is missing ",
       });
     }
     if (typeof req.query.companyid != "undefined") {
@@ -68,7 +68,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
     getSalesById(orderid, companyid, (err, results) => {
@@ -76,12 +76,12 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -94,7 +94,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..CustomerId id is missing "
+        message: "Invalid request..CustomerId id is missing ",
       });
     }
     getSalesByCustomerId(CustomerId, (err, results) => {
@@ -102,16 +102,16 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         for (var i in results) {
           results[i].Image =
-            "http://18.216.15.198:3000/uploads/" + results[i].Image;
+            "https://api-tradego.herokuapp.com/uploads/" + results[i].Image;
         }
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -126,7 +126,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "company id cannot be null!"
+        message: "company id cannot be null!",
       });
     }
     getAllSales(
@@ -140,14 +140,14 @@ module.exports = {
           return res.status(500).json({
             success: "0",
             message: "Internal Server Error",
-            error: err
+            error: err,
           });
         }
         if (results.length == 0) {
           return res.status(200).json({
             success: "1",
             message: " Resource does not exist.",
-            data: []
+            data: [],
           });
         }
         // de-duplication: by product id
@@ -160,7 +160,7 @@ module.exports = {
 
         return res.status(200).json({
           success: "1",
-          data: response
+          data: response,
         });
       }
     );
@@ -172,7 +172,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
 
@@ -181,7 +181,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         if (results.length == 0) {
@@ -189,7 +189,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -202,7 +202,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
 
@@ -211,7 +211,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else {
         if (results.length == 0) {
@@ -219,7 +219,7 @@ module.exports = {
         }
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -233,7 +233,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..CompanyId is missing "
+        message: "Invalid request..CompanyId is missing ",
       });
     }
 
@@ -241,7 +241,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       }
       if (results.length == 0) {
@@ -249,7 +249,7 @@ module.exports = {
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
@@ -261,7 +261,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..company id is missing "
+        message: "Invalid request..company id is missing ",
       });
     }
 
@@ -270,7 +270,7 @@ module.exports = {
       if (err) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       }
       if (results.length == 0) {
@@ -278,9 +278,9 @@ module.exports = {
       } else {
         return res.status(200).json({
           success: "1",
-          data: results
+          data: results,
         });
       }
     });
-  }
+  },
 };

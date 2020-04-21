@@ -7,7 +7,7 @@ const {
   editUser,
   getUserById,
   getCompanyById,
-  EditCompanyProfile
+  EditCompanyProfile,
 } = require("./CompanyUser.service");
 const _ = require("lodash");
 
@@ -25,13 +25,13 @@ module.exports = {
 
         return res.status(500).json({
           success: "0",
-          message: "Internal server error"
+          message: "Internal server error",
         });
       }
       if (!results) {
         return res.status(404).json({
           success: "0",
-          message: "Invalid email address"
+          message: "Invalid email address",
         });
       }
 
@@ -39,17 +39,18 @@ module.exports = {
         results.Password = undefined;
         let payload = { email: results.Email };
         let token = sign(payload, process.env.JWT_KEY);
-        results.Logo = "http://18.216.15.198:3000/uploads/" + results.Logo;
+        results.Logo =
+          "https://api-tradego.herokuapp.com/uploads/" + results.Logo;
         return res.status(200).json({
           success: "1",
           message: "login successfully",
           token: token,
-          data: results
+          data: results,
         });
       } else {
         return res.status(401).json({
           success: "0",
-          message: "Invalid email or password"
+          message: "Invalid email or password",
         });
       }
     });
@@ -62,13 +63,13 @@ module.exports = {
     if (typeof req.file.filename == "undefined") {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Logo is missing!"
+        message: "Invalid request..Logo is missing!",
       });
     }
     if (!validator.validate(req.body.Email)) {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..Enter valid email address!"
+        message: "Invalid request..Enter valid email address!",
       });
     }
     createCompany_User(req, (err, results) => {
@@ -77,22 +78,22 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal server error !",
-          data: err
+          data: err,
         });
       } else if (results[15][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[15][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[16][0]["Err_msg"]
+          message: results[16][0]["Err_msg"],
         });
       } else {
         return res.status(200).json({
           success: "1",
-          message: "Company Profile created Successfully"
+          message: "Company Profile created Successfully",
         });
       }
     });
@@ -109,13 +110,13 @@ module.exports = {
 
         return res.status(500).json({
           success: "0",
-          data: "Internal Server error!"
+          data: "Internal Server error!",
         });
       }
       if (!results.length) {
         return res.status(404).json({
           success: "0",
-          message: "Email Addess isn't exist"
+          message: "Email Addess isn't exist",
         });
       } else {
         sendMail(results[0]["Email"], results[0]["Password"], (err, result) => {
@@ -123,14 +124,15 @@ module.exports = {
           if (err) {
             return res.status(500).json({
               success: "0",
-              message: "Unable to send e-mail. Please Contact the administrator"
+              message:
+                "Unable to send e-mail. Please Contact the administrator",
             });
           }
           if (result) {
             return res.status(200).json({
               success: 1,
               message: "Email sent successfully! Please check your mailbox",
-              data: result
+              data: result,
             });
           }
         });
@@ -143,7 +145,7 @@ module.exports = {
     if (req.body.email == null) {
       return res.status(400).json({
         success: "0",
-        message: "email is require"
+        message: "email is require",
       });
     } else if (req.body.email == req.body.email.match(regex)) {
       editUser(req, (err, results) => {
@@ -151,29 +153,29 @@ module.exports = {
         if (err) {
           return res.status(500).json({
             success: "0",
-            data: "Internal Server error!"
+            data: "Internal Server error!",
           });
         } else if (!results.length) {
           return res.status(500).json({
             success: "0",
-            data: "Internal Server error!"
+            data: "Internal Server error!",
           });
         } else if (results[7][0]["status"] == 0) {
           return res.status(400).json({
             success: "0",
-            message: results[8][0]["Err_msg"]
+            message: results[8][0]["Err_msg"],
           });
         } else {
           return res.status(200).json({
             success: "1",
-            message: "Update Sucessfully!"
+            message: "Update Sucessfully!",
           });
         }
       });
     } else {
       return res.status(400).json({
         success: "0",
-        message: "email  should be in example@gmail.com"
+        message: "email  should be in example@gmail.com",
       });
     }
   },
@@ -183,7 +185,7 @@ module.exports = {
     if (req.query.userid == undefined) {
       return res.status(400).json({
         success: "0",
-        message: "user id needed!"
+        message: "user id needed!",
       });
     } else {
       userid = req.query.userid;
@@ -195,7 +197,7 @@ module.exports = {
           return res.status(500).json({
             success: "0",
             message: "Internal Server Error",
-            error: err
+            error: err,
           });
         }
         if (!results.length) {
@@ -205,7 +207,7 @@ module.exports = {
         } else {
           return res.status(200).json({
             success: "1",
-            data: results
+            data: results,
           });
         }
       });
@@ -221,7 +223,7 @@ module.exports = {
     } else {
       return res.status(400).json({
         success: "0",
-        message: "Invalid request..CompanyId  is missing "
+        message: "Invalid request..CompanyId  is missing ",
       });
     }
     getCompanyById(CompanyId, (err, results) => {
@@ -230,7 +232,7 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal Server Error",
-          error: err
+          error: err,
         });
       }
       if (!results.length) {
@@ -239,12 +241,12 @@ module.exports = {
           .json({ success: "0", message: " Resource does not exist." });
       } else {
         results[0].Logo =
-          "http://18.216.15.198:3000/uploads/" + results[0].Logo;
+          "https://api-tradego.herokuapp.com/uploads/" + results[0].Logo;
         let result = results[0];
 
         return res.status(200).json({
           success: "1",
-          data: result
+          data: result,
         });
       }
     });
@@ -258,24 +260,24 @@ module.exports = {
         return res.status(500).json({
           success: "0",
           message: "Internal server error! Please try again",
-          data: err
+          data: err,
         });
       } else if (results[12][0]["status"] == null) {
         return res.status(500).json({
           success: "0",
-          message: "Internal server error!"
+          message: "Internal server error!",
         });
       } else if (results[12][0]["status"] == "0") {
         return res.status(400).json({
           success: "0",
-          message: results[13][0]["Err_msg"]
+          message: results[13][0]["Err_msg"],
         });
       } else {
         return res.status(200).json({
           success: "1",
-          message: "Company Profile updated Successfully"
+          message: "Company Profile updated Successfully",
         });
       }
     });
-  }
+  },
 };
