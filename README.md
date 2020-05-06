@@ -6,7 +6,7 @@ system  provides realtime stock availability for each products,
 Purchase & track delivery inventory from supplier, 
 Sales products from mobile application,
 Provide insight of system by various graph such as incoming purchase, recent sales, most sold and least sold products,
-on hand Inventory and inventory valutions
+on hand Inventory and inventory valuation
 
 ## Installation
 
