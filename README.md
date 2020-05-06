@@ -1,6 +1,6 @@
-# Foobar
+# TradeGo IMS
 
-TradeGo is developed using Node.js and MySQL  Inventory Management System  
+TradeGo is Inventory Management System which is developed using Node.js and MySQL by  
 ## Installation
 
 Use the npm  package manager https://github.com/mbhavsar1994/InventoryManagement-Node.jsApp.git   clone and install TradeGo Ineventory APP.
