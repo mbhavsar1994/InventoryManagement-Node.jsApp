@@ -24,9 +24,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 Contributer Team : 
-#Bhavsar Mehul,
-#Ami Dave,
-#Loveleen Kaur
+Bhavsar Mehul,
+Ami Dave,
+Loveleen Kaur
 
 
 ## License
