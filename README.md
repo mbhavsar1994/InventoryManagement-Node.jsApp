@@ -37,7 +37,7 @@ Loveleen Kaur
 
 
 ## License
-All rights reseved by TreadGo Team
+All rights reseved by TradeGo Team
 
 
 
