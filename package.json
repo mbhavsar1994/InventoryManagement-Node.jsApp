@@ -24,7 +24,7 @@
     "express": "^4.16.3",
     "ext-ip": "^0.3.8",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "node-cron": "^2.0.3",
