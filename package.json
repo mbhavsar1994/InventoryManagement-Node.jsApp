@@ -29,7 +29,7 @@
     "mysql": "^2.18.1",
     "node-cron": "^2.0.3",
     "node-inspect": "^1.11.6",
-    "nodemailer": "^6.4.5",
+    "nodemailer": "^6.4.16",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "pusher": "^3.0.1",
