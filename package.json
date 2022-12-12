@@ -21,7 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "ext-ip": "^0.3.8",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
